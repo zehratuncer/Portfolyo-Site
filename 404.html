@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Sayfa Bulunamadı | Zehra Tuncer</title>
+  <meta name="description" content="Aradığınız sayfa mevcut değil veya taşınmış olabilir.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Tangerine:wght@700&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <style>
+    .error-page-wrapper {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .error-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 3.5rem 2.5rem;
+      max-width: 620px;
+      width: 100%;
+      text-align: center;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .error-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--grad-cyan-blue);
+    }
+
+    .error-code {
+      font-family: var(--font-code);
+      font-size: 7.5rem;
+      font-weight: 800;
+      line-height: 1;
+      background: var(--grad-text);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem;
+      letter-spacing: -2px;
+      text-shadow: 0 0 40px rgba(0, 242, 254, 0.2);
+    }
+
+    .error-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      color: #f87171;
+      border-radius: 9999px;
+      font-family: var(--font-code);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .error-badge span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #ef4444;
+      box-shadow: 0 0 10px #ef4444;
+    }
+
+    .error-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+    }
+
+    .error-desc {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .terminal-box {
+      background: rgba(6, 9, 19, 0.7);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.25rem;
+      font-family: var(--font-code);
+      font-size: 0.85rem;
+      color: #94a3b8;
+      text-align: left;
+      margin-bottom: 2rem;
+    }
+
+    .terminal-box .prompt {
+      color: var(--accent-cyan);
+    }
+
+    .terminal-box .path {
+      color: var(--accent-purple);
+    }
+
+    .terminal-box .err {
+      color: #f87171;
+    }
+
+    .btn-return {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.9rem 2rem;
+      background: var(--grad-cyan-blue);
+      color: #060913;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+    }
+
+    .btn-return:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px -5px rgba(0, 242, 254, 0.4);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Ambient Glow Background -->
+  <div class="ambient-glow ambient-1"></div>
+  <div class="ambient-glow ambient-2"></div>
+  <canvas id="particle-canvas"></canvas>
+
+  <main class="error-page-wrapper">
+    <div class="error-card">
+      <div class="error-badge">
+        <span></span>
+        HTTP 404: NOT_FOUND
+      </div>
+      
+      <h1 class="error-code">404</h1>
+      <h2 class="error-title">Sayfa Kayboldu veya Taşındı</h2>
+      
+      <p class="error-desc">
+        Aradığınız yol mevcut değil veya adresi değişmiş olabilir. Lütfen URL'yi kontrol edin veya ana sayfaya dönerek gezinmeye devam edin.
+      </p>
+
+      <div class="terminal-box">
+        <div><span class="prompt">zehra@portfolio:~$</span> GET <span class="path">/requested-page</span></div>
+        <div class="err">Error 404: Resource not located on server.</div>
+      </div>
+
+      <a href="index.html" class="btn-return">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Ana Sayfaya Dön
+      </a>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

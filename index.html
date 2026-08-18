@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zehra Tuncer | Yazılım Geliştiricisi</title>
+  <meta name="description"
+    content="Zehra - .NET 9, Angular 20, Clean Architecture, PostgreSQL, Docker ve Dağıtık Sistemler odaklı Kıdemli Yazılım Geliştirici Portfolyosu.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Felipa&family=Tangerine:wght@400;700&family=JetBrains+Mono:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+
+<body>
+  <!-- Ambient Glow & Interactive Background Canvas -->
+  <div class="ambient-glow ambient-1"></div>
+  <div class="ambient-glow ambient-2"></div>
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- Site Header / Navigation -->
+  <header class="site-header" id="site-header">
+    <div class="nav-container">
+      <a href="#hero" class="brand-logo tangerine-bold">
+        <span class="terminal-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="4 17 10 11 4 5"></polyline>
+            <line x1="12" x2="20" y1="19" y2="19"></line>
+          </svg>
+        </span>
+        <span class="tangerine-bold"><span class="brand-highlight">Zehra Tuncer</span></span>
+      </a>
+
+      <nav>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#hero" class="nav-link active">Giriş</a></li>
+          <li><a href="#tech-stack" class="nav-link">Teknolojiler</a></li>
+          <li><a href="#projects" class="nav-link">Projeler</a></li>
+          <li><a href="#about" class="nav-link">Hakkımda</a></li>
+          <li><a href="#contact" class="nav-link">İletişim</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="menu-toggle" id="menu-toggle" aria-label="Menüyü Aç/Kapat">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" x2="20" y1="12" y2="12"></line>
+            <line x1="4" x2="20" y1="6" y2="6"></line>
+            <line x1="4" x2="20" y1="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-grid">
+        <div class="hero-content">
+
+          <h1 class="hero-title">
+            Ölçeklenebilir, Dayanıklı &amp; <span class="gradient-text">Yüksek Performanslı</span> Yazılımlar.
+          </h1>
+
+          <p class="hero-description">
+            .NET 9 &amp; ASP.NET Core, Angular 20 Standalone, Clean Architecture, PostgreSQL ve Docker ile kurumsal
+            seviyede güvenli, modüler ve dağıtık sistemler inşa ediyorum.
+          </p>
+
+          <div class="hero-cta">
+            <a href="#projects" class="btn btn-primary">
+              <span>Projelerimi Keşfet</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+            <a href="#contact" class="btn btn-outline">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+              </svg>
+              <span>İletişime Geç</span>
+            </a>
+          </div>
+
+          <div class="hero-stats">
+
+          </div>
+        </div>
+
+        <!-- Interactive Terminal Card -->
+        <div class="hero-visual">
+          <div class="terminal-card">
+            <div class="terminal-header">
+              <div class="terminal-dots">
+                <span class="t-dot t-red"></span>
+                <span class="t-dot t-yellow"></span>
+                <span class="t-dot t-green"></span>
+              </div>
+              <span class="terminal-title">Zehra Tuncer • Full-Stack Engineer</span>
+              <span>⚡</span>
+            </div>
+            <div class="terminal-body" style="padding: 0; line-height: 0;">
+              <img src="profil_fotografi.jpeg" alt="Zehra Tuncer Profil Fotoğrafı"
+                style="width: 100%; display: block; object-fit: cover; aspect-ratio: 1/1;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tech Stack Matrix Section -->
+    <section class="section" id="tech-stack">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Yetkinlikler &amp; Araçlar</span>
+        </div>
+
+        <div class="tech-grid">
+          <!-- 1. Backend & Kurumsal Mimari -->
+          <div class="tech-card">
+            <div class="tech-card-icon icon-cyan">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2v20" />
+                <path d="m17 5-5-3-5 3" />
+                <path d="m17 19-5 3-5-3" />
+                <path d="M2 12h20" />
+                <path d="m5 7-3 5 3 5" />
+                <path d="m19 7 3 5-3 5" />
+              </svg>
+            </div>
+            <h3>Backend &amp; Kurumsal Mimari</h3>
+            <p>Clean Architecture, Modüler Monolit ve DDD prensipleriyle güvenli, ölçeklenebilir kurumsal sistem
+              tasarımı.</p>
+            <div class="tech-pills">
+              <span class="pill">.NET 9</span>
+              <span class="pill">C# 13</span>
+              <span class="pill">ASP.NET Core Web API</span>
+              <span class="pill">Clean Architecture</span>
+              <span class="pill">CQRS / MediatR</span>
+              <span class="pill">JWT &amp; Dinamik ACL</span>
+              <span class="pill">Modüler Monolit</span>
+            </div>
+          </div>
+
+          <!-- 2. Modern Web Frontend -->
+          <div class="tech-card">
+            <div class="tech-card-icon icon-indigo">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="12 2 2 7 12 12 22 7 12 2" />
+                <polyline points="2 17 12 22 22 17" />
+                <polyline points="2 12 12 17 22 12" />
+              </svg>
+            </div>
+            <h3>Modern Web Frontend</h3>
+            <p>Standalone bileşenler ve reaktif sinyaller (Signals) kullanarak dinamik kullanıcı arayüzleri.</p>
+            <div class="tech-pills">
+              <span class="pill">Angular 20</span>
+              <span class="pill">Standalone Components</span>
+              <span class="pill">Angular Signals</span>
+              <span class="pill">TypeScript 5</span>
+              <span class="pill">RxJS</span>
+              <span class="pill">Figma</span>
+            </div>
+          </div>
+
+          <!-- 3. Veri Tabanı & Sistem Altyapısı -->
+          <div class="tech-card">
+            <div class="tech-card-icon icon-emerald">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <ellipse cx="12" cy="5" rx="9" ry="3" />
+                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
+                <path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3" />
+              </svg>
+            </div>
+            <h3>Veri Tabanı &amp; Altyapı</h3>
+            <p>İlişkisel modelleme, tam metin arama optimizasyonları ve CAS (İçerik-Adresli) depolama.</p>
+            <div class="tech-pills">
+              <span class="pill">PostgreSQL 16</span>
+              <span class="pill">EF Core 9</span>
+              <span class="pill">MS SQL Server</span>
+              <span class="pill">Redis</span>
+              <span class="pill">CAS Storage</span>
+            </div>
+          </div>
+
+          <!-- 4. DevOps, Test & Araçlar -->
+          <div class="tech-card">
+            <div class="tech-card-icon icon-pink">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+                <path d="M7 7h.01" />
+                <path d="M17 7h.01" />
+                <path d="M7 17h.01" />
+                <path d="M17 17h.01" />
+              </svg>
+            </div>
+            <h3>DevOps, Test &amp; Araçlar</h3>
+            <p>Konteynerizasyon, CI/CD, otomatik test altyapıları ve API belgelendirme standartları.</p>
+            <div class="tech-pills">
+              <span class="pill">Docker &amp; Compose</span>
+              <span class="pill">Git &amp; GitHub</span>
+              <span class="pill">xUnit &amp; Testcontainers</span>
+              <span class="pill">Swagger / OpenAPI</span>
+              <span class="pill">Postman</span>
+            </div>
+          </div>
+
+          <!-- 5. Yapay Zeka & Görüntü İşleme -->
+          <div class="tech-card">
+            <div class="tech-card-icon icon-violet">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+            </div>
+            <h3>Yapay Zeka &amp; Görüntü İşleme</h3>
+            <p>Bilgisayarlı görü, göz takibi (eye-tracking), OCR ve makine öğrenmesi algoritmaları.</p>
+            <div class="tech-pills">
+              <span class="pill">Python</span>
+              <span class="pill">OpenCV</span>
+              <span class="pill">TensorFlow</span>
+              <span class="pill">MediaPipe</span>
+              <span class="pill">Tesseract OCR</span>
+              <span class="pill">Pandas &amp; NumPy</span>
+            </div>
+          </div>
+
+          <!-- 6. Mobil Uygulama Geliştirme -->
+          <div class="tech-card">
+            <div class="tech-card-icon icon-blue">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+                <line x1="12" y1="18" x2="12.01" y2="18" />
+              </svg>
+            </div>
+            <h3>Mobil Geliştirme</h3>
+            <p>Modern mobil teknolojiler kullanarak iOS ve Android platformları için çapraz platform çözümler.</p>
+            <div class="tech-pills">
+              <span class="pill">Flutter</span>
+              <span class="pill">Dart</span>
+              <span class="pill">Android</span>
+              <span class="pill">iOS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Çalışmalarım</span>
+          <h2 class="section-title">Öne Çıkan Kurumsal &amp; Modern Projeler</h2>
+          <p class="section-description">
+            Gerçek iş problemlerini çözen, ölçeklenebilir mimarilerle geliştirilmiş seçilmiş projeler.
+          </p>
+        </div>
+        <!-- Projects Grid -->
+        <div class="projects-grid">
+          <!-- Project 1 -->
+          <div class="project-card" data-category="backend">
+            <div class="project-preview">
+              <div class="project-preview-mockup">
+                <div class="mock-topbar"><span></span><span></span><span></span></div>
+                <div class="mock-content">
+                  <img src="internproject-1/assets/08_admin_login.png" alt="Kurumsal Bayi Doküman Yönetim Portalı">
+                </div>
+              </div>
+            </div>
+            <div class="project-info">
+              <span class="project-category">Staj Projesi 1 — Tofaş IT</span>
+              <h3>Kurumsal Bayi Doküman Yönetim Portalı</h3>
+              <p>Yetkili bayilerin kurumsal dokümanlara tek merkezden erişmesini sağlayan; Modular Monolith, Clean
+                Architecture, JWT &amp; Role-Based Authorization ve marka bazlı yetkilendirme mimarili web portalı.</p>
+              <div class="project-tech">
+                <span class="pill">.NET 9 API</span>
+                <span class="pill">Angular</span>
+                <span class="pill">PostgreSQL</span>
+                <span class="pill">JWT &amp; RBAC</span>
+                <span class="pill">Docker</span>
+              </div>
+              <div class="project-links">
+                <button class="btn btn-sm btn-primary view-project-btn" data-id="p1">Detaylı İncele</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="project-card" data-category="backend">
+            <div class="project-preview">
+              <div class="project-preview-mockup">
+                <div class="mock-topbar"><span></span><span></span><span></span></div>
+                <div class="mock-content">
+                  <img src="internproject-2/20_admin_is_akislari_tasarimcisi.png" alt="VaultCore Metadata Doküman Yönetim ve İş Akışı">
+                </div>
+              </div>
+            </div>
+            <div class="project-info">
+              <span class="project-category">Staj Projesi 2 — Tofaş IT</span>
+              <h3>VaultCore — Metadata Doküman Yönetimi &amp; İş Akışı</h3>
+              <p>M-Files mimarisinden esinlenen; dinamik şema modelleme, materyalize ACL güvenlik motoru, durum makineli
+                iş akışı otomasyonu, check-out versiyonlama ve OCR destekli FTS sunan kurumsal DMS platformu.</p>
+              <div class="project-tech">
+                <span class="pill">.NET 9 API</span>
+                <span class="pill">Angular 20</span>
+                <span class="pill">PostgreSQL 16</span>
+                <span class="pill">Materyalize ACL</span>
+                <span class="pill">CAS Storage</span>
+                <span class="pill">Docker</span>
+              </div>
+              <div class="project-links">
+                <button class="btn btn-sm btn-primary view-project-btn" data-id="p2">Detaylı İncele</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="project-card" data-category="mobile">
+            <div class="project-preview">
+              <div class="project-preview-mockup">
+                <div class="mock-topbar"><span></span><span></span><span></span></div>
+                <div class="mock-content">
+                  <img src="beyourself/2.jpg" alt="BeYourself — Kişisel İlham & Medya Asistanı" class="img-centered">
+                </div>
+              </div>
+            </div>
+            <div class="project-info">
+              <span class="project-category">Mobil Uygulama &amp; Bulut</span>
+              <h3>BeYourself — Kişisel İlham &amp; Medya Asistanı</h3>
+              <p>Instagram Reels/Carousel medya ayrıştırıcı, Vercel Serverless CORS proxy, Android Home Widget,
+                zamanlanmış yerel bildirimler ve Supabase bulut senkronizasyonlu modern Flutter uygulaması.</p>
+              <div class="project-tech">
+                <span class="pill">Flutter 3.x</span>
+                <span class="pill">Riverpod 2.5</span>
+                <span class="pill">Supabase</span>
+                <span class="pill">Android Widget</span>
+                <span class="pill">Vercel API</span>
+                <span class="pill">Local Notifications</span>
+              </div>
+              <div class="project-links">
+                <button class="btn btn-sm btn-primary view-project-btn" data-id="p3">Detaylı İncele</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 4 -->
+          <div class="project-card" data-category="desktop">
+            <div class="project-preview">
+              <div class="project-preview-mockup">
+                <div class="mock-topbar"><span></span><span></span><span></span></div>
+                <div class="mock-content">
+                  <img src="notHesaplaamaUygulamasi/Ekran görüntüsü 2026-08-16 164330.png" alt="Not Hesaplama & Akademik Başarı Aracı">
+                </div>
+              </div>
+            </div>
+            <div class="project-info">
+              <span class="project-category">Masaüstü &amp; C# Çözümü</span>
+              <h3>Not Hesaplama &amp; Akademik Başarı Aracı</h3>
+              <p>Vize, ödev ağırlıkları ve geçme notu hedeflerine göre final sınavında alınması gereken minimum notu
+                anlık hesaplayan, dinamik toleranslı C# WinForms masaüstü aracı.</p>
+              <div class="project-tech">
+                <span class="pill">C#</span>
+                <span class="pill">.NET WinForms</span>
+                <span class="pill">Algoritma &amp; Mantık</span>
+                <span class="pill">Input Validation</span>
+              </div>
+              <div class="project-links">
+                <button class="btn btn-sm btn-primary view-project-btn" data-id="p4">Detaylı İncele</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 5 -->
+          <div class="project-card" data-category="game">
+            <div class="project-preview">
+              <div class="project-preview-mockup">
+                <div class="mock-topbar"><span></span><span></span><span></span></div>
+                <div class="mock-content">
+                  <img src="kart_oyunu/Ekran görüntüsü 2026-01-25 131812.png" alt="Memory Match 2D Kart Eşleştirme Oyunu">
+                </div>
+              </div>
+            </div>
+            <div class="project-info">
+              <span class="project-category">Oyun Geliştirme &amp; Veri Yapıları</span>
+              <h3>Memory Match — 2D Kart Eşleştirme Oyunu</h3>
+              <p>C++ ve SFML kütüphanesi ile geliştirilmiş; struct, 2D Array, Queue ve Map veri yapıları kullanılarak
+                bellek yönetimi ve kullanıcı etkileşimi sağlanan 4x4 hafıza oyunu.</p>
+              <div class="project-tech">
+                <span class="pill">C++</span>
+                <span class="pill">SFML 2.x</span>
+                <span class="pill">Veri Yapıları</span>
+                <span class="pill">2D Array &amp; Queue</span>
+                <span class="pill">GUI Game Loop</span>
+              </div>
+              <div class="project-links">
+                <button class="btn btn-sm btn-primary view-project-btn" data-id="p5">Detaylı İncele</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 6 -->
+          <div class="project-card" data-category="backend">
+            <div class="project-preview">
+              <div class="project-preview-mockup">
+                <div class="mock-topbar"><span></span><span></span><span></span></div>
+                <div class="mock-content">
+                  <img src="twitter/4_oneri_motoru.png" alt="Mini Twitter Terminal Tabanlı Sosyal Medya">
+                </div>
+              </div>
+            </div>
+            <div class="project-info">
+              <span class="project-category">Backend &amp; Konsol Uygulaması</span>
+              <h3>Mini Twitter — Terminal Tabanlı Sosyal Medya</h3>
+              <p>Java 17 ve OOP prensipleri ile geliştirilmiş; kullanıcı oturum yönetimi, tweet paylaşımı, hashtag
+                etiketleme, takip mekanizması ve kişiselleştirilmiş öneri motoru sunan konsol uygulaması.</p>
+              <div class="project-tech">
+                <span class="pill">Java 17</span>
+                <span class="pill">OOP Mimarisi</span>
+                <span class="pill">Öneri Algoritması</span>
+                <span class="pill">Console CLI</span>
+                <span class="pill">IntelliJ IDEA</span>
+              </div>
+              <div class="project-links">
+                <button class="btn btn-sm btn-primary view-project-btn" data-id="p6">Detaylı İncele</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+      <div class="container about-grid">
+        <div class="about-text">
+          <span class="section-subtitle">Mühendislik Vizyonum</span>
+          <h3>Problem Çözmek, Sistem Kurmak, Öğrenmeye Devam Etmek.</h3>
+          <p>
+            Bilgisayar Mühendisliği öğrencisi olarak yazılım geliştirmeyi yalnızca kod yazmak olarak değil, gerçek
+            problemlere sürdürülebilir çözümler üretmek olarak görüyorum. Backend geliştirme, yapay zeka entegreli
+            sistemler alanlarında kendimi geliştirirken; temiz, anlaşılabilir ve ölçeklenebilir sistemler tasarlamaya
+            odaklanıyorum.
+          </p>
+          <p>
+            C#, Java ve Python ile çalışıyor; ASP.NET Core, veritabanları, REST API'ler ve modern yazılım mimarileri
+            üzerine deneyim kazanıyorum. Aynı zamanda yapay zeka entegreli sistemler alanında ilerleyerek yazılım
+            mühendisliği altyapımı AI ile birleştirmeyi hedefliyorum.
+          </p>
+          <p>
+            Öğrenmeyi projeler üzerinden seviyorum. Üniversite çalışmalarından gerçek dünya staj deneyimine, TÜBİTAK
+            araştırmalarından kişisel projelere kadar her çalışmayı kendimi bir adım ileri taşımak için kullanıyorum.
+          </p>
+          <div style="margin-top: 1.5rem; display: flex; flex-direction: column; gap: 1.25rem;">
+            <div style="display: flex; flex-wrap: wrap; gap: 0.4rem;">
+              <span class="pill">C#</span>
+              <span class="pill">Python</span>
+              <span class="pill">Java</span>
+              <span class="pill">ASP.NET Core</span>
+              <span class="pill">AI/ML</span>
+              <span class="pill">PostgreSQL</span>
+              <span class="pill">Git</span>
+            </div>
+            <div>
+              <a href="#contact" class="btn btn-outline">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="7 10 12 15 17 10" />
+                  <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+                <span>CV İndir</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="experience-timeline">
+          <!-- Item 1 -->
+          <div class="timeline-item">
+            <span class="timeline-date">2026 – Günümüz</span>
+            <h4>Bilgisayar Mühendisliği 3.Sınıf Öğrencisi</h4>
+            <h5>Yazılım Geliştirme • Yapay Zeka Entegreli Sistemler • Full-Stack Web ve Masaüstü Uygulamaları</h5>
+            <p>
+              TOFAŞ'taki staj sürecimde kurumsal bir ortamda gerçek bir yazılım projesinin geliştirme sürecini
+              deneyimledim. Backend geliştirme, API'ler, veritabanı, doküman yönetimi ve ekip içi yazılım geliştirme
+              süreçleri hakkında pratik deneyim kazandım.
+            </p>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="timeline-item">
+            <span class="timeline-date">2025</span>
+            <h4>Bilgisayar Mühendisliği 2.Sınıf Öğrencisi</h4>
+            <h5>TÜBİTAK 2209A Araştırma Projesi • Kulüp Etkinlikleri</h5>
+            <ul class="timeline-bullet-list">
+              <li><strong>TÜBİTAK 2209-A:</strong> Nöropazarlamada Cinsiyet Temelli Dikkat Modelleri: Webcam Tabanlı
+                Eye-Tracking ve Makine Öğrenmesi Yaklaşımı</li>
+              <li><strong>Bilişim Zirvesi'25:</strong> Yapay zeka, siber güvenlik, blokzincir ve girişimcilik alanlarını
+                bir araya getiren etkinliğin organizasyonunda görev aldım.</li>
+              <li><strong>YAZAKİ Teknik Gezisi:</strong> Otomotiv sektöründeki üretim ve teknoloji süreçlerini yerinde
+                gözlemleme fırsatı buldum.</li>
+              <li><strong>SQL Server 2025 Workshop:</strong> SQL Server 2025 ve modern veritabanı teknolojileri üzerine
+                uygulamalı bir workshop'a katıldım.</li>
+              <li><strong>GDG Bursa DevFest:</strong> Yapay zeka, Google teknolojileri ve modern yazılım geliştirme
+                üzerine teknik oturumlara katıldım.</li>
+              <li><strong>StartTech'25:</strong> Teknoloji ve girişimcilik odaklı StartTech'25 etkinliğine kulübümüzü
+                temsilen katıldım.</li>
+            </ul>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="timeline-item">
+            <span class="timeline-date">2024</span>
+            <h4>Bilgisayar Mühendisliği 1.Sınıf Öğrencisi</h4>
+            <h5>Kariyer Fuarı Deneyimi • Etkinlik Organizasyonu</h5>
+            <ul class="timeline-bullet-list">
+              <li><strong>Kariyer Fuarı:</strong> Kocaeli Üniversitesi kariyer fuarına katılarak hem sektörü yakından
+                tanıma hem de staj imkanlarını değerlendirme fırsatı buldum. Etkinlik boyunca NETWORK ve teknoloji
+                alanındaki güncel yaklaşımları dinledim ve çeşitli şirketlerin staj programları hakkında bilgi edindim.
+              </li>
+              <li><strong>Bilişim Zirvesi'24:</strong> Yapay zeka, siber güvenlik, blokzincir ve girişimcilik alanlarını
+                bir araya getiren etkinliğin organizasyonunda görev aldım.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">Bağlantı Kurun</span>
+          <h2 class="section-title">Birlikte Harika Projeler Geliştirelim</h2>
+          <p class="section-description">
+            Kurumsal projeler, mimari danışmanlık veya teknoloji iş birlikleri için bana dilediğiniz zaman
+            ulaşabilirsiniz.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Info Card -->
+          <div class="contact-info-card">
+            <div>
+              <h3 style="margin-bottom: 1.5rem; font-size: 1.4rem;">İletişim Kanalları</h3>
+              <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+                <div class="contact-item">
+                  <div class="contact-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2">
+                      <rect width="20" height="16" x="2" y="4" rx="2" />
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                    </svg>
+                  </div>
+                  <div class="contact-meta">
+                    <span>E-Posta</span>
+                    <p id="email-text">zehratuncer.dev@gmail.com</p>
+                  </div>
+                </div>
+
+                <div class="contact-item">
+                  <div class="contact-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2">
+                      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                      <rect width="4" height="12" x="2" y="9" />
+                      <circle cx="4" cy="4" r="2" />
+                    </svg>
+                  </div>
+                  <div class="contact-meta">
+                    <span>LinkedIn</span>
+                    <a href="https://www.linkedin.com/in/zehra-tuncer-8567a1323/" target="_blank"
+                      rel="noopener">linkedin.com/zehratuncer</a>
+                  </div>
+                </div>
+
+                <div class="contact-item">
+                  <div class="contact-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2">
+                      <path
+                        d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                      <path d="M9 18c-4.51 2-5-2-7-2" />
+                    </svg>
+                  </div>
+                  <div class="contact-meta">
+                    <span>GitHub</span>
+                    <a href="https://github.com/zehratuncer" target="_blank" rel="noopener">github.com/zehratuncer</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button class="btn btn-outline" id="copy-email-btn" style="width: 100%;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2">
+                <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+              </svg>
+              <span>E-Postayı Kopyala</span>
+            </button>
+          </div>
+
+          <!-- Form Card -->
+          <div class="contact-form-card">
+            <form action="https://formsubmit.co/zehratuncer.dev@gmail.com" method="POST" id="contact-form">
+              <!-- FormSubmit Yapılandırması -->
+              <input type="hidden" name="_subject" value="Portfolyo İletişim Formundan Yeni Mesaj!">
+              <input type="hidden" name="_template" value="table">
+              <input type="hidden" name="_captcha" value="false">
+
+              <div class="form-group">
+                <label class="form-label" for="form-name">Adınız &amp; Soyadınız</label>
+                <input class="form-control" type="text" id="form-name" name="Ad_Soyad" placeholder="Örn: Ahmet Yılmaz" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="form-email">E-Posta Adresiniz</label>
+                <input class="form-control" type="email" id="form-email" name="Eposta" placeholder="ornek@sirket.com" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="form-subject">Proje / Konu</label>
+                <input class="form-control" type="text" id="form-subject" name="Konu"
+                  placeholder="Örn: Yeni Proje Mimari Danışmanlığı" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="form-message">Mesajınız</label>
+                <textarea class="form-control" id="form-message" name="Mesaj"
+                  placeholder="Projeniz veya iletmek istediğiniz detaylar..." required></textarea>
+              </div>
+
+              <button class="btn btn-primary" type="submit" style="width: 100%; padding: 0.9rem;">
+                <span>Mesajı Gönder</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2">
+                  <line x1="22" y1="2" x2="11" y2="13" />
+                  <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                </svg>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div class="footer-credits">
+        <p>&copy; <span id="current-year"></span> Zehra Tuncer. Tüm hakları saklıdır.</p>
+      </div>
+      <div class="footer-socials">
+        <a href="https://github.com/zehratuncer" class="social-link" target="_blank" rel="noopener"
+          aria-label="GitHub">GitHub</a>
+        <a href="https://www.linkedin.com/in/zehra-tuncer-8567a1323/" class="social-link" target="_blank" rel="noopener"
+          aria-label="LinkedIn">LinkedIn</a>
+        <a href="mailto:[zehratuncer.dev@gmail.com]" class="social-link" target="_blank" rel="noopener"
+          aria-label="E-Posta">E-Posta</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Project Details Modal Overlay -->
+  <div class="modal-overlay" id="project-modal">
+    <div class="modal-container">
+      <button class="modal-close" id="modal-close-btn" aria-label="Kapat">&times;</button>
+      <div id="modal-content-area">
+        <!-- Injected via JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Element -->
+  <div class="toast-msg" id="toast-msg">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" style="color: var(--accent-cyan)">
+      <polyline points="20 6 9 17 4 12" />
+    </svg>
+    <span id="toast-text">İşlem başarıyla tamamlandı.</span>
+  </div>
+
+  <!-- Image Lightbox Overlay -->
+  <div class="image-lightbox" id="image-lightbox">
+    <button class="image-lightbox-close" id="lightbox-close-btn" aria-label="Kapat">&times;</button>
+    <img src="" alt="Önizleme" class="image-lightbox-img" id="lightbox-img">
+    <div class="image-lightbox-caption" id="lightbox-caption"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
