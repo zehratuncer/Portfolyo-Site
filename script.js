@@ -267,35 +267,35 @@ function initProjectsSection() {
         {
           category: '🏢 Bayi Portalı Arayüzleri',
           items: [
-            { img: 'internproject-1/assets/01_bayi_login.png', title: 'Bayi Giriş Ekranı', desc: 'JWT tabanlı güvenli kimlik doğrulama arayüzü.' },
-            { img: 'internproject-1/assets/02_bayi_home.png', title: 'Bayi Ana Sayfası', desc: 'Kullanıcıya özel güncel duyurular ve hızlı işlem paneli.' },
-            { img: 'internproject-1/assets/04_bayi_documents.png', title: 'Bayi Doküman Listesi', desc: 'Yalnızca yetkili olunan markalara ait listelenen dokümanlar.' },
-            { img: 'internproject-1/assets/05_bayi_document_detail.png', title: 'Doküman İnceleme & İndirme', desc: 'Metadata detayları ve güvenli dosya indirme aksiyonu.' },
-            { img: 'internproject-1/assets/03_bayi_notifications.png', title: 'Bildirimler & Duyurular', desc: 'Bayiyle ilişkili bildirimlerin takip edildiği akış.' },
-            { img: 'internproject-1/assets/06_bayi_profile.png', title: 'Bayi Kullanıcı Profili', desc: 'Kullanıcı bilgileri ve yetkili bayi detayları.' },
-            { img: 'internproject-1/assets/07_bayi_settings.png', title: 'Kullanıcı Ayarları', desc: 'Kişiselleştirme ve hesap tercihleri ekranı.' }
+            { img: 'ekran_goruntuleri/internproject-1/assets/01_bayi_login.png', title: 'Bayi Giriş Ekranı', desc: 'JWT tabanlı güvenli kimlik doğrulama arayüzü.' },
+            { img: 'ekran_goruntuleri/internproject-1/assets/02_bayi_home.png', title: 'Bayi Ana Sayfası', desc: 'Kullanıcıya özel güncel duyurular ve hızlı işlem paneli.' },
+            { img: 'ekran_goruntuleri/internproject-1/assets/04_bayi_documents.png', title: 'Bayi Doküman Listesi', desc: 'Yalnızca yetkili olunan markalara ait listelenen dokümanlar.' },
+            { img: 'ekran_goruntuleri/internproject-1/assets/05_bayi_document_detail.png', title: 'Doküman İnceleme & İndirme', desc: 'Metadata detayları ve güvenli dosya indirme aksiyonu.' },
+            { img: 'ekran_goruntuleri/internproject-1/assets/03_bayi_notifications.png', title: 'Bildirimler & Duyurular', desc: 'Bayiyle ilişkili bildirimlerin takip edildiği akış.' },
+            { img: 'ekran_goruntuleri/internproject-1/assets/06_bayi_profile.png', title: 'Bayi Kullanıcı Profili', desc: 'Kullanıcı bilgileri ve yetkili bayi detayları.' },
+            { img: 'ekran_goruntuleri/internproject-1/assets/07_bayi_settings.png', title: 'Kullanıcı Ayarları', desc: 'Kişiselleştirme ve hesap tercihleri ekranı.' }
           ]
         },
         {
           category: '🛠️ Yönetim Paneli & Doküman Yönetimi (Admin & Content Manager)',
           items: [
-            { img: 'internproject-1/assets/08_admin_login.png', title: 'Yönetici Giriş Paneli', desc: 'Admin ve Content Manager rolleri için özel giriş ekranı.' },
-            { img: 'internproject-1/assets/09_admin_dashboard.png', title: 'Yönetim Dashboard', desc: 'Sistem geneli metrikler, doküman ve kullanıcı istatistikleri.' },
-            { img: 'internproject-1/assets/10_admin_documents_list.png', title: 'Doküman Yönetimi', desc: 'Merkezi doküman listesi, arama ve marka filtreleme araçları.' },
-            { img: 'internproject-1/assets/11_admin_document_detail_drawer.png', title: 'Doküman Detay & Drawer', desc: 'Dokümana ait marka ilişkileri ve metadata düzenleme paneli.' },
-            { img: 'internproject-1/assets/12_admin_pool_calendar.png', title: 'Havuz & Takvim Görünümü', desc: 'Doküman yayın ve planlama takvimi arayüzü.' },
-            { img: 'internproject-1/assets/13_admin_document_access_report.png', title: 'Doküman Erişim Raporu', desc: 'Doküman bazlı erişim ve kullanım analiz raporları.' }
+            { img: 'ekran_goruntuleri/internproject-1/assets/08_admin_login.png', title: 'Yönetici Giriş Paneli', desc: 'Admin ve Content Manager rolleri için özel giriş ekranı.' },
+            { img: 'ekran_goruntuleri/internproject-1/assets/09_admin_dashboard.png', title: 'Yönetim Dashboard', desc: 'Sistem geneli metrikler, doküman ve kullanıcı istatistikleri.' },
+            { img: 'ekran_goruntuleri/internproject-1/assets/10_admin_documents_list.png', title: 'Doküman Yönetimi', desc: 'Merkezi doküman listesi, arama ve marka filtreleme araçları.' },
+            { img: 'ekran_goruntuleri/internproject-1/assets/11_admin_document_detail_drawer.png', title: 'Doküman Detay & Drawer', desc: 'Dokümana ait marka ilişkileri ve metadata düzenleme paneli.' },
+            { img: 'ekran_goruntuleri/internproject-1/assets/12_admin_pool_calendar.png', title: 'Havuz & Takvim Görünümü', desc: 'Doküman yayın ve planlama takvimi arayüzü.' },
+            { img: 'ekran_goruntuleri/internproject-1/assets/13_admin_document_access_report.png', title: 'Doküman Erişim Raporu', desc: 'Doküman bazlı erişim ve kullanım analiz raporları.' }
           ]
         },
         {
           category: '📊 Sistem Tanımları & Audit Kayıtları (İzlenebilirlik)',
           items: [
-            { img: 'internproject-1/assets/14_admin_login_activity.png', title: 'Giriş Aktiviteleri (Login Audit)', desc: 'Kullanıcıların giriş zamanları, durumları ve oturum kayıtları.' },
-            { img: 'internproject-1/assets/15_admin_access_logs.png', title: 'Erişim Kayıtları (Access Logs)', desc: 'Hangi kullanıcının hangi dokümana ne zaman eriştiğinin izi.' },
-            { img: 'internproject-1/assets/16_admin_definitions_users.png', title: 'Kullanıcı Tanımları & Roller', desc: 'Sistem kullanıcılarının rolleri ve durum yönetimi.' },
-            { img: 'internproject-1/assets/17_admin_definitions_dealers.png', title: 'Bayi Tanımları', desc: 'Bayi oluşturma ve marka yetkilendirme eşleştirmeleri.' },
-            { img: 'internproject-1/assets/18_admin_definitions_brands.png', title: 'Marka Tanımları', desc: 'Sistemdeki markaların merkezi yönetimi.' },
-            { img: 'internproject-1/assets/19_admin_definitions_categories.png', title: 'Kategori Tanımları', desc: 'Doküman kategorilerinin hiyerarşik yapılandırılması.' }
+            { img: 'ekran_goruntuleri/internproject-1/assets/14_admin_login_activity.png', title: 'Giriş Aktiviteleri (Login Audit)', desc: 'Kullanıcıların giriş zamanları, durumları ve oturum kayıtları.' },
+            { img: 'ekran_goruntuleri/internproject-1/assets/15_admin_access_logs.png', title: 'Erişim Kayıtları (Access Logs)', desc: 'Hangi kullanıcının hangi dokümana ne zaman eriştiğinin izi.' },
+            { img: 'ekran_goruntuleri/internproject-1/assets/16_admin_definitions_users.png', title: 'Kullanıcı Tanımları & Roller', desc: 'Sistem kullanıcılarının rolleri ve durum yönetimi.' },
+            { img: 'ekran_goruntuleri/internproject-1/assets/17_admin_definitions_dealers.png', title: 'Bayi Tanımları', desc: 'Bayi oluşturma ve marka yetkilendirme eşleştirmeleri.' },
+            { img: 'ekran_goruntuleri/internproject-1/assets/18_admin_definitions_brands.png', title: 'Marka Tanımları', desc: 'Sistemdeki markaların merkezi yönetimi.' },
+            { img: 'ekran_goruntuleri/internproject-1/assets/19_admin_definitions_categories.png', title: 'Kategori Tanımları', desc: 'Doküman kategorilerinin hiyerarşik yapılandırılması.' }
           ]
         }
       ]
@@ -394,45 +394,45 @@ function initProjectsSection() {
         {
           category: '🔐 Kimlik Doğrulama, Profil & İş Akışı Merkezi',
           items: [
-            { img: 'internproject-2/01_giris_ekrani.png', title: 'Kurumsal Giriş Ekranı', desc: 'Cam efektli, rate-limiting korumalı JWT oturum açma arayüzü.' },
-            { img: 'internproject-2/02_gosterge_paneli.png', title: 'Yönetici Gösterge Paneli', desc: 'SLA gecikmeleri, bekleyen görevler ve kritik KPI metrikleri.' },
-            { img: 'internproject-2/03_akislar_ana_sayfa.png', title: 'İş Akışları Genel Bakış', desc: 'Kurum genelindeki aktif iş akışları ve süreç sayaçları.' },
-            { img: 'internproject-2/06_akis_2_sozlesme_mali_onay.png', title: 'Sözleşme & Mali Onay', desc: 'Çok kademeli mali onay ve hukuki inceleme süreci.' },
-            { img: 'internproject-2/07_akis_3_teknik_servis_garanti.png', title: 'Teknik Servis & Garanti', desc: 'Arıza bildirimleri ve garanti eksper operasyonları.' },
-            { img: 'internproject-2/08_gorevlerim_acik_gorevler.png', title: 'Açık Görevlerim', desc: 'Bekleyen onay talepleri, kalan SLA süreleri ve öncelikler.' },
-            { img: 'internproject-2/09_gorevlerim_tamamlanan_gorevler.png', title: 'Tamamlanan Görev Geçmişi', desc: 'Geçmiş onay kararları, onay notları ve işlem zamanları.' },
-            { img: 'internproject-2/10_profilim.png', title: 'Kullanıcı Profili', desc: 'Kullanıcı rolleri ve oturum yönetim paneli.' },
-            { img: 'internproject-2/11_profilim_guvenlik_vekalet.png', title: 'Görev Vekalet Devri', desc: 'İzin durumunda görevlerin denetim iziyle devredilmesi.' }
+            { img: 'ekran_goruntuleri/internproject-2/01_giris_ekrani.png', title: 'Kurumsal Giriş Ekranı', desc: 'Cam efektli, rate-limiting korumalı JWT oturum açma arayüzü.' },
+            { img: 'ekran_goruntuleri/internproject-2/02_gosterge_paneli.png', title: 'Yönetici Gösterge Paneli', desc: 'SLA gecikmeleri, bekleyen görevler ve kritik KPI metrikleri.' },
+            { img: 'ekran_goruntuleri/internproject-2/03_akislar_ana_sayfa.png', title: 'İş Akışları Genel Bakış', desc: 'Kurum genelindeki aktif iş akışları ve süreç sayaçları.' },
+            { img: 'ekran_goruntuleri/internproject-2/06_akis_2_sozlesme_mali_onay.png', title: 'Sözleşme & Mali Onay', desc: 'Çok kademeli mali onay ve hukuki inceleme süreci.' },
+            { img: 'ekran_goruntuleri/internproject-2/07_akis_3_teknik_servis_garanti.png', title: 'Teknik Servis & Garanti', desc: 'Arıza bildirimleri ve garanti eksper operasyonları.' },
+            { img: 'ekran_goruntuleri/internproject-2/08_gorevlerim_acik_gorevler.png', title: 'Açık Görevlerim', desc: 'Bekleyen onay talepleri, kalan SLA süreleri ve öncelikler.' },
+            { img: 'ekran_goruntuleri/internproject-2/09_gorevlerim_tamamlanan_gorevler.png', title: 'Tamamlanan Görev Geçmişi', desc: 'Geçmiş onay kararları, onay notları ve işlem zamanları.' },
+            { img: 'ekran_goruntuleri/internproject-2/10_profilim.png', title: 'Kullanıcı Profili', desc: 'Kullanıcı rolleri ve oturum yönetim paneli.' },
+            { img: 'ekran_goruntuleri/internproject-2/11_profilim_guvenlik_vekalet.png', title: 'Görev Vekalet Devri', desc: 'İzin durumunda görevlerin denetim iziyle devredilmesi.' }
           ]
         },
         {
           category: '🗂️ M-Files Sanal Gezgini & Dinamik Form Üretimi',
           items: [
-            { img: 'internproject-2/12_nesne_gezgini.png', title: 'Nesne Gezgini (Sanal Düzen)', desc: 'Sanal klasör ağacı, nesne tablosu ve metadata çekmecesi.' },
-            { img: 'internproject-2/13_yeni_dokuman_olusturma_formu.png', title: 'Dinamik Doküman Formu', desc: 'Seçilen sınıfa göre runtime üretilen dinamik doğrulama formu.' }
+            { img: 'ekran_goruntuleri/internproject-2/12_nesne_gezgini.png', title: 'Nesne Gezgini (Sanal Düzen)', desc: 'Sanal klasör ağacı, nesne tablosu ve metadata çekmecesi.' },
+            { img: 'ekran_goruntuleri/internproject-2/13_yeni_dokuman_olusturma_formu.png', title: 'Dinamik Doküman Formu', desc: 'Seçilen sınıfa göre runtime üretilen dinamik doğrulama formu.' }
           ]
         },
         {
           category: '⚙️ Vault Yapısı & Dinamik Şema Yönetimi (Kodsuz Şema)',
           items: [
-            { img: 'internproject-2/15_admin_vault_yapisi_siniflar.png', title: 'Sınıflar & Akış Bağlantısı', desc: 'Doküman sınıfları ve varsayılan iş akışı eşleştirmeleri.' },
-            { img: 'internproject-2/16_admin_vault_yapisi_nesne_turleri.png', title: 'Nesne Türleri', desc: 'Doküman, Sözleşme, Araç, Tedarikçi varlık tanımları.' },
-            { img: 'internproject-2/17_admin_vault_yapisi_ozellik_tanimlari.png', title: 'Özellik Tanımları', desc: 'Metadata alanları, veri tipleri ve kural konfigürasyonları.' },
-            { img: 'internproject-2/18_admin_vault_yapisi_deger_listeleri.png', title: 'Değer Listeleri (Lookup)', desc: 'Dinamik açılır liste ve hiyerarşik veri tanımları.' }
+            { img: 'ekran_goruntuleri/internproject-2/15_admin_vault_yapisi_siniflar.png', title: 'Sınıflar & Akış Bağlantısı', desc: 'Doküman sınıfları ve varsayılan iş akışı eşleştirmeleri.' },
+            { img: 'ekran_goruntuleri/internproject-2/16_admin_vault_yapisi_nesne_turleri.png', title: 'Nesne Türleri', desc: 'Doküman, Sözleşme, Araç, Tedarikçi varlık tanımları.' },
+            { img: 'ekran_goruntuleri/internproject-2/17_admin_vault_yapisi_ozellik_tanimlari.png', title: 'Özellik Tanımları', desc: 'Metadata alanları, veri tipleri ve kural konfigürasyonları.' },
+            { img: 'ekran_goruntuleri/internproject-2/18_admin_vault_yapisi_deger_listeleri.png', title: 'Değer Listeleri (Lookup)', desc: 'Dinamik açılır liste ve hiyerarşik veri tanımları.' }
           ]
         },
         {
           category: '🛡️ Güvenlik, Materyalize ACL, İş Akışları & Denetim İzi',
           items: [
-            { img: 'internproject-2/19_admin_izin_kurallari.png', title: 'İzin Kuralları Matrisi', desc: 'Rol, grup ve metadata kesişiminde dinamik izin kuralları.' },
-            { img: 'internproject-2/20_admin_is_akislari_tasarimcisi.png', title: 'Görsel İş Akışı Tasarımcısı', desc: 'Durum makinesi adımları ve görsel akış tuvali.' },
-            { img: 'internproject-2/21_admin_is_akislari_adim_detaylari.png', title: 'Akış Adım Detayları & SLA', desc: 'SLA süreleri, rol atamaları ve parola onay ayarları.' },
-            { img: 'internproject-2/22_admin_denetim_izi.png', title: 'Sistem Denetim İzi (Audit Trail)', desc: 'Tüm kullanıcı aksiyonlarının değiştirilemez günlüğü.' },
-            { img: 'internproject-2/23_admin_denetim_izi_detay_modali.png', title: 'Denetim İzi Detay Modalı', desc: 'Ham JSON payload, veri diff farkları ve istemci IP detayları.' },
-            { img: 'internproject-2/24_admin_kullanici_yonetimi.png', title: 'Kullanıcı Yönetimi', desc: 'Hesap tanımları, global roller ve durum kontrolü.' },
-            { img: 'internproject-2/25_admin_grup_yonetimi.png', title: 'Grup & Departman Yönetimi', desc: 'Organizasyonel birimler ve onay komiteleri yönetimi.' },
-            { img: 'internproject-2/26_admin_acl_analitik_haritasi.png', title: 'ACL Analitik Haritası', desc: 'İzin kurallarının dağılımı ve Allow/Deny oranları.' },
-            { img: 'internproject-2/27_admin_acl_tanilama_kullanici_sonucu.png', title: 'ACL Tanılama & Simülasyon', desc: 'Kullanıcı bazlı kural eşleşme ve yetki simülasyonu.' }
+            { img: 'ekran_goruntuleri/internproject-2/19_admin_izin_kurallari.png', title: 'İzin Kuralları Matrisi', desc: 'Rol, grup ve metadata kesişiminde dinamik izin kuralları.' },
+            { img: 'ekran_goruntuleri/internproject-2/20_admin_is_akislari_tasarimcisi.png', title: 'Görsel İş Akışı Tasarımcısı', desc: 'Durum makinesi adımları ve görsel akış tuvali.' },
+            { img: 'ekran_goruntuleri/internproject-2/21_admin_is_akislari_adim_detaylari.png', title: 'Akış Adım Detayları & SLA', desc: 'SLA süreleri, rol atamaları ve parola onay ayarları.' },
+            { img: 'ekran_goruntuleri/internproject-2/22_admin_denetim_izi.png', title: 'Sistem Denetim İzi (Audit Trail)', desc: 'Tüm kullanıcı aksiyonlarının değiştirilemez günlüğü.' },
+            { img: 'ekran_goruntuleri/internproject-2/23_admin_denetim_izi_detay_modali.png', title: 'Denetim İzi Detay Modalı', desc: 'Ham JSON payload, veri diff farkları ve istemci IP detayları.' },
+            { img: 'ekran_goruntuleri/internproject-2/24_admin_kullanici_yonetimi.png', title: 'Kullanıcı Yönetimi', desc: 'Hesap tanımları, global roller ve durum kontrolü.' },
+            { img: 'ekran_goruntuleri/internproject-2/25_admin_grup_yonetimi.png', title: 'Grup & Departman Yönetimi', desc: 'Organizasyonel birimler ve onay komiteleri yönetimi.' },
+            { img: 'ekran_goruntuleri/internproject-2/26_admin_acl_analitik_haritasi.png', title: 'ACL Analitik Haritası', desc: 'İzin kurallarının dağılımı ve Allow/Deny oranları.' },
+            { img: 'ekran_goruntuleri/internproject-2/27_admin_acl_tanilama_kullanici_sonucu.png', title: 'ACL Tanılama & Simülasyon', desc: 'Kullanıcı bazlı kural eşleşme ve yetki simülasyonu.' }
           ]
         }
       ]
@@ -510,35 +510,35 @@ function initProjectsSection() {
         {
           category: '📱 Ana Sayfa, Medya Akışı & Keşif',
           items: [
-            { img: 'beyourself/1000115787.jpg', title: 'Açılış & Karşılama Ekranı', desc: 'Minimalist origami logo ve modern karşılama arayüzü.' },
-            { img: 'beyourself/1000115788.jpg', title: 'Ana Sayfa & Günün Alıntısı Akışı', desc: 'Dinamik selamlama, arama çubuğu, günün sözü kartı ve kategori filtreleri.' },
-            { img: 'beyourself/1000115785.jpg', title: 'Alıntı Detayı & Tam Ekran Medya', desc: 'Instagram Reels video/görsel oynatıcı ve tam ekran medya deneyimi.' },
-            { img: 'beyourself/1000115786.jpg', title: 'Otomatik Caption & Metin Detayı', desc: 'Instagram\'dan otomatik çekilen açıklama metni ve detaylı alıntı içeriği.' }
+            { img: 'ekran_goruntuleri/beyourself/1000115787.jpg', title: 'Açılış & Karşılama Ekranı', desc: 'Minimalist origami logo ve modern karşılama arayüzü.' },
+            { img: 'ekran_goruntuleri/beyourself/1000115788.jpg', title: 'Ana Sayfa & Günün Alıntısı Akışı', desc: 'Dinamik selamlama, arama çubuğu, günün sözü kartı ve kategori filtreleri.' },
+            { img: 'ekran_goruntuleri/beyourself/1000115785.jpg', title: 'Alıntı Detayı & Tam Ekran Medya', desc: 'Instagram Reels video/görsel oynatıcı ve tam ekran medya deneyimi.' },
+            { img: 'ekran_goruntuleri/beyourself/1000115786.jpg', title: 'Otomatik Caption & Metin Detayı', desc: 'Instagram\'dan otomatik çekilen açıklama metni ve detaylı alıntı içeriği.' }
           ]
         },
         {
           category: '🎬 Instagram Medya İndirme & Yeni Alıntı Ekleme',
           items: [
-            { img: 'beyourself/1000115782.jpg', title: 'Instagram Link Girişi & Medya İndirici', desc: 'Reels ve post linkini yapıştırarak medyayı ve açıklamayı tek tıkla çekme.' },
-            { img: 'beyourself/1000115783.jpg', title: 'Medya Seçimi, Yazar & Kategori Atama', desc: 'Cihaz galerisinden medya yükleme, yazar tanımlama ve kategori seçimi.' },
-            { img: 'beyourself/1000115784.jpg', title: 'Rastgele Keşfet Çarkı (Zar At & Keşfet)', desc: 'Haptic dokunsal titreşimle çalışan, kategori filtreli rastgele ilham keşfi.' }
+            { img: 'ekran_goruntuleri/beyourself/1000115782.jpg', title: 'Instagram Link Girişi & Medya İndirici', desc: 'Reels ve post linkini yapıştırarak medyayı ve açıklamayı tek tıkla çekme.' },
+            { img: 'ekran_goruntuleri/beyourself/1000115783.jpg', title: 'Medya Seçimi, Yazar & Kategori Atama', desc: 'Cihaz galerisinden medya yükleme, yazar tanımlama ve kategori seçimi.' },
+            { img: 'ekran_goruntuleri/beyourself/1000115784.jpg', title: 'Rastgele Keşfet Çarkı (Zar At & Keşfet)', desc: 'Haptic dokunsal titreşimle çalışan, kategori filtreli rastgele ilham keşfi.' }
           ]
         },
         {
           category: '🗂️ Kategoriler & Favoriler Koleksiyonu',
           items: [
-            { img: 'beyourself/1000115779.jpg', title: 'Kategoriler & Akıllı İkonlar', desc: 'Kategori kartları, özel ikonlar ve kategori bazlı alıntı sayaçları.' },
-            { img: 'beyourself/1000115780.jpg', title: 'Dinamik Kategori Ekleme Modalı', desc: 'Kullanıcının dilediği gibi yeni kategori oluşturabilmesini sağlayan modal.' },
-            { img: 'beyourself/1000115781.jpg', title: 'Favoriler Koleksiyonu', desc: 'Kullanıcının beğendiği ve saklamak istediği favori alıntılar listesi.' }
+            { img: 'ekran_goruntuleri/beyourself/1000115779.jpg', title: 'Kategoriler & Akıllı İkonlar', desc: 'Kategori kartları, özel ikonlar ve kategori bazlı alıntı sayaçları.' },
+            { img: 'ekran_goruntuleri/beyourself/1000115780.jpg', title: 'Dinamik Kategori Ekleme Modalı', desc: 'Kullanıcının dilediği gibi yeni kategori oluşturabilmesini sağlayan modal.' },
+            { img: 'ekran_goruntuleri/beyourself/1000115781.jpg', title: 'Favoriler Koleksiyonu', desc: 'Kullanıcının beğendiği ve saklamak istediği favori alıntılar listesi.' }
           ]
         },
         {
           category: '👤 Profil, Avatar, Motto & Bildirim Ayarları',
           items: [
-            { img: 'beyourself/1000115775.jpg', title: 'Uygulama Ayarları & Tema Yönetimi', desc: 'Karanlık/aydınlık mod, bildirim anahtarı ve profil ayarlarına erişim menüsü.' },
-            { img: 'beyourself/1000115776.jpg', title: 'Zamanlanmış Bildirim & Saat Ayarları', desc: 'Günlük bildirim sıklığı slider\'ı, başlangıç/bitiş saatleri ve test bildirimi.' },
-            { img: 'beyourself/1000115777.jpg', title: 'Profil Ayarları & Hazır Avatar Seçici', desc: '16 adet hazır ilham avatarı veya galeriden profil fotoğrafı belirleme arayüzü.' },
-            { img: 'beyourself/1000115778.jpg', title: 'Kişisel Yaşam Mottosu & Hitap Tercihi', desc: 'Kullanıcı mottosu, kişiselleştirilmiş bildirim hitap stili ve hesap istatistikleri.' }
+            { img: 'ekran_goruntuleri/beyourself/1000115775.jpg', title: 'Uygulama Ayarları & Tema Yönetimi', desc: 'Karanlık/aydınlık mod, bildirim anahtarı ve profil ayarlarına erişim menüsü.' },
+            { img: 'ekran_goruntuleri/beyourself/1000115776.jpg', title: 'Zamanlanmış Bildirim & Saat Ayarları', desc: 'Günlük bildirim sıklığı slider\'ı, başlangıç/bitiş saatleri ve test bildirimi.' },
+            { img: 'ekran_goruntuleri/beyourself/1000115777.jpg', title: 'Profil Ayarları & Hazır Avatar Seçici', desc: '16 adet hazır ilham avatarı veya galeriden profil fotoğrafı belirleme arayüzü.' },
+            { img: 'ekran_goruntuleri/beyourself/1000115778.jpg', title: 'Kişisel Yaşam Mottosu & Hitap Tercihi', desc: 'Kullanıcı mottosu, kişiselleştirilmiş bildirim hitap stili ve hesap istatistikleri.' }
           ]
         }
       ]
@@ -591,9 +591,9 @@ function initProjectsSection() {
         {
           category: '🖥️ Uygulama Arayüzü & Hesaplama Senaryoları',
           items: [
-            { img: 'notHesaplaamaUygulamasi/Ekran görüntüsü 2026-08-16 164217.png', title: 'Boş Form & Giriş Parametreleri', desc: 'Geçme notu, vize/final yüzdeleri ve 3 farklı ödev etki oranlarının girilebildiği başlangıç formu.' },
-            { img: 'notHesaplaamaUygulamasi/Ekran görüntüsü 2026-08-16 164330.png', title: 'Dinamik Hesaplama & Hedef Final Notu', desc: 'Vize (%30: 60), Ödev 1-2 (%10: 80/70) ve Final (%50) verileriyle hesaplanan minimum 24,00 geçme notu.' },
-            { img: 'notHesaplaamaUygulamasi/Ekran görüntüsü 2026-08-16 164404.png', title: 'Erken Başarı & "Zaten Geçmişsiniz!" Durumu', desc: 'Yüksek vize ve ödev performansı sonrası final sınavına girmeden ders barajının aşıldığını bildiren sonuç ekranı.' }
+            { img: 'ekran_goruntuleri/notHesaplaamaUygulamasi/Ekran görüntüsü 2026-08-16 164217.png', title: 'Boş Form & Giriş Parametreleri', desc: 'Geçme notu, vize/final yüzdeleri ve 3 farklı ödev etki oranlarının girilebildiği başlangıç formu.' },
+            { img: 'ekran_goruntuleri/notHesaplaamaUygulamasi/Ekran görüntüsü 2026-08-16 164330.png', title: 'Dinamik Hesaplama & Hedef Final Notu', desc: 'Vize (%30: 60), Ödev 1-2 (%10: 80/70) ve Final (%50) verileriyle hesaplanan minimum 24,00 geçme notu.' },
+            { img: 'ekran_goruntuleri/notHesaplaamaUygulamasi/Ekran görüntüsü 2026-08-16 164404.png', title: 'Erken Başarı & "Zaten Geçmişsiniz!" Durumu', desc: 'Yüksek vize ve ödev performansı sonrası final sınavına girmeden ders barajının aşıldığını bildiren sonuç ekranı.' }
           ]
         }
       ]
@@ -647,8 +647,8 @@ function initProjectsSection() {
         {
           category: '🎮 Oyun İçi Ekran Görüntüleri & Eşleşme Senaryoları',
           items: [
-            { img: 'kart_oyunu/Ekran görüntüsü 2026-01-25 131812.png', title: '4x4 Oyun Tahtası & Başarılı "A" Eşleşmesi', desc: '16 kartlık matriste 2 adet "A" harfli kartın doğru eşleştirilerek açık kaldığı oyun anı.' },
-            { img: 'kart_oyunu/Ekran görüntüsü 2026-01-25 131823.png', title: 'Çoklu Eşleşme Durumu & "A" - "C" Çiftleri', desc: 'Oyuncunun ardışık hamlelerle "A" ve "C" kart çiftlerini bularak tahtayı tamamlamaya yaklaştığı an.' }
+            { img: 'ekran_goruntuleri/kart_oyunu/Ekran görüntüsü 2026-01-25 131812.png', title: '4x4 Oyun Tahtası & Başarılı "A" Eşleşmesi', desc: '16 kartlık matriste 2 adet "A" harfli kartın doğru eşleştirilerek açık kaldığı oyun anı.' },
+            { img: 'ekran_goruntuleri/kart_oyunu/Ekran görüntüsü 2026-01-25 131823.png', title: 'Çoklu Eşleşme Durumu & "A" - "C" Çiftleri', desc: 'Oyuncunun ardışık hamlelerle "A" ve "C" kart çiftlerini bularak tahtayı tamamlamaya yaklaştığı an.' }
           ]
         }
       ]
@@ -704,11 +704,11 @@ function initProjectsSection() {
         {
           category: '📢 Konsol Ekran Görüntüleri & Uygulama Akışı',
           items: [
-            { img: 'twitter/1_kayit_ve_giris.png', title: 'Kullanıcı Kaydı & Oturum Açma Kontrolü', desc: 'E-mail doğrulama (regex), parola belirleme ve aktif kullanıcı oturum açma akışı.' },
-            { img: 'twitter/2_tweet_paylaşımı.png', title: 'Tweet Oluşturma & Hashtag Etiketleme', desc: 'Tweet paylaşımı, dinamik hashtag ayrıştırma ve tüm tweet akışını listeleme.' },
-            { img: 'twitter/3_takip_ve_begenı.png', title: 'Takip Sistemi & Beğeni Etkileşimi', desc: 'Kullanıcılar arası takip mekanizması, tweet beğenme ve etkileşim sayaçları.' },
-            { img: 'twitter/4_oneri_motoru.png', title: 'Kişiselleştirilmiş Akış & Öneri Motoru', desc: 'Takip edilen kullanıcılar ve ilgili hashtag etiketlerine göre akıllı öneri algoritması.' },
-            { img: 'twitter/5_sifre_ve_cikis.png', title: 'Şifre Sıfırlama & Güvenli Oturum Kapatma', desc: 'E-posta doğrulamalı şifre güncelleme, oturum sonlandırma ve güvenli çıkış.' }
+            { img: 'ekran_goruntuleri/twitter/1_kayit_ve_giris.png', title: 'Kullanıcı Kaydı & Oturum Açma Kontrolü', desc: 'E-mail doğrulama (regex), parola belirleme ve aktif kullanıcı oturum açma akışı.' },
+            { img: 'ekran_goruntuleri/twitter/2_tweet_paylaşımı.png', title: 'Tweet Oluşturma & Hashtag Etiketleme', desc: 'Tweet paylaşımı, dinamik hashtag ayrıştırma ve tüm tweet akışını listeleme.' },
+            { img: 'ekran_goruntuleri/twitter/3_takip_ve_begenı.png', title: 'Takip Sistemi & Beğeni Etkileşimi', desc: 'Kullanıcılar arası takip mekanizması, tweet beğenme ve etkileşim sayaçları.' },
+            { img: 'ekran_goruntuleri/twitter/4_oneri_motoru.png', title: 'Kişiselleştirilmiş Akış & Öneri Motoru', desc: 'Takip edilen kullanıcılar ve ilgili hashtag etiketlerine göre akıllı öneri algoritması.' },
+            { img: 'ekran_goruntuleri/twitter/5_sifre_ve_cikis.png', title: 'Şifre Sıfırlama & Güvenli Oturum Kapatma', desc: 'E-posta doğrulamalı şifre güncelleme, oturum sonlandırma ve güvenli çıkış.' }
           ]
         }
       ]
