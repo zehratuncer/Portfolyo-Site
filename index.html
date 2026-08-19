@@ -41,11 +41,18 @@
 
       <nav>
         <ul class="nav-links" id="nav-links">
-          <li><a href="#hero" class="nav-link active">Giriş</a></li>
-          <li><a href="#tech-stack" class="nav-link">Teknolojiler</a></li>
-          <li><a href="#projects" class="nav-link">Projeler</a></li>
-          <li><a href="#about" class="nav-link">Hakkımda</a></li>
-          <li><a href="#contact" class="nav-link">İletişim</a></li>
+          <li><a href="#hero" class="nav-link active" data-i18n="nav_home">Giriş</a></li>
+          <li><a href="#tech-stack" class="nav-link" data-i18n="nav_tech">Teknolojiler</a></li>
+          <li><a href="#projects" class="nav-link" data-i18n="nav_projects">Projeler</a></li>
+          <li><a href="#about" class="nav-link" data-i18n="nav_about">Hakkımda</a></li>
+          <li><a href="#contact" class="nav-link" data-i18n="nav_contact">İletişim</a></li>
+          <li class="lang-switch-li">
+            <button id="lang-toggle-btn" class="lang-toggle-btn" aria-label="Dil Değiştir / Switch Language" title="Türkçe / English">
+              <span class="lang-opt lang-tr active">TR</span>
+              <span class="lang-divider">/</span>
+              <span class="lang-opt lang-en">EN</span>
+            </button>
+          </li>
         </ul>
       </nav>
 
@@ -68,18 +75,18 @@
       <div class="container hero-grid">
         <div class="hero-content">
 
-          <h1 class="hero-title">
+          <h1 class="hero-title" data-i18n="hero_title">
             Ölçeklenebilir, Dayanıklı &amp; <span class="gradient-text">Yüksek Performanslı</span> Yazılımlar.
           </h1>
 
-          <p class="hero-description">
+          <p class="hero-description" data-i18n="hero_desc">
             .NET 9 &amp; ASP.NET Core, Angular 20 Standalone, Clean Architecture, PostgreSQL ve Docker ile kurumsal
             seviyede güvenli, modüler ve dağıtık sistemler inşa ediyorum.
           </p>
 
           <div class="hero-cta">
             <a href="#projects" class="btn btn-primary">
-              <span>Projelerimi Keşfet</span>
+              <span data-i18n="hero_btn_projects">Projelerimi Keşfet</span>
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -91,7 +98,7 @@
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
               </svg>
-              <span>İletişime Geç</span>
+              <span data-i18n="hero_btn_contact">İletişime Geç</span>
             </a>
           </div>
 
@@ -125,7 +132,7 @@
     <section class="section" id="tech-stack">
       <div class="container">
         <div class="section-header">
-          <span class="section-subtitle">Yetkinlikler &amp; Araçlar</span>
+          <span class="section-subtitle" data-i18n="tech_subtitle">Yetkinlikler &amp; Araçlar</span>
         </div>
 
         <div class="tech-grid">
@@ -142,8 +149,8 @@
                 <path d="m19 7 3 5-3 5" />
               </svg>
             </div>
-            <h3>Backend &amp; Kurumsal Mimari</h3>
-            <p>Clean Architecture, Modüler Monolit ve DDD prensipleriyle güvenli, ölçeklenebilir kurumsal sistem
+            <h3 data-i18n="tech_card1_title">Backend &amp; Kurumsal Mimari</h3>
+            <p data-i18n="tech_card1_desc">Clean Architecture, Modüler Monolit ve DDD prensipleriyle güvenli, ölçeklenebilir kurumsal sistem
               tasarımı.</p>
             <div class="tech-pills">
               <span class="pill">.NET 9</span>
@@ -166,8 +173,8 @@
                 <polyline points="2 12 12 17 22 12" />
               </svg>
             </div>
-            <h3>Modern Web Frontend</h3>
-            <p>Standalone bileşenler ve reaktif sinyaller (Signals) kullanarak dinamik kullanıcı arayüzleri.</p>
+            <h3 data-i18n="tech_card2_title">Modern Web Frontend</h3>
+            <p data-i18n="tech_card2_desc">Standalone bileşenler ve reaktif sinyaller (Signals) kullanarak dinamik kullanıcı arayüzleri.</p>
             <div class="tech-pills">
               <span class="pill">Angular 20</span>
               <span class="pill">Standalone Components</span>
@@ -188,8 +195,8 @@
                 <path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3" />
               </svg>
             </div>
-            <h3>Veri Tabanı &amp; Altyapı</h3>
-            <p>İlişkisel modelleme, tam metin arama optimizasyonları ve CAS (İçerik-Adresli) depolama.</p>
+            <h3 data-i18n="tech_card3_title">Veri Tabanı &amp; Altyapı</h3>
+            <p data-i18n="tech_card3_desc">İlişkisel modelleme, tam metin arama optimizasyonları ve CAS (İçerik-Adresli) depolama.</p>
             <div class="tech-pills">
               <span class="pill">PostgreSQL 16</span>
               <span class="pill">EF Core 9</span>
@@ -211,8 +218,8 @@
                 <path d="M17 17h.01" />
               </svg>
             </div>
-            <h3>DevOps, Test &amp; Araçlar</h3>
-            <p>Konteynerizasyon, CI/CD, otomatik test altyapıları ve API belgelendirme standartları.</p>
+            <h3 data-i18n="tech_card4_title">DevOps, Test &amp; Araçlar</h3>
+            <p data-i18n="tech_card4_desc">Konteynerizasyon, CI/CD, otomatik test altyapıları ve API belgelendirme standartları.</p>
             <div class="tech-pills">
               <span class="pill">Docker &amp; Compose</span>
               <span class="pill">Git &amp; GitHub</span>
@@ -231,8 +238,8 @@
                 <circle cx="12" cy="12" r="3" />
               </svg>
             </div>
-            <h3>Yapay Zeka &amp; Görüntü İşleme</h3>
-            <p>Bilgisayarlı görü, göz takibi (eye-tracking), OCR ve makine öğrenmesi algoritmaları.</p>
+            <h3 data-i18n="tech_card5_title">Yapay Zeka &amp; Görüntü İşleme</h3>
+            <p data-i18n="tech_card5_desc">Bilgisayarlı görü, göz takibi (eye-tracking), OCR ve makine öğrenmesi algoritmaları.</p>
             <div class="tech-pills">
               <span class="pill">Python</span>
               <span class="pill">OpenCV</span>
@@ -252,8 +259,8 @@
                 <line x1="12" y1="18" x2="12.01" y2="18" />
               </svg>
             </div>
-            <h3>Mobil Geliştirme</h3>
-            <p>Modern mobil teknolojiler kullanarak iOS ve Android platformları için çapraz platform çözümler.</p>
+            <h3 data-i18n="tech_card6_title">Mobil Geliştirme</h3>
+            <p data-i18n="tech_card6_desc">Modern mobil teknolojiler kullanarak iOS ve Android platformları için çapraz platform çözümler.</p>
             <div class="tech-pills">
               <span class="pill">Flutter</span>
               <span class="pill">Dart</span>
@@ -269,9 +276,9 @@
     <section class="section" id="projects">
       <div class="container">
         <div class="section-header">
-          <span class="section-subtitle">Çalışmalarım</span>
-          <h2 class="section-title">Öne Çıkan Kurumsal &amp; Modern Projeler</h2>
-          <p class="section-description">
+          <span class="section-subtitle" data-i18n="projects_subtitle">Çalışmalarım</span>
+          <h2 class="section-title" data-i18n="projects_title">Öne Çıkan Kurumsal &amp; Modern Projeler</h2>
+          <p class="section-description" data-i18n="projects_desc">
             Gerçek iş problemlerini çözen, ölçeklenebilir mimarilerle geliştirilmiş seçilmiş projeler.
           </p>
         </div>
@@ -288,9 +295,9 @@
               </div>
             </div>
             <div class="project-info">
-              <span class="project-category">Staj Projesi 1 — Tofaş IT</span>
-              <h3>Kurumsal Bayi Doküman Yönetim Portalı</h3>
-              <p>Yetkili bayilerin kurumsal dokümanlara tek merkezden erişmesini sağlayan; Modular Monolith, Clean
+              <span class="project-category" data-i18n="p1_cat">Staj Projesi 1 — Tofaş IT</span>
+              <h3 data-i18n="p1_title">Kurumsal Bayi Doküman Yönetim Portalı</h3>
+              <p data-i18n="p1_desc">Yetkili bayilerin kurumsal dokümanlara tek merkezden erişmesini sağlayan; Modular Monolith, Clean
                 Architecture, JWT &amp; Role-Based Authorization ve marka bazlı yetkilendirme mimarili web portalı.</p>
               <div class="project-tech">
                 <span class="pill">.NET 9 API</span>
@@ -300,7 +307,7 @@
                 <span class="pill">Docker</span>
               </div>
               <div class="project-links">
-                <button class="btn btn-sm btn-primary view-project-btn" data-id="p1">Detaylı İncele</button>
+                <button class="btn btn-sm btn-primary view-project-btn" data-id="p1" data-i18n="btn_view_details">Detaylı İncele</button>
               </div>
             </div>
           </div>
@@ -316,9 +323,9 @@
               </div>
             </div>
             <div class="project-info">
-              <span class="project-category">Staj Projesi 2 — Tofaş IT</span>
-              <h3>VaultCore — Metadata Doküman Yönetimi &amp; İş Akışı</h3>
-              <p>M-Files mimarisinden esinlenen; dinamik şema modelleme, materyalize ACL güvenlik motoru, durum makineli
+              <span class="project-category" data-i18n="p2_cat">Staj Projesi 2 — Tofaş IT</span>
+              <h3 data-i18n="p2_title">VaultCore — Metadata Doküman Yönetimi &amp; İş Akışı</h3>
+              <p data-i18n="p2_desc">M-Files mimarisinden esinlenen; dinamik şema modelleme, materyalize ACL güvenlik motoru, durum makineli
                 iş akışı otomasyonu, check-out versiyonlama ve OCR destekli FTS sunan kurumsal DMS platformu.</p>
               <div class="project-tech">
                 <span class="pill">.NET 9 API</span>
@@ -329,7 +336,7 @@
                 <span class="pill">Docker</span>
               </div>
               <div class="project-links">
-                <button class="btn btn-sm btn-primary view-project-btn" data-id="p2">Detaylı İncele</button>
+                <button class="btn btn-sm btn-primary view-project-btn" data-id="p2" data-i18n="btn_view_details">Detaylı İncele</button>
               </div>
             </div>
           </div>
@@ -345,9 +352,9 @@
               </div>
             </div>
             <div class="project-info">
-              <span class="project-category">Mobil Uygulama &amp; Bulut</span>
-              <h3>BeYourself — Kişisel İlham &amp; Medya Asistanı</h3>
-              <p>Instagram Reels/Carousel medya ayrıştırıcı, Vercel Serverless CORS proxy, Android Home Widget,
+              <span class="project-category" data-i18n="p3_cat">Mobil Uygulama &amp; Bulut</span>
+              <h3 data-i18n="p3_title">BeYourself — Kişisel İlham &amp; Medya Asistanı</h3>
+              <p data-i18n="p3_desc">Instagram Reels/Carousel medya ayrıştırıcı, Vercel Serverless CORS proxy, Android Home Widget,
                 zamanlanmış yerel bildirimler ve Supabase bulut senkronizasyonlu modern Flutter uygulaması.</p>
               <div class="project-tech">
                 <span class="pill">Flutter 3.x</span>
@@ -358,7 +365,7 @@
                 <span class="pill">Local Notifications</span>
               </div>
               <div class="project-links">
-                <button class="btn btn-sm btn-primary view-project-btn" data-id="p3">Detaylı İncele</button>
+                <button class="btn btn-sm btn-primary view-project-btn" data-id="p3" data-i18n="btn_view_details">Detaylı İncele</button>
               </div>
             </div>
           </div>
@@ -374,9 +381,9 @@
               </div>
             </div>
             <div class="project-info">
-              <span class="project-category">Masaüstü &amp; C# Çözümü</span>
-              <h3>Not Hesaplama &amp; Akademik Başarı Aracı</h3>
-              <p>Vize, ödev ağırlıkları ve geçme notu hedeflerine göre final sınavında alınması gereken minimum notu
+              <span class="project-category" data-i18n="p4_cat">Masaüstü &amp; C# Çözümü</span>
+              <h3 data-i18n="p4_title">Not Hesaplama &amp; Akademik Başarı Aracı</h3>
+              <p data-i18n="p4_desc">Vize, ödev ağırlıkları ve geçme notu hedeflerine göre final sınavında alınması gereken minimum notu
                 anlık hesaplayan, dinamik toleranslı C# WinForms masaüstü aracı.</p>
               <div class="project-tech">
                 <span class="pill">C#</span>
@@ -385,7 +392,7 @@
                 <span class="pill">Input Validation</span>
               </div>
               <div class="project-links">
-                <button class="btn btn-sm btn-primary view-project-btn" data-id="p4">Detaylı İncele</button>
+                <button class="btn btn-sm btn-primary view-project-btn" data-id="p4" data-i18n="btn_view_details">Detaylı İncele</button>
               </div>
             </div>
           </div>
@@ -401,9 +408,9 @@
               </div>
             </div>
             <div class="project-info">
-              <span class="project-category">Oyun Geliştirme &amp; Veri Yapıları</span>
-              <h3>Memory Match — 2D Kart Eşleştirme Oyunu</h3>
-              <p>C++ ve SFML kütüphanesi ile geliştirilmiş; struct, 2D Array, Queue ve Map veri yapıları kullanılarak
+              <span class="project-category" data-i18n="p5_cat">Oyun Geliştirme &amp; Veri Yapıları</span>
+              <h3 data-i18n="p5_title">Memory Match — 2D Kart Eşleştirme Oyunu</h3>
+              <p data-i18n="p5_desc">C++ ve SFML kütüphanesi ile geliştirilmiş; struct, 2D Array, Queue ve Map veri yapıları kullanılarak
                 bellek yönetimi ve kullanıcı etkileşimi sağlanan 4x4 hafıza oyunu.</p>
               <div class="project-tech">
                 <span class="pill">C++</span>
@@ -413,7 +420,7 @@
                 <span class="pill">GUI Game Loop</span>
               </div>
               <div class="project-links">
-                <button class="btn btn-sm btn-primary view-project-btn" data-id="p5">Detaylı İncele</button>
+                <button class="btn btn-sm btn-primary view-project-btn" data-id="p5" data-i18n="btn_view_details">Detaylı İncele</button>
               </div>
             </div>
           </div>
@@ -429,9 +436,9 @@
               </div>
             </div>
             <div class="project-info">
-              <span class="project-category">Backend &amp; Konsol Uygulaması</span>
-              <h3>Mini Twitter — Terminal Tabanlı Sosyal Medya</h3>
-              <p>Java 17 ve OOP prensipleri ile geliştirilmiş; kullanıcı oturum yönetimi, tweet paylaşımı, hashtag
+              <span class="project-category" data-i18n="p6_cat">Backend &amp; Konsol Uygulaması</span>
+              <h3 data-i18n="p6_title">Mini Twitter — Terminal Tabanlı Sosyal Medya</h3>
+              <p data-i18n="p6_desc">Java 17 ve OOP prensipleri ile geliştirilmiş; kullanıcı oturum yönetimi, tweet paylaşımı, hashtag
                 etiketleme, takip mekanizması ve kişiselleştirilmiş öneri motoru sunan konsol uygulaması.</p>
               <div class="project-tech">
                 <span class="pill">Java 17</span>
@@ -441,7 +448,7 @@
                 <span class="pill">IntelliJ IDEA</span>
               </div>
               <div class="project-links">
-                <button class="btn btn-sm btn-primary view-project-btn" data-id="p6">Detaylı İncele</button>
+                <button class="btn btn-sm btn-primary view-project-btn" data-id="p6" data-i18n="btn_view_details">Detaylı İncele</button>
               </div>
             </div>
           </div>
@@ -453,20 +460,20 @@
     <section class="section" id="about">
       <div class="container about-grid">
         <div class="about-text">
-          <span class="section-subtitle">Mühendislik Vizyonum</span>
-          <h3>Problem Çözmek, Sistem Kurmak, Öğrenmeye Devam Etmek.</h3>
-          <p>
+          <span class="section-subtitle" data-i18n="about_subtitle">Mühendislik Vizyonum</span>
+          <h3 data-i18n="about_title">Problem Çözmek, Sistem Kurmak, Öğrenmeye Devam Etmek.</h3>
+          <p data-i18n="about_p1">
             Bilgisayar Mühendisliği öğrencisi olarak yazılım geliştirmeyi yalnızca kod yazmak olarak değil, gerçek
             problemlere sürdürülebilir çözümler üretmek olarak görüyorum. Backend geliştirme, yapay zeka entegreli
             sistemler alanlarında kendimi geliştirirken; temiz, anlaşılabilir ve ölçeklenebilir sistemler tasarlamaya
             odaklanıyorum.
           </p>
-          <p>
+          <p data-i18n="about_p2">
             C#, Java ve Python ile çalışıyor; ASP.NET Core, veritabanları, REST API'ler ve modern yazılım mimarileri
             üzerine deneyim kazanıyorum. Aynı zamanda yapay zeka entegreli sistemler alanında ilerleyerek yazılım
             mühendisliği altyapımı AI ile birleştirmeyi hedefliyorum.
           </p>
-          <p>
+          <p data-i18n="about_p3">
             Öğrenmeyi projeler üzerinden seviyorum. Üniversite çalışmalarından gerçek dünya staj deneyimine, TÜBİTAK
             araştırmalarından kişisel projelere kadar her çalışmayı kendimi bir adım ileri taşımak için kullanıyorum.
           </p>
@@ -480,15 +487,24 @@
               <span class="pill">PostgreSQL</span>
               <span class="pill">Git</span>
             </div>
-            <div>
-              <a href="#contact" class="btn btn-outline">
+            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+              <a href="for_website_cvTR.pdf" target="_blank" download="for_website_cvTR.pdf" class="btn btn-outline">
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2">
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
                   <polyline points="7 10 12 15 17 10" />
                   <line x1="12" y1="15" x2="12" y2="3" />
                 </svg>
-                <span>CV İndir</span>
+                <span data-i18n="btn_cv_tr">CV İndir (TR)</span>
+              </a>
+              <a href="for_website_cvEN.pdf" target="_blank" download="for_website_cvEN.pdf" class="btn btn-outline">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                  <polyline points="7 10 12 15 17 10" />
+                  <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+                <span data-i18n="btn_cv_en">CV İndir (EN)</span>
               </a>
             </div>
           </div>
@@ -497,10 +513,10 @@
         <div class="experience-timeline">
           <!-- Item 1 -->
           <div class="timeline-item">
-            <span class="timeline-date">2026 – Günümüz</span>
-            <h4>Bilgisayar Mühendisliği 3.Sınıf Öğrencisi</h4>
-            <h5>Yazılım Geliştirme • Yapay Zeka Entegreli Sistemler • Full-Stack Web ve Masaüstü Uygulamaları</h5>
-            <p>
+            <span class="timeline-date" data-i18n="timeline1_date">2026 – Günümüz</span>
+            <h4 data-i18n="timeline1_title">Bilgisayar Mühendisliği 3.Sınıf Öğrencisi</h4>
+            <h5 data-i18n="timeline1_subtitle">Yazılım Geliştirme • Yapay Zeka Entegreli Sistemler • Full-Stack Web ve Masaüstü Uygulamaları</h5>
+            <p data-i18n="timeline1_desc">
               TOFAŞ'taki staj sürecimde kurumsal bir ortamda gerçek bir yazılım projesinin geliştirme sürecini
               deneyimledim. Backend geliştirme, API'ler, veritabanı, doküman yönetimi ve ekip içi yazılım geliştirme
               süreçleri hakkında pratik deneyim kazandım.
@@ -509,36 +525,36 @@
 
           <!-- Item 2 -->
           <div class="timeline-item">
-            <span class="timeline-date">2025</span>
-            <h4>Bilgisayar Mühendisliği 2.Sınıf Öğrencisi</h4>
-            <h5>TÜBİTAK 2209A Araştırma Projesi • Kulüp Etkinlikleri</h5>
+            <span class="timeline-date" data-i18n="timeline2_date">2025</span>
+            <h4 data-i18n="timeline2_title">Bilgisayar Mühendisliği 2.Sınıf Öğrencisi</h4>
+            <h5 data-i18n="timeline2_subtitle">TÜBİTAK 2209A Araştırma Projesi • Kulüp Etkinlikleri</h5>
             <ul class="timeline-bullet-list">
-              <li><strong>TÜBİTAK 2209-A:</strong> Nöropazarlamada Cinsiyet Temelli Dikkat Modelleri: Webcam Tabanlı
+              <li data-i18n="timeline2_bullet1"><strong>TÜBİTAK 2209-A:</strong> Nöropazarlamada Cinsiyet Temelli Dikkat Modelleri: Webcam Tabanlı
                 Eye-Tracking ve Makine Öğrenmesi Yaklaşımı</li>
-              <li><strong>Bilişim Zirvesi'25:</strong> Yapay zeka, siber güvenlik, blokzincir ve girişimcilik alanlarını
+              <li data-i18n="timeline2_bullet2"><strong>Bilişim Zirvesi'25:</strong> Yapay zeka, siber güvenlik, blokzincir ve girişimcilik alanlarını
                 bir araya getiren etkinliğin organizasyonunda görev aldım.</li>
-              <li><strong>YAZAKİ Teknik Gezisi:</strong> Otomotiv sektöründeki üretim ve teknoloji süreçlerini yerinde
+              <li data-i18n="timeline2_bullet3"><strong>YAZAKİ Teknik Gezisi:</strong> Otomotiv sektöründeki üretim ve teknoloji süreçlerini yerinde
                 gözlemleme fırsatı buldum.</li>
-              <li><strong>SQL Server 2025 Workshop:</strong> SQL Server 2025 ve modern veritabanı teknolojileri üzerine
+              <li data-i18n="timeline2_bullet4"><strong>SQL Server 2025 Workshop:</strong> SQL Server 2025 ve modern veritabanı teknolojileri üzerine
                 uygulamalı bir workshop'a katıldım.</li>
-              <li><strong>GDG Bursa DevFest:</strong> Yapay zeka, Google teknolojileri ve modern yazılım geliştirme
+              <li data-i18n="timeline2_bullet5"><strong>GDG Bursa DevFest:</strong> Yapay zeka, Google teknolojileri ve modern yazılım geliştirme
                 üzerine teknik oturumlara katıldım.</li>
-              <li><strong>StartTech'25:</strong> Teknoloji ve girişimcilik odaklı StartTech'25 etkinliğine kulübümüzü
+              <li data-i18n="timeline2_bullet6"><strong>StartTech'25:</strong> Teknoloji ve girişimcilik odaklı StartTech'25 etkinliğine kulübümüzü
                 temsilen katıldım.</li>
             </ul>
           </div>
 
           <!-- Item 3 -->
           <div class="timeline-item">
-            <span class="timeline-date">2024</span>
-            <h4>Bilgisayar Mühendisliği 1.Sınıf Öğrencisi</h4>
-            <h5>Kariyer Fuarı Deneyimi • Etkinlik Organizasyonu</h5>
+            <span class="timeline-date" data-i18n="timeline3_date">2024</span>
+            <h4 data-i18n="timeline3_title">Bilgisayar Mühendisliği 1.Sınıf Öğrencisi</h4>
+            <h5 data-i18n="timeline3_subtitle">Kariyer Fuarı Deneyimi • Etkinlik Organizasyonu</h5>
             <ul class="timeline-bullet-list">
-              <li><strong>Kariyer Fuarı:</strong> Kocaeli Üniversitesi kariyer fuarına katılarak hem sektörü yakından
+              <li data-i18n="timeline3_bullet1"><strong>Kariyer Fuarı:</strong> Kocaeli Üniversitesi kariyer fuarına katılarak hem sektörü yakından
                 tanıma hem de staj imkanlarını değerlendirme fırsatı buldum. Etkinlik boyunca NETWORK ve teknoloji
                 alanındaki güncel yaklaşımları dinledim ve çeşitli şirketlerin staj programları hakkında bilgi edindim.
               </li>
-              <li><strong>Bilişim Zirvesi'24:</strong> Yapay zeka, siber güvenlik, blokzincir ve girişimcilik alanlarını
+              <li data-i18n="timeline3_bullet2"><strong>Bilişim Zirvesi'24:</strong> Yapay zeka, siber güvenlik, blokzincir ve girişimcilik alanlarını
                 bir araya getiren etkinliğin organizasyonunda görev aldım.</li>
             </ul>
           </div>
@@ -550,9 +566,9 @@
     <section class="section" id="contact">
       <div class="container">
         <div class="section-header">
-          <span class="section-subtitle">Bağlantı Kurun</span>
-          <h2 class="section-title">Birlikte Harika Projeler Geliştirelim</h2>
-          <p class="section-description">
+          <span class="section-subtitle" data-i18n="contact_subtitle">Bağlantı Kurun</span>
+          <h2 class="section-title" data-i18n="contact_title">Birlikte Harika Projeler Geliştirelim</h2>
+          <p class="section-description" data-i18n="contact_desc">
             Kurumsal projeler, mimari danışmanlık veya teknoloji iş birlikleri için bana dilediğiniz zaman
             ulaşabilirsiniz.
           </p>
@@ -562,7 +578,7 @@
           <!-- Info Card -->
           <div class="contact-info-card">
             <div>
-              <h3 style="margin-bottom: 1.5rem; font-size: 1.4rem;">İletişim Kanalları</h3>
+              <h3 style="margin-bottom: 1.5rem; font-size: 1.4rem;" data-i18n="contact_channels">İletişim Kanalları</h3>
               <div style="display: flex; flex-direction: column; gap: 1.25rem;">
                 <div class="contact-item">
                   <div class="contact-icon">
@@ -573,7 +589,7 @@
                     </svg>
                   </div>
                   <div class="contact-meta">
-                    <span>E-Posta</span>
+                    <span data-i18n="contact_email">E-Posta</span>
                     <p id="email-text">zehratuncer.dev@gmail.com</p>
                   </div>
                 </div>
@@ -617,7 +633,7 @@
                 <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
                 <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
               </svg>
-              <span>E-Postayı Kopyala</span>
+              <span data-i18n="contact_btn_copy">E-Postayı Kopyala</span>
             </button>
           </div>
 
@@ -630,29 +646,29 @@
               <input type="hidden" name="_captcha" value="false">
 
               <div class="form-group">
-                <label class="form-label" for="form-name">Adınız &amp; Soyadınız</label>
-                <input class="form-control" type="text" id="form-name" name="Ad_Soyad" placeholder="Örn: Ahmet Yılmaz" required>
+                <label class="form-label" for="form-name" data-i18n="label_name">Adınız &amp; Soyadınız</label>
+                <input class="form-control" type="text" id="form-name" name="Ad_Soyad" placeholder="Örn: Ahmet Yılmaz" data-i18n-ph="ph_name" required>
               </div>
 
               <div class="form-group">
-                <label class="form-label" for="form-email">E-Posta Adresiniz</label>
-                <input class="form-control" type="email" id="form-email" name="Eposta" placeholder="ornek@sirket.com" required>
+                <label class="form-label" for="form-email" data-i18n="label_email">E-Posta Adresiniz</label>
+                <input class="form-control" type="email" id="form-email" name="Eposta" placeholder="ornek@sirket.com" data-i18n-ph="ph_email" required>
               </div>
 
               <div class="form-group">
-                <label class="form-label" for="form-subject">Proje / Konu</label>
+                <label class="form-label" for="form-subject" data-i18n="label_subject">Proje / Konu</label>
                 <input class="form-control" type="text" id="form-subject" name="Konu"
-                  placeholder="Örn: Yeni Proje Mimari Danışmanlığı" required>
+                  placeholder="Örn: Yeni Proje Mimari Danışmanlığı" data-i18n-ph="ph_subject" required>
               </div>
 
               <div class="form-group">
-                <label class="form-label" for="form-message">Mesajınız</label>
+                <label class="form-label" for="form-message" data-i18n="label_message">Mesajınız</label>
                 <textarea class="form-control" id="form-message" name="Mesaj"
-                  placeholder="Projeniz veya iletmek istediğiniz detaylar..." required></textarea>
+                  placeholder="Projeniz veya iletmek istediğiniz detaylar..." data-i18n-ph="ph_message" required></textarea>
               </div>
 
               <button class="btn btn-primary" type="submit" style="width: 100%; padding: 0.9rem;">
-                <span>Mesajı Gönder</span>
+                <span data-i18n="btn_send_message">Mesajı Gönder</span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
                   stroke="currentColor" stroke-width="2">
                   <line x1="22" y1="2" x2="11" y2="13" />
@@ -670,7 +686,7 @@
   <footer class="site-footer">
     <div class="container footer-content">
       <div class="footer-credits">
-        <p>&copy; <span id="current-year"></span> Zehra Tuncer. Tüm hakları saklıdır.</p>
+        <p>&copy; <span id="current-year"></span> Zehra Tuncer. <span data-i18n="footer_rights">Tüm hakları saklıdır.</span></p>
       </div>
       <div class="footer-socials">
         <a href="https://github.com/zehratuncer" class="social-link" target="_blank" rel="noopener"

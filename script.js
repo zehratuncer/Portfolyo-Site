@@ -5,6 +5,9 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  // 0. Language Switcher (TR / EN)
+  initLanguageSwitcher();
+
   // 1. Dynamic Footer Year
   const yearEl = document.getElementById('current-year');
   if (yearEl) {
@@ -26,6 +29,274 @@ document.addEventListener('DOMContentLoaded', () => {
   // 6. Title Marquee Effect
   initTitleMarquee();
 });
+
+/* ==========================================================================
+   0. Internationalization (i18n) Engine (TR / EN)
+   ========================================================================== */
+const i18nData = {
+  tr: {
+    nav_home: "Giriş",
+    nav_tech: "Teknolojiler",
+    nav_projects: "Projeler",
+    nav_about: "Hakkımda",
+    nav_contact: "İletişim",
+
+    hero_title: 'Ölçeklenebilir, Dayanıklı & <span class="gradient-text">Yüksek Performanslı</span> Yazılımlar.',
+    hero_desc: '.NET 9 & ASP.NET Core, Angular 20 Standalone, Clean Architecture, PostgreSQL ve Docker ile kurumsal seviyede güvenli, modüler ve dağıtık sistemler inşa ediyorum.',
+    hero_btn_projects: 'Projelerimi Keşfet',
+    hero_btn_contact: 'İletişime Geç',
+
+    tech_subtitle: 'Yetkinlikler & Araçlar',
+    tech_card1_title: 'Backend & Kurumsal Mimari',
+    tech_card1_desc: 'Clean Architecture, Modüler Monolit ve DDD prensipleriyle güvenli, ölçeklenebilir kurumsal sistem tasarımı.',
+    tech_card2_title: 'Modern Web Frontend',
+    tech_card2_desc: 'Standalone bileşenler ve reaktif sinyaller (Signals) kullanarak dinamik kullanıcı arayüzleri.',
+    tech_card3_title: 'Veri Tabanı & Altyapı',
+    tech_card3_desc: 'İlişkisel modelleme, tam metin arama optimizasyonları ve CAS (İçerik-Adresli) depolama.',
+    tech_card4_title: 'DevOps, Test & Araçlar',
+    tech_card4_desc: 'Konteynerizasyon, CI/CD, otomatik test altyapıları ve API belgelendirme standartları.',
+    tech_card5_title: 'Yapay Zeka & Görüntü İşleme',
+    tech_card5_desc: 'Bilgisayarlı görü, göz takibi (eye-tracking), OCR ve makine öğrenmesi algoritmaları.',
+    tech_card6_title: 'Mobil Geliştirme',
+    tech_card6_desc: 'Modern mobil teknolojiler kullanarak iOS ve Android platformları için çapraz platform çözümler.',
+
+    projects_subtitle: 'Çalışmalarım',
+    projects_title: 'Öne Çıkan Kurumsal & Modern Projeler',
+    projects_desc: 'Gerçek iş problemlerini çözen, ölçeklenebilir mimarilerle geliştirilmiş seçilmiş projeler.',
+
+    p1_cat: 'Staj Projesi 1 — Tofaş IT',
+    p1_title: 'Kurumsal Bayi Doküman Yönetim Portalı',
+    p1_desc: 'Yetkili bayilerin kurumsal dokümanlara tek merkezden erişmesini sağlayan; Modular Monolith, Clean Architecture, JWT & Role-Based Authorization ve marka bazlı yetkilendirme mimarili web portalı.',
+
+    p2_cat: 'Staj Projesi 2 — Tofaş IT',
+    p2_title: 'VaultCore — Metadata Doküman Yönetimi & İş Akışı',
+    p2_desc: 'M-Files mimarisinden esinlenen; dinamik şema modelleme, materyalize ACL güvenlik motoru, durum makineli iş akışı otomasyonu, check-out versiyonlama ve OCR destekli FTS sunan kurumsal DMS platformu.',
+
+    p3_cat: 'Mobil Uygulama & Bulut',
+    p3_title: 'BeYourself — Kişisel İlham & Medya Asistanı',
+    p3_desc: 'Instagram Reels/Carousel medya ayrıştırıcı, Vercel Serverless CORS proxy, Android Home Widget, zamanlanmış yerel bildirimler ve Supabase bulut senkronizasyonlu modern Flutter uygulaması.',
+
+    p4_cat: 'Masaüstü & C# Çözümü',
+    p4_title: 'Not Hesaplama & Akademik Başarı Aracı',
+    p4_desc: 'Vize, ödev ağırlıkları ve geçme notu hedeflerine göre final sınavında alınması gereken minimum notu anlık hesaplayan, dinamik toleranslı C# WinForms masaüstü aracı.',
+
+    p5_cat: 'Oyun Geliştirme & Veri Yapıları',
+    p5_title: 'Memory Match — 2D Kart Eşleştirme Oyunu',
+    p5_desc: 'C++ ve SFML kütüphanesi ile geliştirilmiş; struct, 2D Array, Queue ve Map veri yapıları kullanılarak bellek yönetimi ve kullanıcı etkileşimi sağlanan 4x4 hafıza oyunu.',
+
+    p6_cat: 'Backend & Konsol Uygulaması',
+    p6_title: 'Mini Twitter — Terminal Tabanlı Sosyal Medya',
+    p6_desc: 'Java 17 ve OOP prensipleri ile geliştirilmiş; kullanıcı oturum yönetimi, tweet paylaşımı, hashtag etiketleme, takip mekanizması ve kişiselleştirilmiş öneri motoru sunan konsol uygulaması.',
+
+    btn_view_details: 'Detaylı İncele',
+
+    about_subtitle: 'Mühendislik Vizyonum',
+    about_title: 'Problem Çözmek, Sistem Kurmak, Öğrenmeye Devam Etmek.',
+    about_p1: 'Bilgisayar Mühendisliği öğrencisi olarak yazılım geliştirmeyi yalnızca kod yazmak olarak değil, gerçek problemlere sürdürülebilir çözümler üretmek olarak görüyorum. Backend geliştirme, yapay zeka entegreli sistemler alanlarında kendimi geliştirirken; temiz, anlaşılabilir ve ölçeklenebilir sistemler tasarlamaya odaklanıyorum.',
+    about_p2: 'C#, Java ve Python ile çalışıyor; ASP.NET Core, veritabanları, REST API\'ler ve modern yazılım mimarileri üzerine deneyim kazanıyorum. Aynı zamanda yapay zeka entegreli sistemler alanında ilerleyerek yazılım mühendisliği altyapımı AI ile birleştirmeyi hedefliyorum.',
+    about_p3: 'Öğrenmeyi projeler üzerinden seviyorum. Üniversite çalışmalarından gerçek dünya staj deneyimine, TÜBİTAK araştırmalarından kişisel projelere kadar her çalışmayı kendimi bir adım ileri taşımak için kullanıyorum.',
+
+    btn_cv_tr: 'CV İndir (TR)',
+    btn_cv_en: 'CV İndir (EN)',
+
+    timeline1_date: '2026 – Günümüz',
+    timeline1_title: 'Bilgisayar Mühendisliği 3.Sınıf Öğrencisi',
+    timeline1_subtitle: 'Yazılım Geliştirme • Yapay Zeka Entegreli Sistemler • Full-Stack Web ve Masaüstü Uygulamaları',
+    timeline1_desc: 'TOFAŞ\'taki staj sürecimde kurumsal bir ortamda gerçek bir yazılım projesinin geliştirme sürecini deneyimledim. Backend geliştirme, API\'ler, veritabanı, doküman yönetimi ve ekip içi yazılım geliştirme süreçleri hakkında pratik deneyim kazandım.',
+
+    timeline2_date: '2025',
+    timeline2_title: 'Bilgisayar Mühendisliği 2.Sınıf Öğrencisi',
+    timeline2_subtitle: 'TÜBİTAK 2209A Araştırma Projesi • Kulüp Etkinlikleri',
+    timeline2_bullet1: '<strong>TÜBİTAK 2209-A:</strong> Nöropazarlamada Cinsiyet Temelli Dikkat Modelleri: Webcam Tabanlı Eye-Tracking ve Makine Öğrenmesi Yaklaşımı',
+    timeline2_bullet2: '<strong>Bilişim Zirvesi\'25:</strong> Yapay zeka, siber güvenlik, blokzincir ve girişimcilik alanlarını bir araya getiren etkinliğin organizasyonunda görev aldım.',
+    timeline2_bullet3: '<strong>YAZAKİ Teknik Gezisi:</strong> Otomotiv sektöründeki üretim ve teknoloji süreçlerini yerinde gözlemleme fırsatı buldum.',
+    timeline2_bullet4: '<strong>SQL Server 2025 Workshop:</strong> SQL Server 2025 ve modern veritabanı teknolojileri üzerine uygulamalı bir workshop\'a katıldım.',
+    timeline2_bullet5: '<strong>GDG Bursa DevFest:</strong> Yapay zeka, Google teknolojileri ve modern yazılım geliştirme üzerine teknik oturumlara katıldım.',
+    timeline2_bullet6: '<strong>StartTech\'25:</strong> Teknoloji ve girişimcilik odaklı StartTech\'25 etkinliğine kulübümüzü temsilen katıldım.',
+
+    timeline3_date: '2024',
+    timeline3_title: 'Bilgisayar Mühendisliği 1.Sınıf Öğrencisi',
+    timeline3_subtitle: 'Kariyer Fuarı Deneyimi • Etkinlik Organizasyonu',
+    timeline3_bullet1: '<strong>Kariyer Fuarı:</strong> Kocaeli Üniversitesi kariyer fuarına katılarak hem sektörü yakından tanıma hem de staj imkanlarını değerlendirme fırsatı buldum. Etkinlik boyunca NETWORK ve teknoloji alanındaki güncel yaklaşımları dinledim ve çeşitli şirketlerin staj programları hakkında bilgi edindim.',
+    timeline3_bullet2: '<strong>Bilişim Zirvesi\'24:</strong> Yapay zeka, siber güvenlik, blokzincir ve girişimcilik alanlarını bir araya getiren etkinliğin organizasyonunda görev aldım.',
+
+    contact_subtitle: 'Bağlantı Kurun',
+    contact_title: 'Birlikte Harika Projeler Geliştirelim',
+    contact_desc: 'Kurumsal projeler, mimari danışmanlık veya teknoloji iş birlikleri için bana dilediğiniz zaman ulaşabilirsiniz.',
+    contact_channels: 'İletişim Kanalları',
+    contact_email: 'E-Posta',
+    contact_btn_copy: 'E-Postayı Kopyala',
+
+    label_name: 'Adınız & Soyadınız',
+    ph_name: 'Örn: Ahmet Yılmaz',
+    label_email: 'E-Posta Adresiniz',
+    ph_email: 'ornek@sirket.com',
+    label_subject: 'Proje / Konu',
+    ph_subject: 'Örn: Yeni Proje Mimari Danışmanlığı',
+    label_message: 'Mesajınız',
+    ph_message: 'Projeniz veya iletmek istediğiniz detaylar...',
+    btn_send_message: 'Mesajı Gönder',
+
+    footer_rights: 'Tüm hakları saklıdır.'
+  },
+  en: {
+    nav_home: "Home",
+    nav_tech: "Technologies",
+    nav_projects: "Projects",
+    nav_about: "About",
+    nav_contact: "Contact",
+
+    hero_title: 'Building Scalable, Resilient & <span class="gradient-text">High-Performance</span> Software.',
+    hero_desc: 'Engineering enterprise-grade secure, modular, and distributed systems using .NET 9 & ASP.NET Core, Angular 20 Standalone, Clean Architecture, PostgreSQL, and Docker.',
+    hero_btn_projects: 'Explore My Projects',
+    hero_btn_contact: 'Get in Touch',
+
+    tech_subtitle: 'Skills & Tools',
+    tech_card1_title: 'Backend & Enterprise Architecture',
+    tech_card1_desc: 'Designing secure and scalable enterprise systems using Clean Architecture, Modular Monolith, and DDD principles.',
+    tech_card2_title: 'Modern Web Frontend',
+    tech_card2_desc: 'Crafting dynamic user interfaces using Standalone components and reactive Angular Signals.',
+    tech_card3_title: 'Database & Infrastructure',
+    tech_card3_desc: 'Relational database modeling, Full-Text Search optimizations, and Content-Addressable Storage (CAS).',
+    tech_card4_title: 'DevOps, Testing & Tools',
+    tech_card4_desc: 'Containerization, CI/CD pipelines, automated testing infrastructure, and OpenAPI standards.',
+    tech_card5_title: 'AI & Computer Vision',
+    tech_card5_desc: 'Computer Vision, webcam eye-tracking models, OCR integration, and Python-based machine learning pipelines.',
+    tech_card6_title: 'Mobile Development',
+    tech_card6_desc: 'Cross-platform solutions for iOS and Android built with modern mobile engineering frameworks.',
+
+    projects_subtitle: 'My Portfolio',
+    projects_title: 'Featured Enterprise & Modern Projects',
+    projects_desc: 'Selected projects engineered with scalable architectures to solve real business problems.',
+
+    p1_cat: 'Internship Project 1 — Tofaş IT',
+    p1_title: 'Enterprise Dealer Document Management Portal',
+    p1_desc: 'Centralized enterprise web portal enabling authorized dealers to access corporate documents with Modular Monolith, Clean Architecture, JWT & Role-Based Authorization, and brand-based permissions.',
+
+    p2_cat: 'Internship Project 2 — Tofaş IT',
+    p2_title: 'VaultCore — Metadata Document Management & Workflow',
+    p2_desc: 'Enterprise DMS platform inspired by M-Files architecture featuring dynamic runtime schema modeling, materialized ACL security engine, state machine workflow automation, check-out versioning, and OCR-supported FTS.',
+
+    p3_cat: 'Mobile App & Cloud',
+    p3_title: 'BeYourself — Personal Inspiration & Media Assistant',
+    p3_desc: 'Modern Flutter application featuring Instagram Reels/Carousel media parser, Vercel Serverless CORS proxy, Android Home Widget, scheduled local notifications, and Supabase cloud sync.',
+
+    p4_cat: 'Desktop & C# Solution',
+    p4_title: 'Grade Calculation & Academic Success Tool',
+    p4_desc: 'Dynamic tolerance C# WinForms desktop application calculating required final exam scores based on midterm weights, homework assignments, and target passing grades.',
+
+    p5_cat: 'Game Development & Data Structures',
+    p5_title: 'Memory Match — 2D Card Matching Game',
+    p5_desc: '4x4 memory matching game developed with C++ and SFML library, utilizing struct, 2D Array, Queue, and Map data structures for efficient memory management.',
+
+    p6_cat: 'Backend & Console Application',
+    p6_title: 'Mini Twitter — Terminal-Based Social Media',
+    p6_desc: 'Console application built with Java 17 and OOP principles, featuring user session management, tweeting, hashtagging, follow mechanisms, and a personalized recommendation engine.',
+
+    btn_view_details: 'View Details',
+
+    about_subtitle: 'Engineering Vision',
+    about_title: 'Solving Problems, Building Systems, Continuous Learning.',
+    about_p1: 'As a Computer Engineering student, I view software development not merely as writing code, but as building sustainable solutions for real-world problems. While growing in backend development and AI-integrated systems, I focus on engineering clean, understandable, and scalable architectures.',
+    about_p2: 'Working with C#, Java, and Python, I gain hands-on experience in ASP.NET Core, databases, REST APIs, and modern software architectures. I also aim to merge my software engineering background with AI-integrated systems.',
+    about_p3: 'I thrive on project-based learning. From academic coursework to real-world corporate internships, TÜBİTAK research projects to personal builds, I leverage every opportunity to push my boundaries.',
+
+    btn_cv_tr: 'Download CV (TR)',
+    btn_cv_en: 'Download CV (EN)',
+
+    timeline1_date: '2026 – Present',
+    timeline1_title: 'Computer Engineering — 3rd Year Student',
+    timeline1_subtitle: 'Software Development • AI-Integrated Systems • Full-Stack Web & Desktop Applications',
+    timeline1_desc: 'During my software engineering internship at TOFAŞ, I experienced the development lifecycle of a real enterprise software project. Gained hands-on expertise in backend engineering, APIs, databases, document management, and team-based software workflows.',
+
+    timeline2_date: '2025',
+    timeline2_title: 'Computer Engineering — 2nd Year Student',
+    timeline2_subtitle: 'TÜBİTAK 2209A Research Project • Tech Club Activities',
+    timeline2_bullet1: '<strong>TÜBİTAK 2209-A:</strong> Gender-Based Attention Models in Neuromarketing: Webcam-Based Eye-Tracking and Machine Learning Approach',
+    timeline2_bullet2: '<strong>IT Summit \'25:</strong> Served in the organizing committee of the conference bringing together AI, cybersecurity, blockchain, and entrepreneurship.',
+    timeline2_bullet3: '<strong>YAZAKI Technical Visit:</strong> Observed production and technology processes firsthand in the automotive industry.',
+    timeline2_bullet4: '<strong>SQL Server 2025 Workshop:</strong> Participated in a hands-on workshop on SQL Server 2025 and modern database technologies.',
+    timeline2_bullet5: '<strong>GDG Bursa DevFest:</strong> Attended technical sessions on AI, Google technologies, and modern software engineering.',
+    timeline2_bullet6: '<strong>StartTech\'25:</strong> Represented our student club at the StartTech\'25 tech and entrepreneurship event.',
+
+    timeline3_date: '2024',
+    timeline3_title: 'Computer Engineering — 1st Year Student',
+    timeline3_subtitle: 'Career Fair Experience • Event Organization',
+    timeline3_bullet1: '<strong>Career Fair:</strong> Attended Kocaeli University Career Fair to network with industry professionals and evaluate internship opportunities across tech companies.',
+    timeline3_bullet2: '<strong>IT Summit \'24:</strong> Contributed to the organization team for the summit covering AI, cybersecurity, blockchain, and technology trends.',
+
+    contact_subtitle: 'Get in Touch',
+    contact_title: 'Let\'s Build Great Projects Together',
+    contact_desc: 'Feel free to reach out for enterprise project inquiries, architecture discussions, or technology collaborations.',
+    contact_channels: 'Contact Channels',
+    contact_email: 'Email',
+    contact_btn_copy: 'Copy Email Address',
+
+    label_name: 'Full Name',
+    ph_name: 'e.g. John Doe',
+    label_email: 'Email Address',
+    ph_email: 'example@company.com',
+    label_subject: 'Project / Subject',
+    ph_subject: 'e.g. New Project Architecture Discussion',
+    label_message: 'Message',
+    ph_message: 'Your project details or inquiry...',
+    btn_send_message: 'Send Message',
+
+    footer_rights: 'All rights reserved.'
+  }
+};
+
+let currentAppLanguage = 'tr';
+
+function initLanguageSwitcher() {
+  const toggleBtn = document.getElementById('lang-toggle-btn');
+  const trOpt = toggleBtn ? toggleBtn.querySelector('.lang-tr') : null;
+  const enOpt = toggleBtn ? toggleBtn.querySelector('.lang-en') : null;
+
+  let savedLang = localStorage.getItem('portfolio_lang') || 'tr';
+
+  function applyLanguage(lang) {
+    currentAppLanguage = lang;
+    localStorage.setItem('portfolio_lang', lang);
+
+    if (trOpt && enOpt) {
+      if (lang === 'tr') {
+        trOpt.classList.add('active');
+        enOpt.classList.remove('active');
+      } else {
+        enOpt.classList.add('active');
+        trOpt.classList.remove('active');
+      }
+    }
+
+    const dict = i18nData[lang] || i18nData['tr'];
+
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (dict[key]) {
+        el.innerHTML = dict[key];
+      }
+    });
+
+    document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+      const key = el.getAttribute('data-i18n-ph');
+      if (dict[key]) {
+        el.setAttribute('placeholder', dict[key]);
+      }
+    });
+
+    document.documentElement.lang = lang;
+  }
+
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', () => {
+      const nextLang = currentAppLanguage === 'tr' ? 'en' : 'tr';
+      applyLanguage(nextLang);
+    });
+  }
+
+  applyLanguage(savedLang);
+}
 
 /* ==========================================================================
    2. Particle Network Canvas Background
@@ -197,7 +468,7 @@ function initProjectsSection() {
     });
   }
 
-  const projectDetails = {
+  const projectDetailsTr = {
     p1: {
       tag: '🏢 Staj Projesi — Tofaş IT | Modular Monolith & Clean Architecture',
       title: 'Kurumsal Bayi Doküman Yönetim Portalı',
@@ -492,7 +763,7 @@ function initProjectsSection() {
 ┌─────────────────────────────────────────────────────────────┐
 │             Test Altyapısı (50/50 Passed Unit Tests)        │
 │   • Riverpod Providers • Downloader • Widget • Notifications│
-└─────────────────────────────────────────────────────────────┘`,
+└─────────────────────────────┘`,
       responsibilities: [
         'Flutter 3.x ve Riverpod 2.5 kullanılarak reaktif ve temiz mobil mimarinin sıfırdan tasarlanması',
         'Vercel üzerinde koşan Serverless CORS Proxy API\'nin geliştirilip Instagram medya ayrıştırma servisine entegre edilmesi',
@@ -635,7 +906,7 @@ function initProjectsSection() {
 │   • std::queue<Card*> -> Sıralı Tıklama & Eşleşme Kontrolü  │
 │   • std::map<char, Texture> -> Doku / Harf Eşleme           │
 │   • Karıştırma & Durum Makinesi (Kapalı/Açık/Eşleşti)       │
-└─────────────────────────────────────────────────────────────┘`,
+└──────────────────────────────┬──────────────────────────────┘`,
       responsibilities: [
         'C++ ve SFML kütüphanesi kullanılarak oyun motoru döngüsü ve grafik kullanıcı arayüzünün kodlanması',
         'struct, 2D array, queue ve map veri yapılarının entegre edilerek oyun durumlarının yönetilmesi',
@@ -715,147 +986,689 @@ function initProjectsSection() {
     }
   };
 
-  viewBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const pid = btn.getAttribute('data-id');
-      const data = projectDetails[pid];
-      if (!data) return;
+  const projectDetailsEn = {
+    p1: {
+      tag: '🏢 Internship Project — Tofaş IT | Modular Monolith & Clean Architecture',
+      title: 'Enterprise Dealer Document Management Portal',
+      contextNotice: 'Developed during my software engineering internship at Tofaş IT. It enables authorized dealer users to gain centralized, controlled access to assigned documents, announcements, and corporate media via Role-Based Authorization and brand-based permissions.',
+      purpose: 'Providing authorized dealer users secure, single-platform access to corporate documents within their permission scope and managing the end-to-end document lifecycle.',
+      roles: [
+        { name: '👤 Administrator', desc: 'User, dealer, brand, category, and document management; auditing system access logs and login activities.' },
+        { name: '📝 Content Manager', desc: 'Managing document creation, file uploading, updating, content publishing, and archiving workflows.' },
+        { name: '🏢 Dealer User', desc: 'Listing, inspecting, securely downloading documents belonging strictly to authorized brands, and tracking notifications.' }
+      ],
+      problems: [
+        {
+          title: '🏷️ 1. Brand-Based Content Permissioning',
+          desc: 'Preventing dealer users from accessing unauthorized documents. Engineered a multi-layered dynamic permission model based on Dealer-to-Brand relations (DealerBrands) and Document target brands (MaterialBrands).'
+        },
+        {
+          title: '📁 2. File Management & Metadata Isolation',
+          desc: 'Decoupled binary file contents from database storage into an independent File Storage structure. Stored metadata attributes like FileName, StoredFileName, Extension, and MIME Type relationally in PostgreSQL.'
+        },
+        {
+          title: '🔐 3. Security, JWT & DTO Isolation',
+          desc: 'Implemented JWT-based authentication and Backend Role-Based Authorization. Prevented leakage of sensitive server data (Password Hashes, internal file paths) to clients using DTO structures and Soft Delete.'
+        },
+        {
+          title: '📊 4. Audit Trail & Traceability (Access Logs)',
+          desc: 'Recorded document viewing and download actions with full timestamps, user IDs, and document IDs via an Access Log audit mechanism to meet corporate compliance standards.'
+        }
+      ],
+      architectureDiagram: `┌─────────────────────────────────────────────────────────────┐
+│                 Angular Frontend (SPA)                      │
+│        Components • Services • Route Guards • Interceptors  │
+└──────────────────────────────┬──────────────────────────────┘
+                               │ HTTP / JWT Authentication
+                               ▼
+┌─────────────────────────────────────────────────────────────┐
+│                   ASP.NET Core Web API                      │
+│        Controllers • Middleware • JWT Auth • Swagger        │
+└──────────────────────────────┬──────────────────────────────┘
+                               │ Clean Architecture
+                               ▼
+┌─────────────────────────────────────────────────────────────┐
+│     Core (Entities) ──► Application (DTO, Logic) ──► Infra  │
+└──────────────────────────────┬──────────────────────────────┘
+                               │
+               ┌───────────────┴───────────────┐
+               ▼                               ▼
+      ┌─────────────────┐            ┌──────────────────┐
+      │ PostgreSQL DB   │            │ File Storage     │
+      │ (Metadata, Logs)│            │ (Binary Files)   │
+      └─────────────────┘            └──────────────────┘`,
+      responsibilities: [
+        'Engineered RESTful APIs and core business logic following Clean Architecture principles',
+        'Designed relational data models in Entity Framework Core & PostgreSQL and managed DB migrations',
+        'Coded JWT-based authentication and Role-Based Authorization (RBAC) security infrastructure',
+        'Built brand-based many-to-many dynamic document permission algorithms',
+        'Integrated file upload, secure download streams, and Access Logs audit mechanisms',
+        'Configured Docker & Docker Compose development environments and performed OpenAPI/Swagger API testing',
+        'Coordinated with the Angular frontend team via strict DTO API contracts'
+      ],
+      tech: [
+        'ASP.NET Core', '.NET 9', 'Clean Architecture', 'Modular Monolith',
+        'Angular', 'TypeScript', 'PostgreSQL', 'EF Core',
+        'JWT Authentication', 'Role-Based Auth (RBAC)', 'REST API',
+        'Docker', 'Docker Compose', 'Swagger / OpenAPI'
+      ],
+      screenshots: [
+        {
+          category: '🏢 Dealer Portal Interfaces',
+          items: [
+            { img: 'ekran_goruntuleri/internproject-1/assets/01_bayi_login.png', title: 'Dealer Login Screen', desc: 'JWT-based secure authentication interface.' },
+            { img: 'ekran_goruntuleri/internproject-1/assets/02_bayi_home.png', title: 'Dealer Homepage', desc: 'Customized announcements and quick action dashboard for users.' },
+            { img: 'ekran_goruntuleri/internproject-1/assets/04_bayi_documents.png', title: 'Dealer Document List', desc: 'Listed documents belonging strictly to authorized brands.' },
+            { img: 'ekran_goruntuleri/internproject-1/assets/05_bayi_document_detail.png', title: 'Document Inspection & Download', desc: 'Metadata details and secure file download actions.' },
+            { img: 'ekran_goruntuleri/internproject-1/assets/03_bayi_notifications.png', title: 'Notifications & Announcements', desc: 'Stream tracking notifications associated with the dealer.' },
+            { img: 'ekran_goruntuleri/internproject-1/assets/06_bayi_profile.png', title: 'Dealer User Profile', desc: 'User information and authorized dealer details.' },
+            { img: 'ekran_goruntuleri/internproject-1/assets/07_bayi_settings.png', title: 'User Settings', desc: 'Personalization and account preferences screen.' }
+          ]
+        },
+        {
+          category: '🛠️ Admin Panel & Document Management (Admin & Content Manager)',
+          items: [
+            { img: 'ekran_goruntuleri/internproject-1/assets/08_admin_login.png', title: 'Admin Login Panel', desc: 'Dedicated login interface for Admin and Content Manager roles.' },
+            { img: 'ekran_goruntuleri/internproject-1/assets/09_admin_dashboard.png', title: 'Admin Dashboard', desc: 'System-wide metrics, document stats, and user analytics.' },
+            { img: 'ekran_goruntuleri/internproject-1/assets/10_admin_documents_list.png', title: 'Document Management', desc: 'Centralized document list, search tools, and brand filters.' },
+            { img: 'ekran_goruntuleri/internproject-1/assets/11_admin_document_detail_drawer.png', title: 'Document Details Drawer', desc: 'Brand relationships and metadata editing side drawer.' },
+            { img: 'ekran_goruntuleri/internproject-1/assets/12_admin_pool_calendar.png', title: 'Pool & Calendar View', desc: 'Document publishing and scheduling calendar interface.' },
+            { img: 'ekran_goruntuleri/internproject-1/assets/13_admin_document_access_report.png', title: 'Document Access Report', desc: 'Document-based access analytics and usage reports.' }
+          ]
+        },
+        {
+          category: '📊 System Definitions & Audit Logs (Traceability)',
+          items: [
+            { img: 'ekran_goruntuleri/internproject-1/assets/14_admin_login_activity.png', title: 'Login Activity (Login Audit)', desc: 'User login timestamps, statuses, and session records.' },
+            { img: 'ekran_goruntuleri/internproject-1/assets/15_admin_access_logs.png', title: 'Access Logs (Audit Trail)', desc: 'Traceability logs recording which user accessed which document when.' },
+            { img: 'ekran_goruntuleri/internproject-1/assets/16_admin_definitions_users.png', title: 'User Definitions & Roles', desc: 'System user roles and account status management.' },
+            { img: 'ekran_goruntuleri/internproject-1/assets/17_admin_definitions_dealers.png', title: 'Dealer Definitions', desc: 'Dealer creation and brand permission mappings.' },
+            { img: 'ekran_goruntuleri/internproject-1/assets/18_admin_definitions_brands.png', title: 'Brand Definitions', desc: 'Centralized management of brands registered in the system.' },
+            { img: 'ekran_goruntuleri/internproject-1/assets/19_admin_definitions_categories.png', title: 'Category Definitions', desc: 'Hierarchical structuring of document categories.' }
+          ]
+        }
+      ]
+    },
+    p2: {
+      tag: '🏛️ Internship Project — TOFAŞ IT | Metadata DMS & Workflow Automation',
+      title: 'VaultCore — Enterprise Metadata Document Management & Workflow Portal',
+      contextNotice: 'Engineered during my software engineering internship at Tofaş IT. Inspired by M-Files architecture, VaultCore is an enterprise platform featuring folderless object modeling, runtime schema definition, materialized ACL permission engine, state-machine workflow orchestration, check-out versioning, and OCR-supported FTS.',
+      purpose: 'Eliminating rigid folder hierarchies by leveraging rich metadata properties, SavedViews, and rule-based workflows to manage documents and business objects in a secure, scalable, and auditable manner.',
+      roles: [
+        { name: '🏛️ System Administrator', desc: 'Zero-migration schema modeling (ObjectType, ObjectClass, PropertyDefinition, ValueList), visual workflow design, and audit log analytics.' },
+        { name: '🛡️ Security & Permission Manager', desc: 'Permission rule matrix (PermissionRule), Materialized ObjectAcl calculation, ACL analytics heatmap, and user privilege simulation.' },
+        { name: '👥 Enterprise User & Approver', desc: 'M-Files virtual explorer, dynamic form document entry, check-out locking, open task approvals with SLA tracking, and delegation.' }
+      ],
+      problems: [
+        {
+          title: '🗂️ 1. Dynamic Schema Management Without DB Migrations',
+          desc: 'Replaced traditional DB migrations when adding new document types or properties with an ObjectType → ObjectClass → PropertyDefinition abstraction layer. Built a hybrid model combining PropertyValue relational integrity and ObjectVersion.PropertiesJson (jsonb) for ultra-fast searches.'
+        },
+        {
+          title: '⚡ 2. Sub-Millisecond Permission Filtering on 100,000+ Objects',
+          desc: 'Pre-calculated dynamic Attribute-Based Access Control (ABAC) rules into a Materialized ACL Engine (ObjectAcl) upon object save. Replaced heavy dynamic runtime permission evaluations with indexed single-JOIN queries.'
+        },
+        {
+          title: '🔄 3. Data-Driven State Machine (Workflow Automation)',
+          desc: 'Engineered a database-driven state machine managed via a visual canvas, replacing hardcoded if/else statements with configurable states, transitions, SLA timeouts, role assignments, and electronic password signatures.'
+        },
+        {
+          title: '🔍 4. Turkish Morphological FTS & Tesseract OCR Search',
+          desc: 'Configured PostgreSQL turkish_unaccent and GIN indexes. Integrated background worker services using Tesseract OCR to automatically extract text from scanned documents into the search index.'
+        },
+        {
+          title: '🔒 5. Check-Out Locking & Content-Addressable Storage (CAS)',
+          desc: 'Implemented check-out lock mechanisms to prevent concurrent edits and constructed Content-Addressable Storage (CAS) indexing files by SHA-256 hashes to prevent Path Traversal vulnerabilities.'
+        },
+        {
+          title: '🧪 6. 315 Backend + 112 Frontend Automated Test Architecture',
+          desc: 'Wrote 315 integration/API tests using Testcontainers & WebApplicationFactory against real PostgreSQL instances and 112 frontend tests with Jasmine/Karma to ensure zero regression.'
+        }
+      ],
+      architectureDiagram: `┌─────────────────────────────────────────────────────────────┐
+│                 Angular 20 Frontend (SPA)                   │
+│   • Standalone Components      • Reactive Signals State     │
+│   • Dynamic Metadata Card      • Role/Permission RouteGuards│
+│   • M-Files Virtual Explorer   • HTTP Interceptor Chain     │
+└──────────────────────────────┬──────────────────────────────┘
+                               │ HTTPS / REST / JWT Bearer
+                               ▼
+┌─────────────────────────────────────────────────────────────┐
+│                    VaultCore.API Layer                      │
+│   • Thin Controllers           • [RequireObjectPermission]  │
+│   • Global Exception Filter    • Rate Limiting & Security   │
+│   • Swagger / OpenAPI Docs     • WebDAV & WOPI Host Protocol│
+└──────────────────────────────┬──────────────────────────────┘
+                               │ Clean Architecture
+                               ▼
+┌─────────────────────────────────────────────────────────────┐
+│                VaultCore.Application Layer                  │
+│   • ObjectService & Search     • AclEngineService           │
+│   • WorkflowService & Tasks    • AclRecalculation & OCR     │
+│   • Fluent Validation & DTO    • MetadataSuggestion (AI)    │
+└──────────────────┬───────────────────────────┬──────────────┘
+                   │                           │
+                   ▼                           ▼
+┌─────────────────────────────┐ ┌─────────────────────────────┐
+│       VaultCore.Core        │ │  VaultCore.Infrastructure   │
+│  • Domain Entities (DDD)    │ │  • EF Core 9 / PostgreSQL 16│
+│  • Domain Enums & Rules     │ │  • SHA-256 CAS File Store   │
+│  • Pure Domain Exceptions   │ │  • Tesseract OCR Services   │
+└─────────────────────────────┘ └──────────────┬──────────────┘
+                                               │
+                               ┌───────────────┴──────────────┐
+                               ▼                              ▼
+                      ┌─────────────────┐            ┌────────────────┐
+                      │ PostgreSQL 16   │            │ CAS Storage    │
+                      │ (Metadata, ACL) │            │ (SHA-256 Files)│
+                      └─────────────────┘            └────────────────┘`,
+      responsibilities: [
+        'Engineered a Modular Monolith backend following Clean Architecture and Domain-Driven Design (DDD) principles',
+        'Designed dynamic relational schemas (ObjectType, ObjectClass, PropertyValue) on PostgreSQL 16 & EF Core 9',
+        'Developed the high-performance Materialized ACL Engine (ObjectAcl) and [RequireObjectPermission] filter infrastructure',
+        'Coded the visual Workflow Engine, automatic SLA task generation, and electronic password re-authentication mechanisms',
+        'Constructed Content-Addressable Storage (CAS - SHA-256), Check-Out locking, and immutable ObjectVersion lifecycles',
+        'Integrated PostgreSQL turkish_unaccent full-text search (FTS) and Tesseract OCR background services',
+        'Built Angular 20 Standalone components with Angular Signals reactive state management and dynamic metadata forms',
+        'Authored 315 backend integration tests with Testcontainers and 112 frontend unit tests'
+      ],
+      tech: [
+        'ASP.NET Core', '.NET 9 (C# 13)', 'Clean Architecture', 'Modular Monolith',
+        'Angular 20', 'Standalone Components', 'Angular Signals', 'TypeScript',
+        'PostgreSQL 16', 'EF Core 9', 'Materialized ACL', 'FTS & GIN Index',
+        'Tesseract OCR', 'CAS File Storage', 'JWT Bearer', 'Docker & Compose',
+        'Testcontainers', 'Swagger / OpenAPI'
+      ],
+      screenshots: [
+        {
+          category: '🔐 Authentication, Profile & Workflow Hub',
+          items: [
+            { img: 'ekran_goruntuleri/internproject-2/01_giris_ekrani.png', title: 'Corporate Login Screen', desc: 'Glassmorphic JWT authentication UI protected with rate limiting.' },
+            { img: 'ekran_goruntuleri/internproject-2/02_gosterge_paneli.png', title: 'Admin Dashboard', desc: 'SLA delays, pending approval tasks, and key KPI metrics.' },
+            { img: 'ekran_goruntuleri/internproject-2/03_akislar_ana_sayfa.png', title: 'Workflows Overview', desc: 'Active organizational workflows and process counters.' },
+            { img: 'ekran_goruntuleri/internproject-2/06_akis_2_sozlesme_mali_onay.png', title: 'Contract & Financial Approval', desc: 'Multi-stage financial approval and legal review process.' },
+            { img: 'ekran_goruntuleri/internproject-2/07_akis_3_teknik_servis_garanti.png', title: 'Technical Service & Warranty', desc: 'Defect reports and warranty inspector operation flows.' },
+            { img: 'ekran_goruntuleri/internproject-2/08_gorevlerim_acik_gorevler.png', title: 'Open Tasks', desc: 'Pending approval requests, remaining SLA deadlines, and priorities.' },
+            { img: 'ekran_goruntuleri/internproject-2/09_gorevlerim_tamamlanan_gorevler.png', title: 'Completed Tasks History', desc: 'Past approval decisions, notes, and operation timestamps.' },
+            { img: 'ekran_goruntuleri/internproject-2/10_profilim.png', title: 'User Profile', desc: 'User roles and session management panel.' },
+            { img: 'ekran_goruntuleri/internproject-2/11_profilim_guvenlik_vekalet.png', title: 'Task Delegation', desc: 'Transferring tasks with an audit trail during leave of absence.' }
+          ]
+        },
+        {
+          category: '🗂️ M-Files Virtual Explorer & Dynamic Form Builder',
+          items: [
+            { img: 'ekran_goruntuleri/internproject-2/12_nesne_gezgini.png', title: 'Object Explorer (Virtual Layout)', desc: 'Virtual folder tree, object grid, and metadata drawer.' },
+            { img: 'ekran_goruntuleri/internproject-2/13_yeni_dokuman_olusturma_formu.png', title: 'Dynamic Document Form', desc: 'Runtime generated dynamic validation form based on selected class.' }
+          ]
+        },
+        {
+          category: '⚙️ Vault Structure & Dynamic Schema (No-Code Schema)',
+          items: [
+            { img: 'ekran_goruntuleri/internproject-2/15_admin_vault_yapisi_siniflar.png', title: 'Classes & Workflow Binding', desc: 'Document classes and default workflow mappings.' },
+            { img: 'ekran_goruntuleri/internproject-2/16_admin_vault_yapisi_nesne_turleri.png', title: 'Object Types', desc: 'Document, Contract, Vehicle, Supplier entity definitions.' },
+            { img: 'ekran_goruntuleri/internproject-2/17_admin_vault_yapisi_ozellik_tanimlari.png', title: 'Property Definitions', desc: 'Metadata fields, data types, and rule configurations.' },
+            { img: 'ekran_goruntuleri/internproject-2/18_admin_vault_yapisi_deger_listeleri.png', title: 'Value Lists (Lookup)', desc: 'Dynamic dropdown list and hierarchical data definitions.' }
+          ]
+        },
+        {
+          category: '🛡️ Security, Materialized ACL, Workflows & Audit Trail',
+          items: [
+            { img: 'ekran_goruntuleri/internproject-2/19_admin_izin_kurallari.png', title: 'Permission Rules Matrix', desc: 'Dynamic permission rules at role, group, and metadata intersections.' },
+            { img: 'ekran_goruntuleri/internproject-2/20_admin_is_akislari_tasarimcisi.png', title: 'Visual Workflow Designer', desc: 'State machine steps and visual workflow canvas.' },
+            { img: 'ekran_goruntuleri/internproject-2/21_admin_is_akislari_adim_detaylari.png', title: 'Step Details & SLA', desc: 'SLA durations, role assignments, and password signature settings.' },
+            { img: 'ekran_goruntuleri/internproject-2/22_admin_denetim_izi.png', title: 'System Audit Trail', desc: 'Immutable log of all user actions across the system.' },
+            { img: 'ekran_goruntuleri/internproject-2/23_admin_denetim_izi_detay_modali.png', title: 'Audit Trail Detail Modal', desc: 'Raw JSON payloads, data diffs, and client IP details.' },
+            { img: 'ekran_goruntuleri/internproject-2/24_admin_kullanici_yonetimi.png', title: 'User Management', desc: 'Account definitions, global roles, and status control.' },
+            { img: 'ekran_goruntuleri/internproject-2/25_admin_grup_yonetimi.png', title: 'Group & Department Management', desc: 'Organizational units and approval committee management.' },
+            { img: 'ekran_goruntuleri/internproject-2/26_admin_acl_analitik_haritasi.png', title: 'ACL Analytics Heatmap', desc: 'Permission rule distribution and Allow/Deny ratios.' },
+            { img: 'ekran_goruntuleri/internproject-2/27_admin_acl_tanilama_kullanici_sonucu.png', title: 'ACL Diagnostics & Simulation', desc: 'User-based rule matching and privilege simulation.' }
+          ]
+        }
+      ]
+    },
+    p3: {
+      tag: '✨ Mobile App & Cloud Architecture | Flutter, Riverpod & Supabase',
+      title: 'BeYourself — Personal Inspiration, Quote Notebook & Instagram Media Assistant',
+      contextNotice: 'A modern Flutter app that saves inspiring quotes, Reels videos, and gallery posts from social media in one click, backed by Vercel Serverless CORS proxy infrastructure, Android Home Widget, scheduled local notifications, and Supabase cloud synchronization.',
+      purpose: 'Enabling users to organize inspiring quotes and media from social media without losing them, receive daily motivation notifications, and track their favorite quotes live on their home screen widget.',
+      roles: [
+        { name: '🎬 Media & Video Engine', desc: 'Instagram URL parsing, Reels player, up to 10-photo swipeable carousel gallery, pinch-to-zoom, and Vercel Serverless CORS proxy integration.' },
+        { name: '📲 Widget & Notification Infrastructure', desc: 'Live Android Home Widget synchronization and scheduled offline notification engine powered by flutter_local_notifications.' },
+        { name: '☁️ Hybrid Data Architecture', desc: 'Local-First SharedPreferences for lightning-fast offline UX paired with Supabase cloud database for profile backups and sync.' }
+      ],
+      problems: [
+        {
+          title: '🌐 1. Bypassing Web & iOS CORS Media Constraints',
+          desc: 'Built a dedicated Vercel Serverless CORS Proxy API to handle media requests and bypass CORS limitations when downloading Instagram URLs directly.'
+        },
+        {
+          title: '📲 2. Android Home Widget & Real-Time Data Sync',
+          desc: 'Implemented instant widget updates via home_widget services whenever a quote is modified or deleted in the app.'
+        },
+        {
+          title: '⏰ 3. Offline & Reliable Local Notification Scheduling',
+          desc: 'Scheduled local offline notifications based on user-defined time intervals (e.g. 09:00, 14:00, 21:00) without requiring an active internet connection.'
+        },
+        {
+          title: '🧠 4. Automatic Title & Caption Parsing Algorithm',
+          desc: 'Developed a regex-based text engine that automatically extracts impactful short titles and author metadata from raw Instagram post captions.'
+        },
+        {
+          title: '🎲 5. Random Inspiration Wheel & Buffer Memory',
+          desc: 'Utilized Haptic Feedback vibrations and a history buffer remembering the last 5 quotes to prevent consecutive duplicate quotes.'
+        },
+        {
+          title: '🧪 6. 100% Pass Rate Across 50 Unit & Widget Tests',
+          desc: 'Established full regression protection with 50 tests covering Riverpod state management, media parsing, notifications, and SharedPreferences persistence.'
+        }
+      ],
+      architectureDiagram: `┌─────────────────────────────────────────────────────────────┐
+│                    Flutter 3.x UI Layer                     │
+│   • Outfit & Plus Jakarta Sans  • Glassmorphism Dark/Light  │
+│   • Reactive Riverpod 2.5 State • Pinch-to-Zoom Gallery     │
+└──────────────────────────────┬──────────────────────────────┘
+                               │
+               ┌───────────────┴───────────────┐
+               ▼                               ▼
+┌─────────────────────────────┐ ┌─────────────────────────────┐
+│    Device & OS Systems      │ │     Cloud & API Layer       │
+│  • Android Home Widget      │ │  • Vercel Serverless CORS   │
+│  • Local Notifications      │ │  • Supabase Cloud Database  │
+│  • SharedPreferences Cache  │ │  • Instagram Media Parser   │
+└─────────────────────────────┘ └─────────────────────────────┘
+                               │
+                               ▼
+┌─────────────────────────────────────────────────────────────┐
+│            Test Infrastructure (50/50 Passed Unit Tests)    │
+│   • Riverpod Providers • Downloader • Widget • Notifications│
+└─────────────────────────────┘`,
+      responsibilities: [
+        'Architected a clean and reactive mobile application from scratch using Flutter 3.x and Riverpod 2.5',
+        'Developed and deployed the Vercel Serverless CORS Proxy API integrated with Instagram media parsing services',
+        'Coded Android Home Widget background updates and fallback sync mechanisms',
+        'Established scheduled offline notifications using flutter_local_notifications and timezone',
+        'Ensured bi-directional user profile and quote synchronization with Supabase cloud DB',
+        'Wrote 50 comprehensive unit and widget tests achieving a 100% pass rate'
+      ],
+      tech: [
+        'Flutter 3.x', 'Dart 3.x', 'Riverpod 2.5', 'Supabase',
+        'Vercel Serverless', 'Android Home Widget', 'Local Notifications',
+        'SharedPreferences', 'Video Player', 'Unit Testing (50 Tests)'
+      ],
+      screenshots: [
+        {
+          category: '📱 Homepage, Media Feed & Discovery',
+          items: [
+            { img: 'ekran_goruntuleri/beyourself/1000115787.jpg', title: 'Splash & Welcome Screen', desc: 'Minimalist origami logo and modern welcome interface.' },
+            { img: 'ekran_goruntuleri/beyourself/1000115788.jpg', title: 'Homepage & Daily Quote Stream', desc: 'Dynamic greeting, search bar, daily quote card, and category filters.' },
+            { img: 'ekran_goruntuleri/beyourself/1000115785.jpg', title: 'Quote Detail & Full-Screen Media', desc: 'Instagram Reels video/image player with full-screen media experience.' },
+            { img: 'ekran_goruntuleri/beyourself/1000115786.jpg', title: 'Automatic Caption & Text Details', desc: 'Auto-fetched caption text and detailed quote contents.' }
+          ]
+        },
+        {
+          category: '🎬 Instagram Media Downloader & New Quote Entry',
+          items: [
+            { img: 'ekran_goruntuleri/beyourself/1000115782.jpg', title: 'Instagram URL Input & Media Fetcher', desc: 'Paste Reels/Post link to fetch media and caption automatically.' },
+            { img: 'ekran_goruntuleri/beyourself/1000115783.jpg', title: 'Media Selection, Author & Category Assignment', desc: 'Upload media from gallery, set author, and pick category.' },
+            { img: 'ekran_goruntuleri/beyourself/1000115784.jpg', title: 'Random Inspiration Wheel (Roll & Discover)', desc: 'Category-filtered random quote discovery with haptic vibration.' }
+          ]
+        },
+        {
+          category: '🗂️ Categories & Favorites Collection',
+          items: [
+            { img: 'ekran_goruntuleri/beyourself/1000115779.jpg', title: 'Categories & Custom Icons', desc: 'Category cards, custom icons, and quote counters.' },
+            { img: 'ekran_goruntuleri/beyourself/1000115780.jpg', title: 'Dynamic Category Modal', desc: 'Modal dialog enabling users to create custom categories.' },
+            { img: 'ekran_goruntuleri/beyourself/1000115781.jpg', title: 'Favorites Collection', desc: 'Saved list of favorite quotes curated by the user.' }
+          ]
+        },
+        {
+          category: '👤 Profile, Avatar, Motto & Notification Preferences',
+          items: [
+            { img: 'ekran_goruntuleri/beyourself/1000115775.jpg', title: 'App Settings & Theme Manager', desc: 'Dark/light mode toggle, notification switch, and profile settings access.' },
+            { img: 'ekran_goruntuleri/beyourself/1000115776.jpg', title: 'Scheduled Notifications & Time Sliders', desc: 'Daily notification frequency slider, start/end hours, and test notification.' },
+            { img: 'ekran_goruntuleri/beyourself/1000115777.jpg', title: 'Profile Settings & Preset Avatar Picker', desc: 'Select from 16 preset inspiration avatars or upload custom profile photo.' },
+            { img: 'ekran_goruntuleri/beyourself/1000115778.jpg', title: 'Personal Motto & Salutation Style', desc: 'User life motto, personalized notification salutation style, and account stats.' }
+          ]
+        }
+      ]
+    },
+    p4: {
+      tag: '🎓 Desktop Software & Algorithm | C# .NET WinForms',
+      title: 'Grade Calculation & Academic Success Tracking Tool',
+      contextNotice: 'A lightweight C# WinForms desktop software that instantly calculates the minimum final exam grade required for students to pass their courses based on midterm, homework, and target passing criteria.',
+      purpose: 'Allowing students to define custom midterm weights, homework weights, and target pass scores to optimize study workloads and instantly view exact required final exam grades.',
+      roles: [
+        { name: '🧮 Weighted Grade Calculation Engine', desc: 'Calculating dynamic coefficient formulas for midterms, homeworks, and final exam weight percentages against target pass thresholds.' },
+        { name: '🛡️ Flexible Input & Blank Field Tolerance', desc: 'Treating unsubmitted homework entries as 0 points automatically to avoid mathematical formula exceptions and runtime crashes.' },
+        { name: '⚡ Smart Status & Early Pass Detection', desc: 'Providing instant "Already Passed!" feedback if existing midterm and homework scores already exceed the passing threshold.' }
+      ],
+      problems: [
+        {
+          title: '📐 1. Dynamic Percentage & Coefficient Formulation',
+          desc: 'Engineered a flexible reverse target grade algorithm adaptable to varying university grading policies (e.g. 30% Midterm, 20% Homework, 50% Final).'
+        },
+        {
+          title: '🚫 2. Input Validation & Exception Handling',
+          desc: 'Safely handled invalid character inputs and blank text fields with Robust Input Validation and Exception Handling.'
+        },
+        {
+          title: '🎯 3. Early Success Notification',
+          desc: 'Provided immediate notification when required final scores evaluate to 0 or negative, relieving unnecessary exam anxiety.'
+        }
+      ],
+      architectureDiagram: `┌─────────────────────────────────────────────────────────────┐
+│                 C# .NET WinForms UI Layer                   │
+│   • Form Inputs (Pass Grade, Midterm %, Final %, Homeworks) │
+│   • Calculate Button & Instant Result / Status Feedback     │
+└──────────────────────────────┬──────────────────────────────┘
+                               │
+                               ▼
+┌─────────────────────────────────────────────────────────────┐
+│                Calculation & Validation Engine              │
+│   • Input Validation & Blank Field Tolerance (Default 0)    │
+│   • Weighted Average & Target Final Grade Formula           │
+│   • Logical Status Evaluation (Below/Above Threshold/Passed)│
+└─────────────────────────────┘`,
+      responsibilities: [
+        'Designed an intuitive desktop UI using C# and .NET WinForms technology',
+        'Coded the core mathematical algorithm calculating weighted midterm, homework, and final target percentages',
+        'Implemented robust input validation to gracefully capture format and empty field exceptions',
+        'Published as open-source software on GitHub with version documentation'
+      ],
+      tech: ['C#', '.NET WinForms', 'Algorithmic Calculation', 'Input Validation', 'Desktop Application'],
+      screenshots: [
+        {
+          category: '🖥️ Desktop UI & Calculation Scenarios',
+          items: [
+            { img: 'ekran_goruntuleri/notHesaplaamaUygulamasi/Ekran görüntüsü 2026-08-16 164217.png', title: 'Empty Form & Parameter Inputs', desc: 'Initial form allowing entry of target grade, exam percentages, and 3 homework weights.' },
+            { img: 'ekran_goruntuleri/notHesaplaamaUygulamasi/Ekran görüntüsü 2026-08-16 164330.png', title: 'Dynamic Calculation & Final Grade Target', desc: 'Minimum 24.00 final score required calculation based on Midterm (30%: 60) and Homeworks (10%: 80/70).' },
+            { img: 'ekran_goruntuleri/notHesaplaamaUygulamasi/Ekran görüntüsü 2026-08-16 164404.png', title: 'Early Success & "Already Passed!" Status', desc: 'Result screen notifying that the course has already been passed prior to taking the final exam.' }
+          ]
+        }
+      ]
+    },
+    p5: {
+      tag: '🎴 Game Development & Data Structures | C++ & SFML',
+      title: 'Memory Match — C++ & SFML 2D Card Matching Game',
+      contextNotice: 'A 2D graphical GUI card matching memory game built with C++ and SFML (Simple and Fast Multimedia Library) operating on a 4x4 matrix to reinforce data structure concepts.',
+      purpose: 'Demonstrating how fundamental data structures like struct, 2D arrays, FIFO queues, and maps organize real-time game loops, memory management, and mouse input handling.',
+      roles: [
+        { name: '🗂️ 2D Array & Card struct Architecture', desc: 'Representing a 4x4 (16 cards) game board with a 2D matrix and lightweight struct storing card letter, flipped state, and grid position.' },
+        { name: '⏳ Queue (FIFO) Matching Controller', desc: 'Storing clicked cards in FIFO order to execute delayed flip-backs and matching evaluations non-blockingly.' },
+        { name: '🗺️ Map Texture & Asset Binding', desc: 'Mapping character keys (A, B, C...) to SFML graphic textures and sprites with O(1) lookup speed.' }
+      ],
+      problems: [
+        {
+          title: '🎮 1. Real-Time Game Loop & Event Handling',
+          desc: 'Processed SFML window events (mouse clicks, close signals) smoothly at 60 FPS while mapping mouse pixel coordinates to 4x4 grid cells.'
+        },
+        {
+          title: '⏱️ 2. Non-Blocking Delayed Flip-Back Timer',
+          desc: 'Managed a non-blocking delay timer for mismatched card pairs so players can memorize card positions without freezing the render loop.'
+        },
+        {
+          title: '🎲 3. Random Card Shuffling & Pair Guarantees',
+          desc: 'Applied Fisher-Yates shuffle logic to generate exactly 2 instances of 8 distinct letters and distribute them fairly across the 4x4 board.'
+        }
+      ],
+      architectureDiagram: `┌─────────────────────────────────────────────────────────────┐
+│                 SFML 2.x Graphics Window                    │
+│   • 60 FPS Render Loop    • Mouse Event Listener            │
+│   • Sprite & Texture Drawing (Star & Letter Assets)         │
+└──────────────────────────────┬──────────────────────────────┘
+                               │
+                               ▼
+┌─────────────────────────────────────────────────────────────┐
+│               Data Structures & Game Logic                  │
+│   • 2D Array [4][4] -> struct Card (state, value, pos)      │
+│   • std::queue<Card*> -> Ordered Click & Match Controller   │
+│   • std::map<char, Texture> -> Texture / Letter Mapping     │
+│   • Shuffle & State Machine (Closed/Flipped/Matched)        │
+└──────────────────────────────┬──────────────────────────────┘`,
+      responsibilities: [
+        'Coded game engine loop and graphical user interface using C++ and SFML library',
+        'Integrated struct, 2D array, queue, and map data structures to manage game states',
+        'Wrote coordinate conversion algorithms mapping mouse clicks to 2D matrix cells',
+        'Configured Visual Studio C++ linker, SFML include/lib dependencies, and DLL binaries'
+      ],
+      tech: ['C++', 'SFML 2.x', 'Data Structures (Queue, Map, 2D Array)', 'Visual Studio', 'GUI Game Development'],
+      screenshots: [
+        {
+          category: '🎮 Gameplay Screenshots & Matching Scenarios',
+          items: [
+            { img: 'ekran_goruntuleri/kart_oyunu/Ekran görüntüsü 2026-01-25 131812.png', title: '4x4 Game Board & Successful "A" Match', desc: 'Gameplay moment showing two "A" letter cards successfully matched and revealed.' },
+            { img: 'ekran_goruntuleri/kart_oyunu/Ekran görüntüsü 2026-01-25 131823.png', title: 'Multiple Matches & "A" - "C" Pairs', desc: 'Board state as player discovers consecutive "A" and "C" card pairs.' }
+          ]
+        }
+      ]
+    },
+    p6: {
+      tag: '📢 Backend & OOP Architecture | Java 17 Terminal Solution',
+      title: 'Mini Twitter — Java 17 & OOP-Based Social Media Platform',
+      contextNotice: 'A CLI terminal platform built using Java 17 and Object-Oriented Programming (OOP) principles, featuring session management, tweeting, hashtagging, user following, and a personalized recommendation engine.',
+      purpose: 'Demonstrating clean OOP architecture (User, Tweet, Follow, Recommendation services), Regex email validation, and state machine session management in a terminal environment.',
+      roles: [
+        { name: '👤 User & Session Management', desc: 'Regex email validation, encrypted login, password reset, and active user session tracking.' },
+        { name: '📢 Tweet & Hashtag Engine', desc: 'Tweet creation, hashtag tagging, like counters, and timeline feed generation.' },
+        { name: '🧠 Smart Recommendation Algorithm', desc: 'Personalized feed engine analyzing followed users and interested hashtags.' }
+      ],
+      problems: [
+        {
+          title: '🔁 1. Session Protection Against Unauthorized Actions',
+          desc: 'Enforced activeUser != null checks to prevent posting tweets without an active login.'
+        },
+        {
+          title: '👯‍♀️ 2. Dynamic Session State Updates',
+          desc: 'Resolved session data persistence issues when switching accounts by dynamically refreshing session state objects.'
+        },
+        {
+          title: '📩 3. Robust Email Regex Validation',
+          desc: 'Protected the system against invalid email formats using strict Regex domain and syntax checking.'
+        },
+        {
+          title: '🔓 4. Concurrent Registration Conflict Safeguards',
+          desc: 'Prevented duplicate logins or registration while logged in using rule matrices.'
+        }
+      ],
+      architectureDiagram: `┌───────────────────────────────────────────────────────────────┐
+│                 Java 17 CLI Console UI                        │
+│   • Main Menu Event Loop (Register, Login, Tweet, Follow, Rec)│
+└──────────────────────────────┬────────────────────────────────┘
+                               │
+                               ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                 OOP Service & Model Layer                       │
+│   • User & Tweet Models (Hashtags, Likes, Followings)           │
+│   • Auth & Session Manager (activeUser Check)                   │
+│   • Recommendation Engine (Personalized Feed Algorithm)         │
+└─────────────────────────────────────────────────────────────────┘`,
+      responsibilities: [
+        'Designed clean class architecture using Java 17 and OOP principles (Encapsulation, Inheritance, Polymorphism)',
+        'Engineered smart recommendation algorithms based on followed users and hashtag correlations',
+        'Implemented Regex email validation, password recovery, and session security mechanisms',
+        'Identified, refactored, and tested solutions for 4 critical logic bugs'
+      ],
+      tech: ['Java 17', 'OOP Architecture', 'Console CLI', 'Recommendation Algorithm', 'IntelliJ IDEA'],
+      screenshots: [
+        {
+          category: '📢 Console Screenshots & Application Flow',
+          items: [
+            { img: 'ekran_goruntuleri/twitter/1_kayit_ve_giris.png', title: 'User Registration & Login Check', desc: 'Email validation (regex), password setting, and active user login flow.' },
+            { img: 'ekran_goruntuleri/twitter/2_tweet_paylaşımı.png', title: 'Tweet Posting & Hashtag Tagging', desc: 'Posting tweets, dynamic hashtag parsing, and listing tweet feeds.' },
+            { img: 'ekran_goruntuleri/twitter/3_takip_ve_begenı.png', title: 'Follow System & Like Interactions', desc: 'Inter-user follow mechanism, tweet liking, and interaction counters.' },
+            { img: 'ekran_goruntuleri/twitter/4_oneri_motoru.png', title: 'Personalized Feed & Recommendation Engine', desc: 'Smart recommendation algorithm based on followed users and hashtag tags.' },
+            { img: 'ekran_goruntuleri/twitter/5_sifre_ve_cikis.png', title: 'Password Reset & Secure Logout', desc: 'Email-validated password updates, session termination, and safe logout.' }
+          ]
+        }
+      ]
+    }
+  };
 
-      if (data.screenshots && data.screenshots.length > 0) {
-        // Render Comprehensive Staj Projesi Modal
-        modalContent.innerHTML = `
-          <div class="pm-header">
-            <span class="pm-tag">${data.tag}</span>
-            <h2 class="pm-title">${data.title}</h2>
-            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem;">
-              ${data.tech.map(t => `<span class="pill">${t}</span>`).join('')}
-            </div>
+  let activeModalPid = null;
+
+  function renderModal(pid) {
+    if (!pid) return;
+    activeModalPid = pid;
+    const isEn = (currentAppLanguage === 'en');
+    const data = (isEn && projectDetailsEn[pid]) ? projectDetailsEn[pid] : projectDetailsTr[pid];
+    if (!data) return;
+
+    const labels = {
+      contextNotice: isEn ? '📌 Project Context & Security:' : '📌 Proje Bağlamı & Güvenlik:',
+      purposeTitle: isEn ? '🎯 Project Purpose & User Roles' : '🎯 Proje Amacı & Kullanıcı Rolleri',
+      problemsTitle: isEn ? '🧠 Engineering Problems & Solutions' : '🧠 Karşılaşılan Mühendislik Problemleri & Çözümler',
+      archTitle: isEn ? '🏗️ System & Layered Architecture' : '🏗️ Sistem & Katmanlı Mimari Yapısı',
+      respTitle: isEn ? '👩🏻‍💻 My Technical Contributions & Responsibilities' : '👩🏻‍💻 Projedeki Kişisel Katkılarım & Sorumluluklarım',
+      galleryTitle: isEn ? '📸 Project Screenshots & Interface Gallery' : '📸 Proje Ekran Görüntüleri & Arayüz Galerisi',
+      galleryDesc: isEn ? 'Click on any screenshot below to view the high-resolution detail preview.' : 'Aşağıdaki ekran görüntülerine tıklayarak yüksek çözünürlüklü detaylı önizlemesini açabilirsiniz.',
+      inspect: isEn ? '🔍 Inspect' : '🔍 İncele',
+      problemDef: isEn ? '🎯 Problem Definition' : '🎯 Problem Tanımı',
+      solutionDef: isEn ? '💡 Implemented Solution & Architecture' : '💡 Uygulanan Çözüm & Mimari',
+      techHighlights: isEn ? '⚡ Key Technical Features' : '⚡ Önemli Teknik Özellikler'
+    };
+
+    if (data.screenshots && data.screenshots.length > 0) {
+      modalContent.innerHTML = `
+        <div class="pm-header">
+          <span class="pm-tag">${data.tag}</span>
+          <h2 class="pm-title">${data.title}</h2>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem;">
+            ${data.tech.map(t => `<span class="pill">${t}</span>`).join('')}
           </div>
+        </div>
 
-          <div class="pm-banner">
-            <strong>📌 Proje Bağlamı &amp; Güvenlik:</strong> ${data.contextNotice}
-          </div>
+        <div class="pm-banner">
+          <strong>${labels.contextNotice}</strong> ${data.contextNotice}
+        </div>
 
-          <div class="pm-section">
-            <h3 class="pm-section-title"><span class="icon">🎯</span> Proje Amacı &amp; Kullanıcı Rolleri</h3>
-            <p style="font-size: 0.95rem; color: #cbd5e1; line-height: 1.6; margin-bottom: 1.25rem;">
-              ${data.purpose}
-            </p>
-            <div class="pm-grid-3">
-              ${data.roles.map(r => `
-                <div class="pm-card">
-                  <h4 style="color: var(--accent-cyan);">${r.name}</h4>
-                  <p>${r.desc}</p>
-                </div>
-              `).join('')}
-            </div>
-          </div>
-
-          <div class="pm-section">
-            <h3 class="pm-section-title"><span class="icon">🧠</span> Karşılaşılan Mühendislik Problemleri &amp; Çözümler</h3>
-            <div class="pm-grid-2">
-              ${data.problems.map(p => `
-                <div class="pm-card">
-                  <h4 style="color: #38bdf8;">${p.title}</h4>
-                  <p>${p.desc}</p>
-                </div>
-              `).join('')}
-            </div>
-          </div>
-
-          <div class="pm-section">
-            <h3 class="pm-section-title"><span class="icon">🏗️</span> Sistem &amp; Katmanlı Mimari Yapısı</h3>
-            <pre class="pm-arch-box"><code>${data.architectureDiagram}</code></pre>
-          </div>
-
-          <div class="pm-section">
-            <h3 class="pm-section-title"><span class="icon">👩🏻‍💻</span> Projedeki Kişisel Katkılarım &amp; Sorumluluklarım</h3>
-            <div class="pm-card" style="background: rgba(0, 242, 254, 0.02); border-color: rgba(0, 242, 254, 0.15);">
-              <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.65rem; padding: 0;">
-                ${data.responsibilities.map(resp => `
-                  <li style="display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.9rem; color: #cbd5e1;">
-                    <span style="color: var(--accent-emerald); font-weight: bold; line-height: 1.2;">✔</span>
-                    <span>${resp}</span>
-                  </li>
-                `).join('')}
-              </ul>
-            </div>
-          </div>
-
-          <div class="pm-section">
-            <h3 class="pm-section-title"><span class="icon">📸</span> Proje Ekran Görüntüleri &amp; Arayüz Galerisi</h3>
-            <p style="font-size: 0.88rem; color: #94a3b8; margin-bottom: 1.5rem;">
-              Aşağıdaki ekran görüntülerine tıklayarak yüksek çözünürlüklü detaylı önizlemesini açabilirsiniz.
-            </p>
-
-            ${data.screenshots.map(group => `
-              <div class="pm-gallery-group">
-                <h4 class="pm-gallery-subheading">${group.category}</h4>
-                <div class="pm-gallery-grid">
-                  ${group.items.map(item => `
-                    <div class="pm-screenshot-card" data-img="${item.img}" data-title="${item.title} - ${item.desc}">
-                      <div class="pm-screenshot-thumb">
-                        <img src="${item.img}" alt="${item.title}" loading="lazy">
-                        <div class="pm-screenshot-overlay">
-                          <span>🔍 İncele</span>
-                        </div>
-                      </div>
-                      <div class="pm-screenshot-meta">
-                        <div class="pm-screenshot-title">${item.title}</div>
-                        <div class="pm-screenshot-desc">${item.desc}</div>
-                      </div>
-                    </div>
-                  `).join('')}
-                </div>
+        <div class="pm-section">
+          <h3 class="pm-section-title">${labels.purposeTitle}</h3>
+          <p style="font-size: 0.95rem; color: #cbd5e1; line-height: 1.6; margin-bottom: 1.25rem;">
+            ${data.purpose}
+          </p>
+          <div class="pm-grid-3">
+            ${data.roles.map(r => `
+              <div class="pm-card">
+                <h4 style="color: var(--accent-cyan);">${r.name}</h4>
+                <p>${r.desc}</p>
               </div>
             `).join('')}
           </div>
-        `;
+        </div>
 
-        // Attach image click events
-        modalContent.querySelectorAll('.pm-screenshot-card').forEach(card => {
-          card.addEventListener('click', () => {
-            const imgSrc = card.getAttribute('data-img');
-            const imgTitle = card.getAttribute('data-title');
-            openLightbox(imgSrc, imgTitle);
-          });
-        });
-
-      } else {
-        // Generic project render for other projects
-        modalContent.innerHTML = `
-          <div style="margin-bottom: 1.5rem;">
-            <span style="color: var(--accent-cyan); font-family: var(--font-code); font-size: 0.85rem; font-weight: 700; text-transform: uppercase;">${data.subtitle}</span>
-            <h2 style="font-size: 1.6rem; margin-top: 0.35rem; color: #fff;">${data.title}</h2>
+        <div class="pm-section">
+          <h3 class="pm-section-title">${labels.problemsTitle}</h3>
+          <div class="pm-grid-2">
+            ${data.problems.map(p => `
+              <div class="pm-card">
+                <h4 style="color: #38bdf8;">${p.title}</h4>
+                <p>${p.desc}</p>
+              </div>
+            `).join('')}
           </div>
+        </div>
 
-          <div style="margin-bottom: 1.5rem;">
-            <h4 style="color: #cbd5e1; margin-bottom: 0.4rem; font-size: 1.05rem;">🎯 Problem Tanımı</h4>
-            <p style="font-size: 0.92rem; line-height: 1.6;">${data.problem}</p>
-          </div>
+        <div class="pm-section">
+          <h3 class="pm-section-title">${labels.archTitle}</h3>
+          <pre class="pm-arch-box"><code>${data.architectureDiagram}</code></pre>
+        </div>
 
-          <div style="margin-bottom: 1.5rem;">
-            <h4 style="color: var(--accent-cyan); margin-bottom: 0.4rem; font-size: 1.05rem;">💡 Uygulanan Çözüm &amp; Mimari</h4>
-            <p style="font-size: 0.92rem; line-height: 1.6;">${data.solution}</p>
-          </div>
-
-          <div style="margin-bottom: 1.5rem;">
-            <h4 style="color: #cbd5e1; margin-bottom: 0.6rem; font-size: 1.05rem;">⚡ Önemli Teknik Özellikler</h4>
-            <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem;">
-              ${data.highlights.map(h => `
-                <li style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; color: #94a3b8;">
-                  <span style="color: var(--accent-emerald);">✔</span> ${h}
+        <div class="pm-section">
+          <h3 class="pm-section-title">${labels.respTitle}</h3>
+          <div class="pm-card" style="background: rgba(0, 242, 254, 0.02); border-color: rgba(0, 242, 254, 0.15);">
+            <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.65rem; padding: 0;">
+              ${data.responsibilities.map(resp => `
+                <li style="display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.9rem; color: #cbd5e1;">
+                  <span style="color: var(--accent-emerald); font-weight: bold; line-height: 1.2;">✔</span>
+                  <span>${resp}</span>
                 </li>
               `).join('')}
             </ul>
           </div>
+        </div>
 
-          <div style="padding-top: 1.25rem; border-top: 1px solid var(--border-subtle); display: flex; flex-wrap: wrap; gap: 0.5rem;">
-            ${data.tech.map(t => `<span class="pill">${t}</span>`).join('')}
-          </div>
-        `;
-      }
+        <div class="pm-section">
+          <h3 class="pm-section-title">${labels.galleryTitle}</h3>
+          <p style="font-size: 0.88rem; color: #94a3b8; margin-bottom: 1.5rem;">
+            ${labels.galleryDesc}
+          </p>
 
+          ${data.screenshots.map(group => `
+            <div class="pm-gallery-group">
+              <h4 class="pm-gallery-subheading">${group.category}</h4>
+              <div class="pm-gallery-grid">
+                ${group.items.map(item => `
+                  <div class="pm-screenshot-card" data-img="${item.img}" data-title="${item.title} - ${item.desc}">
+                    <div class="pm-screenshot-thumb">
+                      <img src="${item.img}" alt="${item.title}" loading="lazy">
+                      <div class="pm-screenshot-overlay">
+                        <span>${labels.inspect}</span>
+                      </div>
+                    </div>
+                    <div class="pm-screenshot-meta">
+                      <div class="pm-screenshot-title">${item.title}</div>
+                      <div class="pm-screenshot-desc">${item.desc}</div>
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+
+      modalContent.querySelectorAll('.pm-screenshot-card').forEach(card => {
+        card.addEventListener('click', () => {
+          const imgSrc = card.getAttribute('data-img');
+          const imgTitle = card.getAttribute('data-title');
+          openLightbox(imgSrc, imgTitle);
+        });
+      });
+    } else {
+      modalContent.innerHTML = `
+        <div style="margin-bottom: 1.5rem;">
+          <span style="color: var(--accent-cyan); font-family: var(--font-code); font-size: 0.85rem; font-weight: 700; text-transform: uppercase;">${data.subtitle}</span>
+          <h2 style="font-size: 1.6rem; margin-top: 0.35rem; color: #fff;">${data.title}</h2>
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+          <h4 style="color: #cbd5e1; margin-bottom: 0.4rem; font-size: 1.05rem;">${labels.problemDef}</h4>
+          <p style="font-size: 0.92rem; line-height: 1.6;">${data.problem}</p>
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+          <h4 style="color: var(--accent-cyan); margin-bottom: 0.4rem; font-size: 1.05rem;">${labels.solutionDef}</h4>
+          <p style="font-size: 0.92rem; line-height: 1.6;">${data.solution}</p>
+        </div>
+
+        <div style="margin-bottom: 1.5rem;">
+          <h4 style="color: #cbd5e1; margin-bottom: 0.6rem; font-size: 1.05rem;">${labels.techHighlights}</h4>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.5rem;">
+            ${data.highlights.map(h => `
+              <li style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.88rem; color: #94a3b8;">
+                <span style="color: var(--accent-emerald);">✔</span> ${h}
+              </li>
+            `).join('')}
+          </ul>
+        </div>
+
+        <div style="padding-top: 1.25rem; border-top: 1px solid var(--border-subtle); display: flex; flex-wrap: wrap; gap: 0.5rem;">
+          ${data.tech.map(t => `<span class="pill">${t}</span>`).join('')}
+        </div>
+      `;
+    }
+  }
+
+  window.refreshCurrentModal = () => {
+    if (modal && modal.classList.contains('active') && activeModalPid) {
+      renderModal(activeModalPid);
+    }
+  };
+
+  viewBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const pid = btn.getAttribute('data-id');
+      renderModal(pid);
       modal.classList.add('active');
     });
   });
@@ -900,10 +1713,11 @@ function initContactFeatures() {
   if (copyBtn && emailText) {
     copyBtn.addEventListener('click', () => {
       const email = emailText.textContent.trim();
+      const isEn = (currentAppLanguage === 'en');
       navigator.clipboard.writeText(email).then(() => {
-        showToast('E-posta adresi panoya kopyalandı! 📋');
+        showToast(isEn ? 'Email address copied to clipboard! 📋' : 'E-posta adresi panoya kopyalandı! 📋');
       }).catch(() => {
-        showToast('Kopyalama başarısız oldu, lütfen manuel kopyalayın.');
+        showToast(isEn ? 'Copy failed, please copy manually.' : 'Kopyalama başarısız oldu, lütfen manuel kopyalayın.');
       });
     });
   }
@@ -912,6 +1726,7 @@ function initContactFeatures() {
   // Handles local testing (file://) via mailto fallback & live web server (http/https) via FormSubmit
   if (form) {
     form.addEventListener('submit', (e) => {
+      const isEn = (currentAppLanguage === 'en');
       // Yerel dosya sisteminden (file://) açıldığında FormSubmit engelini aşmak için mailto yönlendirmesi
       if (window.location.protocol === 'file:') {
         e.preventDefault();
@@ -920,16 +1735,24 @@ function initContactFeatures() {
         const subject = document.getElementById('form-subject').value;
         const message = document.getElementById('form-message').value;
 
-        showToast('Yerel test ortamındasınız! Mesaj e-posta uygulamanıza (Mail/Outlook) aktarılıyor... 📬');
+        showToast(
+          isEn
+            ? 'You are in local test mode! Redirecting message to your email client (Mail/Outlook)... 📬'
+            : 'Yerel test ortamındasınız! Mesaj e-posta uygulamanıza (Mail/Outlook) aktarılıyor... 📬'
+        );
 
         setTimeout(() => {
-          const mailtoUrl = `mailto:zehratuncer.dev@gmail.com?subject=${encodeURIComponent('Portfolyo: ' + subject)}&body=${encodeURIComponent('Ad Soyad: ' + name + '\nE-Posta: ' + email + '\n\nMesaj:\n' + message)}`;
+          const mailtoUrl = `mailto:zehratuncer.dev@gmail.com?subject=${encodeURIComponent((isEn ? 'Portfolio: ' : 'Portfolyo: ') + subject)}&body=${encodeURIComponent((isEn ? 'Full Name: ' : 'Ad Soyad: ') + name + '\n' + (isEn ? 'Email: ' : 'E-Posta: ') + email + '\n\n' + (isEn ? 'Message:\n' : 'Mesaj:\n') + message)}`;
           window.location.href = mailtoUrl;
           form.reset();
         }, 1200);
       } else {
         // Canlı Web Sunucusu (GitHub Pages / Live Server / http / https)
-        showToast('Mesajınız FormSubmit servisine iletiliyor... 🚀');
+        showToast(
+          isEn
+            ? 'Your message is being sent via FormSubmit... 🚀'
+            : 'Mesajınız FormSubmit servisine iletiliyor... 🚀'
+        );
       }
     });
   }

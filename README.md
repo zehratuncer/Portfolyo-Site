@@ -1,25 +1,8 @@
 # 🚀 Zehra Tuncer | Yazılım Geliştirici Portfolyosu
 
-![Portfolio Banner](https://img.shields.io/badge/Status-Active-00f2fe?style=for-the-badge&logo=github)
-![Tech Stack](https://img.shields.io/badge/.NET_9-Angular_20-Clean_Architecture-6366f1?style=for-the-badge&logo=dotnet)
-![License](https://img.shields.io/badge/License-MIT-a855f7?style=for-the-badge)
 
 Bilgisayar Mühendisliği Öğrencisi ve Yazılım Geliştiricisi **Zehra Tuncer**'in kişisel web portfolyosu. Bu proje; kurumsal staj deneyimlerini, TÜBİTAK araştırmalarını, masaüstü, mobil ve web tabanlı projelerini dinamik ve modern bir arayüzle sunmaktadır.
 
----
-
-## 🌟 Öne Çıkan Özellikler
-
-- 🎨 **Modern Cyberpunk / Glassmorphism Tasarımı:** HSL özel renk paletleri, buzlu cam efektleri, neon ışımalar ve yumuşak geçişler.
-- 🌌 **Etkileşimli Parçacık (Particle) Tuvali:** HTML5 Canvas tabanlı, fare imlecine duyarlı dinamik parçacık ağı.
-- 📱 **Tamamen Duyarlı (Responsive):** Mobil, tablet ve masaüstü ekranlar için optimize edilmiş esnek CSS Grid & Flexbox yapısı.
-- 🔍 **Proje Filtreleme & Detay Modalları:** Projeleri kategorilere göre anında filtreleme ve detaylı mimari anlatımlar sunan modal pencereler.
-- 🖼️ **Ekran Görüntüsü Lightbox Galerisi:** Projelere ait yüksek çözünürlüklü ekran görüntülerini tam ekranda inceleme imkanı.
-- 📋 **Tek Tıkla E-posta Kopyalama & Toast Bildirimi:** Panoya kopyalama ve anlık Toast geri bildirim sistemi.
-- 📬 **FormSubmit Entegrasyonu:** Sunucusuz, güvenli iletişim formu altyapısı.
-- 🚫 **Özelleştirilmiş 404 Hata Sayfası:** Kırık veya bulunamayan bağlantılar için tasarlanmış özel 404 ekranı.
-
----
 
 ## 🛠️ Teknolojik Yapı & Yetkinlikler
 
@@ -74,23 +57,25 @@ Bilgisayar Mühendisliği Öğrencisi ve Yazılım Geliştiricisi **Zehra Tuncer
 
 ```
 Portfolyo_Site/
-├── ekran_goruntuleri/        # Tüm projelere ait ekran görüntüleri ve dokümantasyonlar
-│   ├── beyourself/           # Be Yourself mobil projesi görselleri
-│   ├── driver/               # Driver uygulaması dokümantasyonu
-│   ├── internproject-1/      # TOFAŞ Bayi Portalı ekran görüntüleri ve mimari dokümanı
-│   ├── internproject-2/      # TOFAŞ Kurumsal İş Akışı Portalı görselleri ve dokümanı
-│   ├── kart_oyunu/           # Kart Oyunu görselleri ve detayları
+├── ekran_goruntuleri/           # Tüm projelere ait ekran görüntüleri ve dokümantasyonlar
+│   ├── beyourself/              # Be Yourself mobil projesi görselleri
+│   ├── driver/                  # Driver uygulaması dokümantasyonu
+│   ├── internproject-1/         # TOFAŞ Bayi Portalı ekran görüntüleri ve dokümanı
+│   ├── internproject-2/         # TOFAŞ Kurumsal İş Akışı Portalı görselleri ve dokümanı
+│   ├── kart_oyunu/              # Kart Oyunu görselleri ve detayları
 │   ├── notHesaplaamaUygulamasi/ # Not Hesaplama WinForms görselleri
-│   └── twitter/              # Twitter Klonu ekran görüntüleri ve detayları
-├── index.html                # Ana HTML yapısı ve bileşenler
-├── 404.html                  # Özelleştirilmiş 404 Hata Sayfası
-├── styles.css                # Tasarım sistemi, tema değişkenleri ve tüm stiller
-├── script.js                 # Parçacık tuvali, filtreleme, modal & toast mantığı
-├── zehratuncer.md            # Hakkımda detaylı biyografi
-├── hakkimda.md               # Özet biyografi
-├── profil_fotografi.jpeg     # Profil görseli
-├── favicon.svg               # Site ikonu
-└── README.md                 # Proje dokümantasyonu
+│   └── twitter/                 # Twitter Klonu ekran görüntüleri ve detayları
+├── index.html                   # Ana HTML yapısı ve i18n destekli bileşenler
+├── 404.html                     # Özelleştirilmiş 404 Hata Sayfası
+├── styles.css                   # Tasarım sistemi, glassmorphism, responsive stiller & TR/EN geçiş buton stilleri
+├── script.js                    # Parçacık tuvali, filtreleme, TR/EN dil anahtarlayıcı (i18n), modal & toast mantığı
+├── for_website_cvTR.pdf         # Türkçe CV dokümanı
+├── for_website_cvEN.pdf         # İngilizce CV dokümanı
+├── zehratuncer.md               # Hakkımda detaylı biyografi
+├── hakkimda.md                  # Özet biyografi
+├── profil_fotografi.jpeg        # Profil görseli
+├── favicon.svg                  # Site ikonu
+└── README.md                    # Proje dokümantasyonu
 ```
 
 ---
@@ -115,14 +100,14 @@ Projeyi yerel bilgisayarınızda çalıştırmak için herhangi bir derleyiciye 
 
 Bu site **GitHub Pages** üzerinde ücretsiz ve statik olarak barındırılmaktadır.
 
-- **Canlı Site Linki:** [zehratuncer.github.io](https://zehratuncer.github.io) *(Sayfa yayına alındığında aktif olacaktır)*
+- **Canlı Site Linki:** [zehratuncer.github.io](https://zehratuncer.github.io/Portfolyo-Site/)
 
 ---
 
 ## ✉️ İletişim
 
 - **E-posta:** zehratuncer.dev@gmail.com
-- **LinkedIn:** [Zehra Tuncer](https://linkedin.com)
+- **LinkedIn:** [Zehra Tuncer](https://www.linkedin.com/in/zehra-tuncer-8567a1323/)
 - **GitHub:** [@zehratuncer](https://github.com/zehratuncer)
 
 *Design & Development by Zehra Tuncer © 2026*

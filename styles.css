@@ -302,6 +302,53 @@ nav {
   text-decoration: none;
 }
 
+/* Language Toggle Button */
+.lang-switch-li {
+  display: flex;
+  align-items: center;
+}
+
+.lang-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.35rem 0.65rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-family: var(--font-code);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  margin-left: 0.5rem;
+  user-select: none;
+}
+
+.lang-toggle-btn:hover {
+  background: rgba(0, 242, 254, 0.12);
+  border-color: var(--accent-cyan);
+  color: var(--text-primary);
+  transform: translateY(-1px);
+}
+
+.lang-toggle-btn .lang-opt {
+  transition: color var(--transition-fast), text-shadow var(--transition-fast);
+  color: var(--text-muted);
+}
+
+.lang-toggle-btn .lang-opt.active {
+  color: var(--accent-cyan);
+  font-weight: 800;
+  text-shadow: 0 0 8px rgba(0, 242, 254, 0.6);
+}
+
+.lang-toggle-btn .lang-divider {
+  opacity: 0.35;
+  font-size: 0.75rem;
+}
+
 .btn-primary {
   background: var(--grad-cyan-blue);
   color: #060913;
