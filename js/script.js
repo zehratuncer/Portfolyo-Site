@@ -1723,18 +1723,20 @@ function initContactFeatures() {
   }
 
   // Contact Form Submission
-  // Handles local testing (file://) via mailto fallback & live web server (http/https) via FormSubmit
+  // Handles local testing (file://) via mailto fallback & live web server (http/https) via FormSubmit AJAX
   if (form) {
     form.addEventListener('submit', (e) => {
+      e.preventDefault();
       const isEn = (currentAppLanguage === 'en');
+      const submitBtn = form.querySelector('button[type="submit"]');
+
+      const name = document.getElementById('form-name').value;
+      const email = document.getElementById('form-email').value;
+      const subject = document.getElementById('form-subject').value;
+      const message = document.getElementById('form-message').value;
+
       // Yerel dosya sisteminden (file://) açıldığında FormSubmit engelini aşmak için mailto yönlendirmesi
       if (window.location.protocol === 'file:') {
-        e.preventDefault();
-        const name = document.getElementById('form-name').value;
-        const email = document.getElementById('form-email').value;
-        const subject = document.getElementById('form-subject').value;
-        const message = document.getElementById('form-message').value;
-
         showToast(
           isEn
             ? 'You are in local test mode! Redirecting message to your email client (Mail/Outlook)... 📬'
@@ -1746,14 +1748,51 @@ function initContactFeatures() {
           window.location.href = mailtoUrl;
           form.reset();
         }, 1200);
-      } else {
-        // Canlı Web Sunucusu (GitHub Pages / Live Server / http / https)
+        return;
+      }
+
+      // Canlı Web Sunucusu (GitHub Pages / Live Server / http / https) - AJAX FormSubmit
+      if (submitBtn) submitBtn.disabled = true;
+
+      showToast(
+        isEn
+          ? 'Sending message... 🚀'
+          : 'Mesajınız gönderiliyor... 🚀'
+      );
+
+      fetch('https://formsubmit.co/ajax/zehratuncer.dev@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          Ad_Soyad: name,
+          Eposta: email,
+          Konu: subject,
+          Mesaj: message,
+          _subject: `Portfolyo İletişim Formundan Yeni Mesaj: ${subject}`
+        })
+      })
+      .then(response => response.json())
+      .then(data => {
         showToast(
           isEn
-            ? 'Your message is being sent via FormSubmit... 🚀'
-            : 'Mesajınız FormSubmit servisine iletiliyor... 🚀'
+            ? 'Your message has been sent successfully! Thank you. 🚀'
+            : 'Mesajınız başarıyla iletildi! Teşekkür ederim. 🚀'
         );
-      }
+        form.reset();
+      })
+      .catch(() => {
+        showToast(
+          isEn
+            ? 'An error occurred while sending. Please try again or copy email.'
+            : 'Mesaj gönderilirken bir hata oluştu. Lütfen tekrar deneyin veya e-postayı kopyalayın.'
+        );
+      })
+      .finally(() => {
+        if (submitBtn) submitBtn.disabled = false;
+      });
     });
   }
 }
