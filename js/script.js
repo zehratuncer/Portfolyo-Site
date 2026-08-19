@@ -1697,16 +1697,17 @@ function initContactFeatures() {
   const form = document.getElementById('contact-form');
   const copyBtn = document.getElementById('copy-email-btn');
   const emailText = document.getElementById('email-text');
-  const toast = document.getElementById('toast-msg');
-  const toastText = document.getElementById('toast-text');
-
+  let toastTimer = null;
   function showToast(message) {
     if (!toast || !toastText) return;
+    if (toastTimer) {
+      clearTimeout(toastTimer);
+    }
     toastText.textContent = message;
     toast.classList.add('show');
-    setTimeout(() => {
+    toastTimer = setTimeout(() => {
       toast.classList.remove('show');
-    }, 3500);
+    }, 4500);
   }
 
   // Copy Email
