@@ -1697,6 +1697,9 @@ function initContactFeatures() {
   const form = document.getElementById('contact-form');
   const copyBtn = document.getElementById('copy-email-btn');
   const emailText = document.getElementById('email-text');
+  const toast = document.getElementById('toast-msg');
+  const toastText = document.getElementById('toast-text');
+
   let toastTimer = null;
   function showToast(message) {
     if (!toast || !toastText) return;
@@ -1708,6 +1711,19 @@ function initContactFeatures() {
     toastTimer = setTimeout(() => {
       toast.classList.remove('show');
     }, 4500);
+  }
+
+  // Check URL query parameters for ?submitted=true redirect callback
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.has('submitted')) {
+    const isEn = (currentAppLanguage === 'en');
+    showToast(
+      isEn
+        ? 'Your message has been sent successfully! Thank you. 🚀'
+        : 'Mesajınız başarıyla iletildi! Teşekkür ederim. 🚀'
+    );
+    const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + window.location.hash;
+    window.history.replaceState({ path: cleanUrl }, '', cleanUrl);
   }
 
   // Copy Email
@@ -1724,7 +1740,7 @@ function initContactFeatures() {
   }
 
   // Contact Form Submission
-  // Handles local testing (file://) via mailto fallback & live web server (http/https) via FormSubmit AJAX
+  // Handles local testing (file://) via mailto fallback & live web server (http/https) via FormSubmit
   if (form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -1752,7 +1768,7 @@ function initContactFeatures() {
         return;
       }
 
-      // Canlı Web Sunucusu (GitHub Pages / Live Server / http / https) - AJAX FormSubmit
+      // Canlı Web Sunucusu (GitHub Pages / Live Server / http / https)
       if (submitBtn) submitBtn.disabled = true;
 
       showToast(
@@ -1761,23 +1777,26 @@ function initContactFeatures() {
           : 'Mesajınız gönderiliyor... 🚀'
       );
 
-      fetch('https://formsubmit.co/ajax/zehratuncer.dev@gmail.com', {
+      // Submit via FormData
+      const formData = new FormData(form);
+      formData.set('Ad_Soyad', name);
+      formData.set('Eposta', email);
+      formData.set('Konu', subject);
+      formData.set('Mesaj', message);
+      formData.set('_subject', `Portfolyo İletişim Formundan Yeni Mesaj: ${subject}`);
+      formData.set('_captcha', 'false');
+      formData.set('_template', 'table');
+
+      fetch('https://formsubmit.co/zehratuncer.dev@gmail.com', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
-        body: JSON.stringify({
-          Ad_Soyad: name,
-          Eposta: email,
-          Konu: subject,
-          Mesaj: message,
-          _subject: `Portfolyo İletişim Formundan Yeni Mesaj: ${subject}`
-        })
+        body: formData
       })
       .then(response => {
         if (!response.ok) {
-          throw new Error('Network response failed');
+          throw new Error('FormSubmit AJAX failed');
         }
         return response.json();
       })
@@ -1790,12 +1809,8 @@ function initContactFeatures() {
         form.reset();
       })
       .catch((err) => {
-        console.error('FormSubmit AJAX Error:', err);
-        showToast(
-          isEn
-            ? 'An error occurred while sending. Please try again or copy email.'
-            : 'Mesaj gönderilirken bir hata oluştu. Lütfen tekrar deneyin veya e-postayı kopyalayın.'
-        );
+        console.warn('FormSubmit AJAX fallback:', err);
+        form.submit();
       })
       .finally(() => {
         if (submitBtn) submitBtn.disabled = false;
