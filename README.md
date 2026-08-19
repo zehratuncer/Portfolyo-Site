@@ -57,24 +57,30 @@ Bilgisayar Mühendisliği Öğrencisi ve Yazılım Geliştiricisi **Zehra Tuncer
 
 ```
 Portfolyo_Site/
-├── ekran_goruntuleri/           # Tüm projelere ait ekran görüntüleri ve dokümantasyonlar
-│   ├── beyourself/              # Be Yourself mobil projesi görselleri
-│   ├── driver/                  # Driver uygulaması dokümantasyonu
-│   ├── internproject-1/         # TOFAŞ Bayi Portalı ekran görüntüleri ve dokümanı
-│   ├── internproject-2/         # TOFAŞ Kurumsal İş Akışı Portalı görselleri ve dokümanı
-│   ├── kart_oyunu/              # Kart Oyunu görselleri ve detayları
-│   ├── notHesaplaamaUygulamasi/ # Not Hesaplama WinForms görselleri
-│   └── twitter/                 # Twitter Klonu ekran görüntüleri ve detayları
-├── index.html                   # Ana HTML yapısı ve i18n destekli bileşenler
+├── assets/                      # Medya ve CV kaynak dosyaları
+│   ├── cv/                      # Çift dilli CV dokümanları (PDF)
+│   │   ├── for_website_cvTR.pdf
+│   │   └── for_website_cvEN.pdf
+│   └── images/                  # Profil ve ikon görselleri
+│       ├── favicon.svg
+│       └── profil_fotografi.jpeg
+├── css/                         # Stil dosyaları
+│   └── styles.css               # Tasarım sistemi, glassmorphism & responsive stiller
+├── js/                          # JavaScript kaynak kodları
+│   └── script.js                # Parçacık tuvali, i18n dil anahtarlayıcı & modal mantığı
+├── docs/                        # Biyografi ve ekstra dokümantasyonlar
+│   ├── hakkimda.md
+│   └── zehratuncer.md
+├── ekran_goruntuleri/           # Proje detay ekran görüntüleri ve galerileri
+│   ├── beyourself/
+│   ├── driver/
+│   ├── internproject-1/
+│   ├── internproject-2/
+│   ├── kart_oyunu/
+│   ├── notHesaplaamaUygulamasi/
+│   └── twitter/
+├── index.html                   # Ana HTML yapısı ve i18n bileşenleri
 ├── 404.html                     # Özelleştirilmiş 404 Hata Sayfası
-├── styles.css                   # Tasarım sistemi, glassmorphism, responsive stiller & TR/EN geçiş buton stilleri
-├── script.js                    # Parçacık tuvali, filtreleme, TR/EN dil anahtarlayıcı (i18n), modal & toast mantığı
-├── for_website_cvTR.pdf         # Türkçe CV dokümanı
-├── for_website_cvEN.pdf         # İngilizce CV dokümanı
-├── zehratuncer.md               # Hakkımda detaylı biyografi
-├── hakkimda.md                  # Özet biyografi
-├── profil_fotografi.jpeg        # Profil görseli
-├── favicon.svg                  # Site ikonu
 └── README.md                    # Proje dokümantasyonu
 ```
 
