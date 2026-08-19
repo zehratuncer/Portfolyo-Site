@@ -1774,7 +1774,12 @@ function initContactFeatures() {
           _subject: `Portfolyo İletişim Formundan Yeni Mesaj: ${subject}`
         })
       })
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response failed');
+        }
+        return response.json();
+      })
       .then(data => {
         showToast(
           isEn
@@ -1783,7 +1788,8 @@ function initContactFeatures() {
         );
         form.reset();
       })
-      .catch(() => {
+      .catch((err) => {
+        console.error('FormSubmit AJAX Error:', err);
         showToast(
           isEn
             ? 'An error occurred while sending. Please try again or copy email.'
