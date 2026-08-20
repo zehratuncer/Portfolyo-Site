@@ -1751,6 +1751,34 @@ function initContactFeatures() {
       const subject = document.getElementById('form-subject').value;
       const message = document.getElementById('form-message').value;
 
+      // 1. Anti-Spam Bot Honeypot Kontrolü
+      const honeyInput = form.querySelector('input[name="_honey"]');
+      if (honeyInput && honeyInput.value.trim() !== '') {
+        console.warn('Bot submission blocked by honeypot.');
+        launchSuccessCelebration(3000);
+        form.reset();
+        return;
+      }
+
+      // 2. Client-Side Rate Limiting (60 Saniye Bekleme Süresi)
+      const COOLDOWN_SECONDS = 60;
+      const lastSubmitKey = 'portfolio_last_contact_submit';
+      const lastSubmitTime = localStorage.getItem(lastSubmitKey);
+      const now = Date.now();
+
+      if (lastSubmitTime) {
+        const elapsed = Math.floor((now - parseInt(lastSubmitTime, 10)) / 1000);
+        if (elapsed < COOLDOWN_SECONDS) {
+          const remaining = COOLDOWN_SECONDS - elapsed;
+          showToast(
+            isEn
+              ? `Please wait ${remaining}s before sending another message. ⏳`
+              : `Lütfen yeni bir mesaj göndermeden önce ${remaining} saniye bekleyiniz. ⏳`
+          );
+          return;
+        }
+      }
+
       // Yerel dosya sisteminden (file://) açıldığında FormSubmit engelini aşmak için mailto yönlendirmesi
       if (window.location.protocol === 'file:') {
         showToast(
@@ -1785,6 +1813,9 @@ function initContactFeatures() {
       formData.set('_subject', `Portfolyo İletişim Formundan Yeni Mesaj: ${subject}`);
       formData.set('_captcha', 'false');
       formData.set('_template', 'table');
+      if (honeyInput) {
+        formData.set('_honey', honeyInput.value);
+      }
 
       fetch('https://formsubmit.co/ajax/zehratuncer.dev@gmail.com', {
         method: 'POST',
@@ -1800,6 +1831,7 @@ function initContactFeatures() {
         return response.json();
       })
       .then(data => {
+        localStorage.setItem(lastSubmitKey, Date.now().toString());
         launchSuccessCelebration(3000);
         form.reset();
       })

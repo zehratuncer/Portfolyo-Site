@@ -15,7 +15,7 @@
     href="https://fonts.googleapis.com/css2?family=Felipa&family=Tangerine:wght@400;700&family=JetBrains+Mono:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
     rel="stylesheet">
 
-  <link rel="stylesheet" href="css/styles.css?v=3.2">
+  <link rel="stylesheet" href="css/styles.css?v=3.3">
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
 </head>
 
@@ -679,12 +679,14 @@
           <!-- Form Card -->
           <div class="contact-form-card">
             <form action="https://formsubmit.co/zehratuncer.dev@gmail.com" method="POST" id="contact-form">
-              <!-- FormSubmit Yapılandırması -->
+              <!-- FormSubmit & Anti-Spam Yapılandırması -->
               <input type="hidden" name="_subject" value="Portfolyo İletişim Formundan Yeni Mesaj!">
               <input type="hidden" name="_template" value="table">
               <input type="hidden" name="_captcha" value="false">
+              <!-- Honeypot Bal Tuzağı (Bot Koruması) -->
+              <input type="text" name="_honey" style="display:none !important;" tabindex="-1" autocomplete="off" aria-hidden="true">
               <input type="hidden" name="_next"
-                value="https://zehratuncer.github.io/Portfolyo-Site/?submitted=true#contact">
+                value="https://zehratuncer.github.io/Portfolyo-Site/#contact">
 
               <div class="form-group">
                 <label class="form-label" for="form-name" data-i18n="label_name">Adınız &amp; Soyadınız</label>
@@ -785,7 +787,7 @@
     </div>
   </div>
 
-  <script src="js/script.js?v=3.2"></script>
+  <script src="js/script.js?v=3.3"></script>
 </body>
 
 </html>
