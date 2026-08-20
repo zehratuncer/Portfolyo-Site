@@ -41,8 +41,8 @@ const i18nData = {
     nav_about: "Hakkımda",
     nav_contact: "İletişim",
 
-    hero_title: 'Ölçeklenebilir, Dayanıklı & <span class="gradient-text">Yüksek Performanslı</span> Yazılımlar.',
-    hero_desc: '.NET 9 & ASP.NET Core, Angular 20 Standalone, Clean Architecture, PostgreSQL ve Docker ile kurumsal seviyede güvenli, modüler ve dağıtık sistemler inşa ediyorum.',
+    hero_title: 'Kodluyor,<br><span class="gradient-text">Öğreniyor</span> &<br>Üretiyorum.',
+    hero_desc: '.NET 9 & Bilgisayar Mühendisliği 3. sınıf öğrencisiyim. .NET, Angular, PostgreSQL ve Docker ile full-stack uygulamalar geliştiriyor; modern yazılım mimarileri ve yapay zeka destekli sistemler üzerine kendimi geliştiriyorum.',
     hero_btn_projects: 'Projelerimi Keşfet',
     hero_btn_contact: 'İletişime Geç',
 
@@ -146,8 +146,8 @@ const i18nData = {
     nav_about: "About",
     nav_contact: "Contact",
 
-    hero_title: 'Building Scalable, Resilient & <span class="gradient-text">High-Performance</span> Software.',
-    hero_desc: 'Engineering enterprise-grade secure, modular, and distributed systems using .NET 9 & ASP.NET Core, Angular 20 Standalone, Clean Architecture, PostgreSQL, and Docker.',
+    hero_title: 'Coding,<br><span class="gradient-text">Learning</span> &<br>Building.',
+    hero_desc: '3rd-year Computer Engineering student specializing in .NET 9. Developing full-stack applications with .NET, Angular, PostgreSQL, and Docker while advancing in modern software architectures and AI-assisted systems.',
     hero_btn_projects: 'Explore My Projects',
     hero_btn_contact: 'Get in Touch',
 
@@ -1787,7 +1787,7 @@ function initContactFeatures() {
       formData.set('_captcha', 'false');
       formData.set('_template', 'table');
 
-      fetch('https://formsubmit.co/zehratuncer.dev@gmail.com', {
+      fetch('https://formsubmit.co/ajax/zehratuncer.dev@gmail.com', {
         method: 'POST',
         headers: {
           'Accept': 'application/json'
@@ -1796,7 +1796,7 @@ function initContactFeatures() {
       })
       .then(response => {
         if (!response.ok) {
-          throw new Error('FormSubmit AJAX failed');
+          throw new Error('FormSubmit AJAX request failed');
         }
         return response.json();
       })
@@ -1809,8 +1809,12 @@ function initContactFeatures() {
         form.reset();
       })
       .catch((err) => {
-        console.warn('FormSubmit AJAX fallback:', err);
-        form.submit();
+        console.warn('FormSubmit AJAX error:', err);
+        showToast(
+          isEn
+            ? 'An error occurred while sending your message. Please try again. ⚠️'
+            : 'Mesaj gönderilirken bir hata oluştu. Lütfen tekrar deneyiniz. ⚠️'
+        );
       })
       .finally(() => {
         if (submitBtn) submitBtn.disabled = false;
