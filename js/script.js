@@ -41,7 +41,7 @@ const i18nData = {
     nav_about: "Hakkımda",
     nav_contact: "İletişim",
 
-    hero_title: 'Kodluyor, & <span class="gradient-text">Öğreniyor</span> & Üretiyorum.',
+    hero_title: 'Kodluyor,<br><span class="gradient-text">Öğreniyor</span> &<br>Üretiyorum.',
     hero_desc: '.NET 9 & Bilgisayar Mühendisliği 3. sınıf öğrencisiyim. .NET, Angular, PostgreSQL ve Docker ile full-stack uygulamalar geliştiriyor; modern yazılım mimarileri ve yapay zeka destekli sistemler üzerine kendimi geliştiriyorum.',
     hero_btn_projects: 'Projelerimi Keşfet',
     hero_btn_contact: 'İletişime Geç',
@@ -148,7 +148,7 @@ const i18nData = {
     nav_about: "About",
     nav_contact: "Contact",
 
-    hero_title: 'Coding, <span class="gradient-text">Learning</span> & Building.',
+    hero_title: 'Coding,<br><span class="gradient-text">Learning</span> &<br>Building.',
     hero_desc: '3rd-year Computer Engineering student specializing in .NET 9. Developing full-stack applications with .NET, Angular, PostgreSQL, and Docker while advancing in modern software architectures and AI-assisted systems.',
     hero_btn_projects: 'Explore My Projects',
     hero_btn_contact: 'Get in Touch',
