@@ -41,7 +41,7 @@ const i18nData = {
     nav_about: "Hakkımda",
     nav_contact: "İletişim",
 
-    hero_title: 'Kodluyor,<br><span class="gradient-text">Öğreniyor</span> &<br>Üretiyorum.',
+    hero_title: 'Kodluyor, & <span class="gradient-text">Öğreniyor</span> & Üretiyorum.',
     hero_desc: '.NET 9 & Bilgisayar Mühendisliği 3. sınıf öğrencisiyim. .NET, Angular, PostgreSQL ve Docker ile full-stack uygulamalar geliştiriyor; modern yazılım mimarileri ve yapay zeka destekli sistemler üzerine kendimi geliştiriyorum.',
     hero_btn_projects: 'Projelerimi Keşfet',
     hero_btn_contact: 'İletişime Geç',
@@ -136,6 +136,8 @@ const i18nData = {
     label_message: 'Mesajınız',
     ph_message: 'Projeniz veya iletmek istediğiniz detaylar...',
     btn_send_message: 'Mesajı Gönder',
+    success_title: 'Mesajınız Başarıyla İletildi!',
+    success_desc: 'Geri bildiriminiz için teşekkür ederim. En kısa sürede sizinle iletişime geçeceğim. 🚀',
 
     footer_rights: 'Tüm hakları saklıdır.'
   },
@@ -146,7 +148,7 @@ const i18nData = {
     nav_about: "About",
     nav_contact: "Contact",
 
-    hero_title: 'Coding,<br><span class="gradient-text">Learning</span> &<br>Building.',
+    hero_title: 'Coding, <span class="gradient-text">Learning</span> & Building.',
     hero_desc: '3rd-year Computer Engineering student specializing in .NET 9. Developing full-stack applications with .NET, Angular, PostgreSQL, and Docker while advancing in modern software architectures and AI-assisted systems.',
     hero_btn_projects: 'Explore My Projects',
     hero_btn_contact: 'Get in Touch',
@@ -241,6 +243,8 @@ const i18nData = {
     label_message: 'Message',
     ph_message: 'Your project details or inquiry...',
     btn_send_message: 'Send Message',
+    success_title: 'Message Sent Successfully!',
+    success_desc: 'Thank you for reaching out. I will get back to you as soon as possible. 🚀',
 
     footer_rights: 'All rights reserved.'
   }
@@ -1716,12 +1720,7 @@ function initContactFeatures() {
   // Check URL query parameters for ?submitted=true redirect callback
   const urlParams = new URLSearchParams(window.location.search);
   if (urlParams.has('submitted')) {
-    const isEn = (currentAppLanguage === 'en');
-    showToast(
-      isEn
-        ? 'Your message has been sent successfully! Thank you. 🚀'
-        : 'Mesajınız başarıyla iletildi! Teşekkür ederim. 🚀'
-    );
+    launchSuccessCelebration(3000);
     const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + window.location.hash;
     window.history.replaceState({ path: cleanUrl }, '', cleanUrl);
   }
@@ -1801,11 +1800,7 @@ function initContactFeatures() {
         return response.json();
       })
       .then(data => {
-        showToast(
-          isEn
-            ? 'Your message has been sent successfully! Thank you. 🚀'
-            : 'Mesajınız başarıyla iletildi! Teşekkür ederim. 🚀'
-        );
+        launchSuccessCelebration(3000);
         form.reset();
       })
       .catch((err) => {
@@ -1821,6 +1816,146 @@ function initContactFeatures() {
       });
     });
   }
+}
+
+/* ==========================================================================
+   6. Fireworks Particle Animation & Success Modal Controller
+   ========================================================================== */
+function launchSuccessCelebration(duration = 3000) {
+  const modalBackdrop = document.getElementById('success-modal-backdrop');
+  const modalTitle = document.getElementById('success-modal-title');
+  const modalDesc = document.getElementById('success-modal-desc');
+  const canvas = document.getElementById('fireworks-canvas');
+
+  if (!modalBackdrop || !canvas) return;
+
+  const lang = currentAppLanguage || 'tr';
+  const dict = (i18nData && i18nData[lang]) ? i18nData[lang] : i18nData['tr'];
+
+  if (modalTitle && dict && dict.success_title) {
+    modalTitle.textContent = dict.success_title;
+  }
+  if (modalDesc && dict && dict.success_desc) {
+    modalDesc.textContent = dict.success_desc;
+  }
+
+  modalBackdrop.classList.add('active');
+
+  const ctx = canvas.getContext('2d');
+  let animationFrameId;
+  let particles = [];
+  let isRunning = true;
+
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resizeCanvas();
+
+  const colors = [
+    '#00f2fe', '#4facfe', '#00ff87', '#60efff',
+    '#ff007f', '#ff758c', '#ffea00', '#ffaa00',
+    '#a855f7', '#ec4899', '#38ef7d', '#ffffff'
+  ];
+
+  function createFireworkBurst(originX, originY, particleCount = 70) {
+    for (let i = 0; i < particleCount; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const speed = Math.random() * 9 + 3.5;
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      particles.push({
+        x: originX,
+        y: originY,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        radius: Math.random() * 3.8 + 1.8,
+        color: color,
+        alpha: 1,
+        decay: Math.random() * 0.018 + 0.012,
+        gravity: 0.14,
+        friction: 0.96
+      });
+    }
+  }
+
+  const cx = window.innerWidth / 2;
+  const cy = window.innerHeight / 2;
+
+  // Staggered firework explosions around the center modal card
+  createFireworkBurst(cx, cy - 130, 85);
+  createFireworkBurst(cx - 180, cy, 75);
+  createFireworkBurst(cx + 180, cy, 75);
+
+  setTimeout(() => {
+    if (isRunning) {
+      createFireworkBurst(cx - 140, cy - 110, 80);
+      createFireworkBurst(cx + 140, cy - 110, 80);
+    }
+  }, 350);
+
+  setTimeout(() => {
+    if (isRunning) {
+      createFireworkBurst(cx, cy - 70, 95);
+      createFireworkBurst(cx - 200, cy + 40, 70);
+      createFireworkBurst(cx + 200, cy + 40, 70);
+    }
+  }, 850);
+
+  setTimeout(() => {
+    if (isRunning) {
+      createFireworkBurst(cx - 90, cy - 150, 85);
+      createFireworkBurst(cx + 90, cy - 150, 85);
+    }
+  }, 1450);
+
+  function render() {
+    if (!isRunning && particles.length === 0) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      return;
+    }
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (let i = particles.length - 1; i >= 0; i--) {
+      const p = particles[i];
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += p.gravity;
+      p.vx *= p.friction;
+      p.vy *= p.friction;
+      p.alpha -= p.decay;
+
+      if (p.alpha <= 0) {
+        particles.splice(i, 1);
+        continue;
+      }
+
+      ctx.save();
+      ctx.globalAlpha = Math.max(0, p.alpha);
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.shadowBlur = 14;
+      ctx.shadowColor = p.color;
+      ctx.fill();
+      ctx.restore();
+    }
+
+    animationFrameId = requestAnimationFrame(render);
+  }
+
+  render();
+
+  // Exactly 3 seconds display
+  setTimeout(() => {
+    isRunning = false;
+    modalBackdrop.classList.remove('active');
+    setTimeout(() => {
+      cancelAnimationFrame(animationFrameId);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles = [];
+    }, 450);
+  }, duration);
 }
 
 /* ==========================================================================

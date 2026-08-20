@@ -15,7 +15,7 @@
     href="https://fonts.googleapis.com/css2?family=Felipa&family=Tangerine:wght@400;700&family=JetBrains+Mono:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
     rel="stylesheet">
 
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles.css?v=3.1">
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
 </head>
 
@@ -768,7 +768,22 @@
     <div class="image-lightbox-caption" id="lightbox-caption"></div>
   </div>
 
-  <script src="js/script.js?v=3.0"></script>
+  <!-- Success Modal with Fireworks Explosion -->
+  <div class="success-modal-backdrop" id="success-modal-backdrop">
+    <canvas id="fireworks-canvas"></canvas>
+    <div class="success-modal-card" id="success-modal-card">
+      <div class="success-icon-wrapper">
+        <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+      <h3 class="success-modal-title" id="success-modal-title">Mesajınız Başarıyla İletildi!</h3>
+      <p class="success-modal-desc" id="success-modal-desc">Geri bildiriminiz için teşekkür ederim. En kısa sürede sizinle iletişime geçeceğim. 🚀</p>
+    </div>
+  </div>
+
+  <script src="js/script.js?v=3.1"></script>
 </body>
 
 </html>
