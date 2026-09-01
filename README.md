@@ -42,13 +42,16 @@ Bilgisayar Mühendisliği Öğrencisi ve Yazılım Geliştiricisi **Zehra Tuncer
 3. **🧪 TÜBİTAK 2209-A — Göz Takibi & Nöropazarlama Isı Haritası Analizi**
    - *Python, OpenCV, MediaPipe.*
    - Web kamerası verileriyle göz hareketlerini analiz eden ve görsel dikkat odağını haritalandıran bilimsel araştırma projesi.
-4. **📱 Be Yourself — Dijital Moda & Stil Uygulaması**
-   - *Flutter & Dart.*
-   - Kişiselleştirilmiş kombin önerileri ve tarz takibi sunan mobil uygulama.
-5. **🧮 Not Hesaplama Uygulaması**
+4. **📱 BeYourself — Kişisel İlham & Medya Asistanı**
+   - *Flutter 3.x, Riverpod 2.5, Supabase, Vercel Serverless, Android Home Widget.*
+   - Instagram Reels/Carousel medya ayrıştırıcı, zamanlanmış bildirimler ve ana ekran canlı widget'ına sahip mobil uygulama.
+5. **📚 Kırtasiye & Ofis ERP Sistemi**
+   - *.NET 8 Clean Architecture, Angular 22, CQRS/MediatR, SQL Server 2022, Docker, QuestPDF, ClosedXML.*
+   - Hızlı Kasa (POS), limit kurallı çok kademeli onay akışları, otomatik mal kabul, anlık stok alarm motoru ve ölü stok analitiği platformu.
+6. **🧮 Not Hesaplama Uygulaması**
    - *C# .NET WinForms.*
    - Vize, ödev ve etki oranlarına göre dönem sonu bağıl/hedef sınav puanını hesaplayan masaüstü yazılımı.
-6. **🐦 Twitter Klonu & 🃏 Kart Oyunu & 🚗 Driver App**
+7. **🐦 Twitter Klonu & 🃏 Kart Oyunu & 🚗 Driver App**
    - Sosyal etkileşim, oyun mantığı ve rota/veri takibine dayalı uygulama projeleri.
 
 ---
@@ -77,6 +80,7 @@ Portfolyo_Site/
 │   ├── internproject-1/
 │   ├── internproject-2/
 │   ├── kart_oyunu/
+│   ├── kirtasiye-erp/
 │   ├── notHesaplaamaUygulamasi/
 │   └── twitter/
 ├── index.html                   # Ana HTML yapısı ve i18n bileşenleri

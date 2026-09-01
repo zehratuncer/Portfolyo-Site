@@ -76,6 +76,10 @@ const i18nData = {
     p3_title: 'BeYourself — Kişisel İlham & Medya Asistanı',
     p3_desc: 'Instagram Reels/Carousel medya ayrıştırıcı, Vercel Serverless CORS proxy, Android Home Widget, zamanlanmış yerel bildirimler ve Supabase bulut senkronizasyonlu modern Flutter uygulaması.',
 
+    p_erp_cat: 'Full-Stack ERP & Kurumsal Mimari',
+    p_erp_title: 'Kırtasiye & Ofis ERP — Kurumsal Yönetim Sistemi',
+    p_erp_desc: '.NET 8 Clean Architecture & Angular 22 ile geliştirilmiş; Hızlı Kasa (POS), limit kurallı çok kademeli onay akışları, otomatik mal kabul, anlık stok alarm motoru ve ölü stok analitiği sunan modern web tabanlı ERP platformu.',
+
     p4_cat: 'Masaüstü & C# Çözümü',
     p4_title: 'Not Hesaplama & Akademik Başarı Aracı',
     p4_desc: 'Vize, ödev ağırlıkları ve geçme notu hedeflerine göre final sınavında alınması gereken minimum notu anlık hesaplayan, dinamik toleranslı C# WinForms masaüstü aracı.',
@@ -182,6 +186,10 @@ const i18nData = {
     p3_cat: 'Mobile App & Cloud',
     p3_title: 'BeYourself — Personal Inspiration & Media Assistant',
     p3_desc: 'Modern Flutter application featuring Instagram Reels/Carousel media parser, Vercel Serverless CORS proxy, Android Home Widget, scheduled local notifications, and Supabase cloud sync.',
+
+    p_erp_cat: 'Full-Stack ERP & Enterprise Architecture',
+    p_erp_title: 'Stationery & Office ERP — Enterprise Management System',
+    p_erp_desc: 'Modern web-based ERP platform built with .NET 8 Clean Architecture & Angular 22; featuring Fast POS checkout, multi-tiered limit approval flows, automated goods receipt, real-time stock alert engine, and dead stock analytics.',
 
     p4_cat: 'Desktop & C# Solution',
     p4_title: 'Grade Calculation & Academic Success Tool',
@@ -818,6 +826,137 @@ function initProjectsSection() {
         }
       ]
     },
+    p_erp: {
+      tag: '📚 Kurumsal ERP & Clean Architecture | .NET 8, Angular 22 & SQL Server',
+      title: 'Kırtasiye & Ofis ERP — Kurumsal Kaynak Planlama ve Hızlı Kasa (POS) Sistemi',
+      contextNotice: 'Kitap, kırtasiye, okul ve ofis malzemeleri sektörünün operasyonel süreçlerine özel olarak geliştirilmiş; Clean Architecture, CQRS ve RBAC prensiplerini benimseyen, Hızlı Kasa (POS), limit kurallı çok kademeli onay akışları, otomatik mal kabul, anlık stok alarm motoru ve kurumsal PDF/Excel raporlama yeteneklerine sahip modern ERP platformudur. (GitHub: https://github.com/zehratuncer/ERP_Projesi)',
+      purpose: 'Kırtasiye ve ofis tedarik işletmelerinde okul açılış ve sınav dönemlerindeki yoğun perakende satış trafiğini (POS), koli/paket/kutu/adet bazlı dinamik stok takibini, departman bazlı satın alma onaylarını ve tedarikçi matrisini tek bir entegre platformdan gerçek zamanlı olarak yönetmek.',
+      roles: [
+        { name: '👑 Administrator', desc: 'Tüm menülere ve modüllere sınırsız erişim; 10.000 TL üzeri yüksek bütçeli satın alma taleplerini onaylama/reddetme, sistem ayarları ve kullanıcı yetkilendirme yönetimi.' },
+        { name: '👔 Branch Manager (Şube Müdürü)', desc: 'Yönetici Dashboard, Stok & Ürün tanımları, Tedarikçi yönetimi, 10.000 TL altı satın alma onayları, depo hareketleri ve kurumsal analitik/raporlar.' },
+        { name: '🧑‍💼 Cashier / Employee (Kasiyer)', desc: 'Akıllı giriş yönlendirmesiyle doğrudan Hızlı Kasa (POS) ekranına yönlendirilen; barkodlu satış, sepet iskonto, nakit/kart tahsilat ve anlık stok düşümü yapan satış personeli.' }
+      ],
+      problems: [
+        {
+          title: '⚡ 1. Limit Kurallı Çok Kademeli Onay Akışı & State Machine',
+          desc: '10.000 TL altındaki satın alma taleplerinin Şube Müdürü, üzerindeki taleplerin ise Genel Satın Alma Direktörü onayına yönlendirildiği dinamik iş akışı ve Audit Timeline zaman çizelgesi kuruldu.'
+        },
+        {
+          title: '🛒 2. Hızlı Kasa (POS) Perakende Satış & Anlık Stok Düşümü',
+          desc: 'Kırtasiye perakende operasyonları için barkod tabancası desteği, klavye kısayolları (F2 Satış, F4 Sepet Temizle, Enter), dinamik iskonto ve anlık asenkron stok düşüm mekanizması geliştirildi.'
+        },
+        {
+          title: '📦 3. Otomatik Mal Kabul & Stok Girişine Dönüştürme',
+          desc: 'Onaylanan satın alma taleplerinin tek tıkla depoya kabul edilerek envanter miktarını artıran ve InventoryTransactions tablosuna otomatik işleyen ConvertPurchaseRequestToInventoryReceipt CQRS komutu kodlandı.'
+        },
+        {
+          title: '🚨 4. Kritik Stok Seviyesi & Gerçek Zamanlı Alarm Motoru',
+          desc: 'Sarf malzemelerinde (A4 fotokopi kağıdı, 2B sınav kalemleri, defterler) belirlenen kritik eşiklerin altına inildiğinde navbar ve bildirim merkezine anlık uyarı düşüren alarm motoru tasarlandı.'
+        },
+        {
+          title: '📊 5. 90+ Günlük Ölü Stok (Dead Stock) & Sermaye Analitiği',
+          desc: '90 günden uzun süredir hareketsiz kalan ürünlerin depoda kilitlediği sermaye tutarını hesaplayan analiz motoru ile QuestPDF ve ClosedXML tabanlı antetli PDF/Excel dışa aktarım servisi entegre edildi.'
+        },
+        {
+          title: '🛡️ 6. Rol Bazlı Güvenlik Kalkanı (RoleGuard) & Akıllı Yönlendirme',
+          desc: 'Kasiyer girişinde sadece POS ekranına erişim izni veren, adres çubuğu manipülasyonlarını RoleGuard ile engelleyen ve backend seviyesinde [Authorize(Roles="...")] 403 Forbidden izolasyonu sağlayan güvenlik mimarisi uygulandı.'
+        }
+      ],
+      architectureDiagram: `┌─────────────────────────────────────────────────────────────┐
+│                    Angular 22 SPA Katmanı                   │
+│   • Dark Mode Glassmorphism UI • Signals & Standalone       │
+│   • POS Terminali & Kısayollar • RoleGuard Güvenlik Kalkanı │
+└──────────────────────────────┬──────────────────────────────┘
+                               │ HTTP / REST API (JWT & RBAC)
+                               ▼
+┌─────────────────────────────────────────────────────────────┐
+│               .NET 8 Clean Architecture API                 │
+│  ┌───────────────────────────────────────────────────────┐  │
+│  │ WebAPI: Controllers, Middlewares, Exception Handling   │  │
+│  ├───────────────────────────────────────────────────────┤  │
+│  │ Application: CQRS (MediatR), FluentValidation, DTOs   │  │
+│  ├───────────────────────────────────────────────────────┤  │
+│  │ Domain: Entities, Enums, Value Objects, Business Rules│  │
+│  ├───────────────────────────────────────────────────────┤  │
+│  │ Infrastructure: EF Core, QuestPDF, ClosedXML, Docker  │  │
+│  └───────────────────────────────────────────────────────┘  │
+└──────────────────────────────┬──────────────────────────────┘
+                               │
+               ┌───────────────┴───────────────┐
+               ▼                               ▼
+┌─────────────────────────────┐ ┌─────────────────────────────┐
+│  Microsoft SQL Server 2022  │ │  Test & Export Altyapısı    │
+│  • Envanter & Stok Geçmişi  │ │  • 59/59 Passed Tests       │
+│  • Satın Alma & Çoklu Onay  │ │  • QuestPDF Rapor Motoru    │
+│  • Tedarikçi & POS Fişleri  │ │  • ClosedXML Excel Motoru   │
+└─────────────────────────────┘ └─────────────────────────────┘`,
+      responsibilities: [
+        '.NET 8 ve Clean Architecture (Domain, Application CQRS, Infrastructure, WebAPI) katmanlı mimarisinin uçtan uca tasarlanıp kodlanması',
+        'Angular 22 ile Signals, Standalone Components ve Dark Glassmorphism UI tasarımıyla modern ve duyarlı bir ön yüz geliştirilmesi',
+        'Limit kurallı (10.000 TL altı/üstü) çok kademeli satın alma onay motoru ve denetim zaman çizelgesi (Audit Timeline) kurgulanması',
+        'Barkod uyumlu, klavye kısayollu (F2, F4, Enter) ve anlık stok düşümlü Hızlı Kasa (POS) perakende satış modülünün yazılması',
+        'Onaylanan satın alma taleplerini tek tıkla depoya kabul eden otomatik mal kabul (Convert to Receipt) CQRS komutunun geliştirilmesi',
+        'Kritik stok alarm motoru, 90+ günlük ölü stok (Dead Stock) analizi, QuestPDF ve ClosedXML ile antetli PDF/Excel dışa aktarım altyapısının kurulması',
+        '59 adet birim ve entegrasyon testi yazılarak sistem güvenilirliğinin ve iş kurallarının %100 doğrulanması'
+      ],
+      tech: [
+        '.NET 8 WebAPI', 'Angular 22', 'TypeScript 5.x', 'Clean Architecture',
+        'CQRS & MediatR', 'Entity Framework Core', 'SQL Server 2022',
+        'Docker Compose', 'QuestPDF', 'ClosedXML', 'SignalR', 'xUnit (59 Tests)'
+      ],
+      screenshots: [
+        {
+          category: '📊 Yönetici Dashboard & Bildirim Merkezi',
+          items: [
+            { img: 'ekran_goruntuleri/kirtasiye-erp/Screenshot_1.png', title: 'Yönetici Dashboard & KPI Özet Paneli', desc: '7 ürün çeşidi, 3 kritik stok alarmı, 5 tedarikçi, ₺65.195 envanter değeri ve son depo hareketleri akışı.' },
+            { img: 'ekran_goruntuleri/kirtasiye-erp/Screenshot_6.png', title: 'Bildirim Merkezi & Anlık Stok Alarmları', desc: 'Kritik eşiğin altına düşen sarf malzemeleri için gerçek zamanlı uyarılar ve onay bekleyen talepler.' }
+          ]
+        },
+        {
+          category: '🛒 Hızlı Kasa (POS) & Perakende Satış Terminali',
+          items: [
+            { img: 'ekran_goruntuleri/kirtasiye-erp/Screenshot_2.png', title: 'Hızlı Kasa (POS) — Barkod & Satış Ekranı', desc: 'Barkod tabancası uyumlu arama, dinamik sepet yönetimi ve klavye kısayolları (F2, F4, Enter).' },
+            { img: 'ekran_goruntuleri/kirtasiye-erp/Screenshot_3.png', title: 'Tahsilat & Çoklu Ödeme Yöntemleri', desc: 'Nakit, Kredi Kartı, Parçalı ve Veresiye/Cari ödeme türleri ile anlık para üstü hesaplayıcı.' },
+            { img: 'ekran_goruntuleri/kirtasiye-erp/Screenshot_4.png', title: 'Günlük Kasa Raporu & Ciro Özeti', desc: 'Günlük toplam ciro, fiş adedi, satılan ürün miktarı ve ödeme yöntemlerine göre kasa dağılımı.' },
+            { img: 'ekran_goruntuleri/kirtasiye-erp/Screenshot_5.png', title: 'Geçmiş Satış Fişleri & Fiş Detay İnceleme', desc: 'Tamamlanan satış fişleri, kasiyer, müşteri, tutar ve detaylı fiş görüntüleme listesi.' }
+          ]
+        },
+        {
+          category: '📦 Stok & Envanter Yönetimi',
+          items: [
+            { img: 'ekran_goruntuleri/kirtasiye-erp/Screenshot_7.png', title: 'Kırtasiye Stok & Ürün Yönetim Listesi', desc: 'Ürün kodları, birimler, birim fiyatlar, mevcut stok miktarları ve kritik eşik rozetleri.' },
+            { img: 'ekran_goruntuleri/kirtasiye-erp/Screenshot_19.png', title: 'Yeni Kırtasiye Ürünü Tanımlama Modalı', desc: 'Ürün kodu, adı, birimi (Koli/Paket/Kutu/Adet), fiyatı, kritik eşiği ve tedarikçi seçimi.' },
+            { img: 'ekran_goruntuleri/kirtasiye-erp/Screenshot_20.png', title: 'Son Stok Hareketleri Geçmişi & Excel İndirme', desc: 'Depo giriş, çıkış ve düzeltme fişlerinin filtrelenebilir dökümü ve Excel formatında dışa aktarımı.' }
+          ]
+        },
+        {
+          category: '📑 Satın Alma Talepleri & Çok Kademeli Onay Akışı',
+          items: [
+            { img: 'ekran_goruntuleri/kirtasiye-erp/Screenshot_11.png', title: 'Satın Alma & Onay Yönetim Paneli', desc: 'Mağaza talepleri, aciliyet derecesi, tahmini bütçe ve limit kurallı onay/red aksiyonları.' },
+            { img: 'ekran_goruntuleri/kirtasiye-erp/Screenshot_12.png', title: 'Talep Detayı & Süreç Zaman Çizelgesi (Audit Timeline)', desc: 'Şube Müdürü ve Direktör onay adımları, tarihçesi ve limit kontrol mekanizması.' },
+            { img: 'ekran_goruntuleri/kirtasiye-erp/Screenshot_13.png', title: 'Yeni Satın Alma Talebi Oluşturma Modalı', desc: 'Departman, aciliyet seviyesi, hedef teslim tarihi ve talep kalemlerinin seçimi.' }
+          ]
+        },
+        {
+          category: '🚚 Tedarikçi Yönetimi & Ürün Matrisi',
+          items: [
+            { img: 'ekran_goruntuleri/kirtasiye-erp/Screenshot_8.png', title: 'Kırtasiye & Yayın Tedarikçileri Listesi', desc: 'Yayınevleri, distribütörler, iletişim yetkilileri ve tedarikçi firma kartları.' },
+            { img: 'ekran_goruntuleri/kirtasiye-erp/Screenshot_9.png', title: 'Yeni Tedarikçi Tanımlama Modalı', desc: 'Firma tam ünvanı, vergi kimlik numarası (VKN), yetkili kişi, telefon ve e-posta tanımlama.' },
+            { img: 'ekran_goruntuleri/kirtasiye-erp/Screenshot_10.png', title: 'Tedarikçi Ürün Eşleştirme & Tedarik Matrisi', desc: 'Seçilen tedarikçinin sağladığı kırtasiye ürünlerinin listesi ve yeni ürün bağlama arayüzü.' }
+          ]
+        },
+        {
+          category: '📈 Raporlama, Stok Analitiği & Ölü Stok Yönetimi',
+          items: [
+            { img: 'ekran_goruntuleri/kirtasiye-erp/Screenshot_14.png', title: 'Kırtasiye Raporlama & Stok Analitiği', desc: 'Ciro, brüt kâr, atıl sermaye göstergeleri ve QuestPDF/ClosedXML dışa aktarım butonları.' },
+            { img: 'ekran_goruntuleri/kirtasiye-erp/Screenshot_15.png', title: 'Satış Trendi & Aylık POS Cirosu', desc: 'Aylık ürün çıkış adetleri, ciro grafiği ve perakende satış trendleri.' },
+            { img: 'ekran_goruntuleri/kirtasiye-erp/Screenshot_16.png', title: 'Kategori Kârlılık & Değerleme Analizi', desc: 'Kırtasiye kategorileri bazında kâr marjları ve envanter değer dağılımı.' },
+            { img: 'ekran_goruntuleri/kirtasiye-erp/Screenshot_17.png', title: 'Stok Devir Hızı & Sezonluk Talep Trendleri', desc: 'Okul açılış ve sınav sezonlarına göre ürün tüketim hızları ve öngörü analizleri.' },
+            { img: 'ekran_goruntuleri/kirtasiye-erp/Screenshot_18.png', title: 'Atıl & Ölü Stoklar (Dead Stock) ve Tedarikçi Performansı', desc: '90+ gündür hareketsiz ürünler, sermaye kaybı analizi ve tedarikçi güvenilirlik matrisi.' }
+          ]
+        }
+      ]
+    },
     p4: {
       tag: '🎓 Masaüstü Yazılım & Algoritma | C# .NET WinForms',
       title: 'Not Hesaplama & Akademik Başarı Takip Aracı',
@@ -1332,6 +1471,137 @@ function initProjectsSection() {
             { img: 'ekran_goruntuleri/beyourself/1000115776.jpg', title: 'Scheduled Notifications & Time Sliders', desc: 'Daily notification frequency slider, start/end hours, and test notification.' },
             { img: 'ekran_goruntuleri/beyourself/1000115777.jpg', title: 'Profile Settings & Preset Avatar Picker', desc: 'Select from 16 preset inspiration avatars or upload custom profile photo.' },
             { img: 'ekran_goruntuleri/beyourself/1000115778.jpg', title: 'Personal Motto & Salutation Style', desc: 'User life motto, personalized notification salutation style, and account stats.' }
+          ]
+        }
+      ]
+    },
+    p_erp: {
+      tag: '📚 Enterprise ERP & Clean Architecture | .NET 8, Angular 22 & SQL Server',
+      title: 'Stationery & Office ERP — Enterprise Resource Planning & POS System',
+      contextNotice: 'Tailored specifically for book, stationery, school, and office supply enterprises; embracing Clean Architecture, CQRS, and RBAC principles, equipped with Fast POS checkout, tiered limit approval workflows, automated goods receipt, real-time stock alert engine, and enterprise PDF/Excel reporting capabilities. (GitHub: https://github.com/zehratuncer/ERP_Projesi)',
+      purpose: 'Seamlessly and accurately managing high-volume POS retail transactions during peak back-to-school and exam seasons, dynamic box/pack/carton/unit inventory hierarchies, department purchase approvals, and supplier matrices on a single unified real-time platform.',
+      roles: [
+        { name: '👑 Administrator', desc: 'Unrestricted access to all modules and configurations; approving/rejecting high-value purchase requests above 10,000 TL, system settings, and user authorization management.' },
+        { name: '👔 Branch Manager', desc: 'Executive Dashboard, Stock & Product definitions, Supplier management, purchase approvals under 10,000 TL, warehouse movement logs, and corporate analytics/reports.' },
+        { name: '🧑‍💼 Cashier / Employee', desc: 'Guided via smart login routing directly to the Fast POS interface; handling barcode scanning, cart discounts, cash/credit settlements, and instantaneous inventory deductions.' }
+      ],
+      problems: [
+        {
+          title: '⚡ 1. Multi-Tiered Limit-Based Approval Flow & State Machine',
+          desc: 'Architected dynamic approval routing directing purchase requests under 10,000 TL to the Branch Manager and those above to the Chief Purchasing Director, backed by a visual Audit Timeline.'
+        },
+        {
+          title: '🛒 2. Fast POS Retail Checkout & Instant Stock Deduction',
+          desc: 'Engineered barcode scanner integration, keyboard shortcuts (F2 Checkout, F4 Clear Cart, Enter), dynamic discounting, and asynchronous stock deduction for retail stationery operations.'
+        },
+        {
+          title: '📦 3. Automated Goods Receipt & Instant Stock Ingestion',
+          desc: 'Implemented the ConvertPurchaseRequestToInventoryReceipt CQRS command allowing approved purchase requests to be ingested into the warehouse in a single click, updating inventory records automatically.'
+        },
+        {
+          title: '🚨 4. Real-Time Low Stock Warning & Alert Engine',
+          desc: 'Created an automated alert engine dispatching live navbar badges and notifications whenever critical consumables (A4 paper reams, 2B exam pencils, notebooks) dip below safety thresholds.'
+        },
+        {
+          title: '📊 5. 90+ Day Dead Stock & Tied Capital Analytics',
+          desc: 'Designed an analytics engine evaluating capital locked in stagnant stock (90+ days without outbound flow) with QuestPDF and ClosedXML enterprise letterhead PDF/Excel exports.'
+        },
+        {
+          title: '🛡️ 6. Role-Based Security Shield (RoleGuard) & Smart Routing',
+          desc: 'Enforced strict frontend isolation restricting cashier logins to POS screens via Angular RoleGuard while securing backend endpoints with [Authorize(Roles="...")] 403 Forbidden checks.'
+        }
+      ],
+      architectureDiagram: `┌─────────────────────────────────────────────────────────────┐
+│                    Angular 22 SPA Layer                     │
+│   • Dark Mode Glassmorphism UI • Signals & Standalone       │
+│   • POS Terminal & Shortcuts   • RoleGuard Security Shield  │
+└──────────────────────────────┬──────────────────────────────┘
+                               │ HTTP / REST API (JWT & RBAC)
+                               ▼
+┌─────────────────────────────────────────────────────────────┐
+│               .NET 8 Clean Architecture API                 │
+│  ┌───────────────────────────────────────────────────────┐  │
+│  │ WebAPI: Controllers, Middlewares, Exception Handling   │  │
+│  ├───────────────────────────────────────────────────────┤  │
+│  │ Application: CQRS (MediatR), FluentValidation, DTOs   │  │
+│  ├───────────────────────────────────────────────────────┤  │
+│  │ Domain: Entities, Enums, Value Objects, Business Rules│  │
+│  ├───────────────────────────────────────────────────────┤  │
+│  │ Infrastructure: EF Core, QuestPDF, ClosedXML, Docker  │  │
+│  └───────────────────────────────────────────────────────┘  │
+└──────────────────────────────┬──────────────────────────────┘
+                               │
+               ┌───────────────┴───────────────┐
+               ▼                               ▼
+┌─────────────────────────────┐ ┌─────────────────────────────┐
+│  Microsoft SQL Server 2022  │ │  Test & Export Systems      │
+│  • Inventory & Transactions │ │  • 59/59 Passed Tests       │
+│  • Purchasing & Approvals   │ │  • QuestPDF Report Engine   │
+│  • Suppliers & POS Receipts │ │  • ClosedXML Excel Engine   │
+└─────────────────────────────┘ └─────────────────────────────┘`,
+      responsibilities: [
+        'End-to-end architecture and implementation of the .NET 8 Clean Architecture (Domain, Application CQRS, Infrastructure, WebAPI) layers',
+        'Frontend development with Angular 22, Signals, Standalone Components, and a responsive Dark Glassmorphism UI',
+        'Designing multi-tiered limit-based (10,000 TL threshold) purchase approval state machines and visual Audit Timelines',
+        'Building the barcode-compatible, keyboard-shortcut-enabled (F2, F4, Enter) Fast POS retail checkout module',
+        'Implementing the automated goods receipt CQRS command converting approved requests into inventory transactions with one click',
+        'Developing the real-time stock alert engine, 90+ day dead stock analytics, and QuestPDF / ClosedXML PDF/Excel export services',
+        'Authoring 59 comprehensive unit and integration tests verifying business logic and system integrity with 100% pass rate'
+      ],
+      tech: [
+        '.NET 8 WebAPI', 'Angular 22', 'TypeScript 5.x', 'Clean Architecture',
+        'CQRS & MediatR', 'Entity Framework Core', 'SQL Server 2022',
+        'Docker Compose', 'QuestPDF', 'ClosedXML', 'SignalR', 'xUnit (59 Tests)'
+      ],
+      screenshots: [
+        {
+          category: '📊 Executive Dashboard & Notification Center',
+          items: [
+            { img: 'ekran_goruntuleri/kirtasiye-erp/Screenshot_1.png', title: 'Executive Dashboard & KPI Summary', desc: '7 product lines, 3 low stock alerts, 5 suppliers, ₺65,195 inventory valuation, and recent warehouse movements.' },
+            { img: 'ekran_goruntuleri/kirtasiye-erp/Screenshot_6.png', title: 'Notification Center & Stock Alerts', desc: 'Real-time notifications for critical threshold breaches and pending purchase approval requests.' }
+          ]
+        },
+        {
+          category: '🛒 Fast POS Retail Terminal & Sales Management',
+          items: [
+            { img: 'ekran_goruntuleri/kirtasiye-erp/Screenshot_2.png', title: 'Fast POS — Barcode & Sales Terminal', desc: 'Barcode scanner support, dynamic cart management, and keyboard shortcuts (F2, F4, Enter).' },
+            { img: 'ekran_goruntuleri/kirtasiye-erp/Screenshot_3.png', title: 'Payment & Multiple Settlement Methods', desc: 'Cash, Credit Card, Split, and On-Account payment methods with instantaneous change calculator.' },
+            { img: 'ekran_goruntuleri/kirtasiye-erp/Screenshot_4.png', title: 'Daily Register Report & Turnover Summary', desc: 'Daily revenue, receipt count, items sold, and breakdown by payment method.' },
+            { img: 'ekran_goruntuleri/kirtasiye-erp/Screenshot_5.png', title: 'Sales History & Receipt Inspection', desc: 'Completed sales receipts, cashier, customer, total amount, and detailed receipt preview.' }
+          ]
+        },
+        {
+          category: '📦 Stock & Inventory Management',
+          items: [
+            { img: 'ekran_goruntuleri/kirtasiye-erp/Screenshot_7.png', title: 'Stationery Stock & Product Directory', desc: 'Product codes, units, unit prices, available on-hand stock, and critical threshold badges.' },
+            { img: 'ekran_goruntuleri/kirtasiye-erp/Screenshot_19.png', title: 'New Product Definition Modal', desc: 'Product code, name, packaging unit (Box/Pack/Carton/Item), price, safety threshold, and supplier.' },
+            { img: 'ekran_goruntuleri/kirtasiye-erp/Screenshot_20.png', title: 'Stock Movement History & Excel Export', desc: 'Filterable log of inbound, outbound, and adjustment transactions with one-click Excel download.' }
+          ]
+        },
+        {
+          category: '📑 Purchase Requests & Tiered Approval Workflows',
+          items: [
+            { img: 'ekran_goruntuleri/kirtasiye-erp/Screenshot_11.png', title: 'Purchasing & Approval Management Panel', desc: 'Store requisitions, urgency levels, estimated budgets, and limit-based approval actions.' },
+            { img: 'ekran_goruntuleri/kirtasiye-erp/Screenshot_12.png', title: 'Request Details & Visual Audit Timeline', desc: 'Branch Manager and Director approval stages, action timestamps, and limit check logs.' },
+            { img: 'ekran_goruntuleri/kirtasiye-erp/Screenshot_13.png', title: 'New Purchase Request Creation Modal', desc: 'Department selection, urgency rating, target delivery date, and multi-item requisition lines.' }
+          ]
+        },
+        {
+          category: '🚚 Supplier Management & Product Matrix',
+          items: [
+            { img: 'ekran_goruntuleri/kirtasiye-erp/Screenshot_8.png', title: 'Stationery & Publisher Supplier Directory', desc: 'Publishers, distributors, wholesalers, contact representatives, and supplier cards.' },
+            { img: 'ekran_goruntuleri/kirtasiye-erp/Screenshot_9.png', title: 'New Supplier Registration Modal', desc: 'Company legal title, Tax ID (VKN), authorized representative, phone, and email details.' },
+            { img: 'ekran_goruntuleri/kirtasiye-erp/Screenshot_10.png', title: 'Supplier Product Mapping & Catalog Matrix', desc: 'Directory of stationery products supplied by the selected vendor with pricing and linkage tools.' }
+          ]
+        },
+        {
+          category: '📈 Reporting, Stock Analytics & Dead Stock Evaluation',
+          items: [
+            { img: 'ekran_goruntuleri/kirtasiye-erp/Screenshot_14.png', title: 'Stationery Reporting & Inventory Analytics', desc: 'Revenue, gross margin, tied capital indicators, and QuestPDF/ClosedXML export controls.' },
+            { img: 'ekran_goruntuleri/kirtasiye-erp/Screenshot_15.png', title: 'Sales Trend & Monthly POS Turnover', desc: 'Monthly sales curves, item throughput quantities, and retail turnover charts.' },
+            { img: 'ekran_goruntuleri/kirtasiye-erp/Screenshot_16.png', title: 'Category Profitability & Valuation Analysis', desc: 'Profit margins and inventory valuation distribution across stationery categories.' },
+            { img: 'ekran_goruntuleri/kirtasiye-erp/Screenshot_17.png', title: 'Inventory Turnover & Seasonal Demand Trends', desc: 'Consumption velocities and predictive indicators for school opening and exam periods.' },
+            { img: 'ekran_goruntuleri/kirtasiye-erp/Screenshot_18.png', title: 'Dead Stock Analysis & Supplier Performance Matrix', desc: 'Evaluation of products inactive for 90+ days, tied capital metrics, and vendor reliability scores.' }
           ]
         }
       ]
