@@ -1781,11 +1781,14 @@ function initProjectsSection() {
   let activeModalPid = null;
 
   function renderModal(pid) {
-    if (!pid) return;
+    if (!pid) return false;
     activeModalPid = pid;
     const isEn = (currentAppLanguage === 'en');
     const data = (isEn && projectDetailsEn[pid]) ? projectDetailsEn[pid] : projectDetailsTr[pid];
-    if (!data) return;
+    if (!data) {
+      console.error('Modal data not found for project ID:', pid);
+      return false;
+    }
 
     const labels = {
       contextNotice: isEn ? '📌 Project Context & Security:' : '📌 Proje Bağlamı & Güvenlik:',
@@ -1931,6 +1934,7 @@ function initProjectsSection() {
         </div>
       `;
     }
+    return true;
   }
 
   window.refreshCurrentModal = () => {
@@ -1942,8 +1946,10 @@ function initProjectsSection() {
   viewBtns.forEach(btn => {
     btn.addEventListener('click', () => {
       const pid = btn.getAttribute('data-id');
-      renderModal(pid);
-      modal.classList.add('active');
+      const rendered = renderModal(pid);
+      if (rendered !== false && modal) {
+        modal.classList.add('active');
+      }
     });
   });
 
