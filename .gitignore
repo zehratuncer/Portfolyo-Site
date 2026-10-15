@@ -1,0 +1,10 @@
+# Admin & Gizli Dosyalar (GitHub'a gönderilmez)
+admin.html
+docs/supabase_setup.sql
+docs/KURULUM_REHBERI.md
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
