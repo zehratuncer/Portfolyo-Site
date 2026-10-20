@@ -1692,3 +1692,237 @@ textarea.form-control {
     grid-template-columns: 1fr;
   }
 }
+
+/* ==========================================================================
+   Site Health & Stability Diagnostics (Footer Badge & Modal)
+   ========================================================================== */
+.site-health-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid var(--border-subtle);
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.76rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  margin-top: 8px;
+  font-family: var(--font-main);
+  transition: all 0.2s ease;
+}
+.site-health-badge:hover {
+  background: rgba(30, 41, 59, 0.85);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+.site-health-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.site-health-dot.pulse-stable {
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+  animation: healthPulseGreen 2s infinite;
+}
+.site-health-dot.pulse-warning {
+  background: #f59e0b;
+  box-shadow: 0 0 8px #f59e0b;
+  animation: healthPulseAmber 2s infinite;
+}
+.site-health-dot.pulse-critical {
+  background: #f43f5e;
+  box-shadow: 0 0 10px #f43f5e;
+  animation: healthPulseRed 1.2s infinite;
+}
+
+@keyframes healthPulseGreen {
+  0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+  70% { transform: scale(1.15); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+  100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+@keyframes healthPulseAmber {
+  0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
+  70% { transform: scale(1.15); box-shadow: 0 0 0 6px rgba(245, 158, 11, 0); }
+  100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+}
+@keyframes healthPulseRed {
+  0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.8); }
+  70% { transform: scale(1.2); box-shadow: 0 0 0 8px rgba(244, 63, 94, 0); }
+  100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(244, 63, 94, 0); }
+}
+
+/* Diagnostics Modal Specifics */
+.health-modal-box {
+  max-width: 680px !important;
+  background: rgba(12, 18, 34, 0.95) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7) !important;
+  border-radius: 20px !important;
+  padding: 28px !important;
+}
+
+.health-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 18px;
+}
+.health-modal-title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.health-modal-icon {
+  font-size: 1.8rem;
+}
+.health-modal-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+}
+.health-modal-subtitle {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.modal-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 12px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+.modal-status-badge.status-stable {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+}
+.modal-status-badge.status-warning {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.35);
+}
+.modal-status-badge.status-critical {
+  background: rgba(244, 63, 94, 0.15);
+  color: #fda4af;
+  border: 1px solid rgba(244, 63, 94, 0.35);
+}
+
+.health-modal-summary {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 0.86rem;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+  line-height: 1.45;
+}
+
+.modal-services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.modal-service-card {
+  background: rgba(6, 9, 19, 0.6);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.modal-service-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.modal-service-card-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #fff;
+}
+.modal-service-pill {
+  font-size: 0.68rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: var(--font-code);
+  font-weight: 600;
+}
+.modal-service-desc {
+  font-size: 0.73rem;
+  color: var(--text-muted);
+}
+.modal-service-latency {
+  font-family: var(--font-code);
+  font-size: 0.7rem;
+  color: var(--accent-cyan);
+}
+
+.modal-issues-box {
+  background: rgba(244, 63, 94, 0.08);
+  border: 1px solid rgba(244, 63, 94, 0.3);
+  border-radius: 12px;
+  padding: 14px;
+  margin-bottom: 16px;
+}
+.modal-issues-box.warning-box {
+  background: rgba(245, 158, 11, 0.08);
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+.health-modal-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.btn-refresh-health {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-subtle);
+  color: #fff;
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.btn-refresh-health:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.btn-admin-link {
+  background: var(--grad-cyan-blue);
+  color: #060913;
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+}
+.btn-admin-link:hover {
+  box-shadow: 0 4px 12px rgba(0, 242, 254, 0.3);
+  transform: translateY(-1px);
+}

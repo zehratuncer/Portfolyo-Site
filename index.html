@@ -767,6 +767,11 @@
       <div class="footer-credits">
         <p>&copy; <span id="current-year"></span> Zehra Tuncer. <span data-i18n="footer_rights">Tüm hakları
             saklıdır.</span></p>
+        <!-- Sistem Sağlığı & Stabilite Butonu -->
+        <button id="site-health-trigger" class="site-health-badge" title="Sistem durumunu ve servis sağlığını kontrol etmek için tıklayın" aria-label="Sistem Sağlık Durumu">
+          <span class="site-health-dot pulse-stable" id="site-health-dot"></span>
+          <span id="site-health-label">Sistem: Kontrol ediliyor</span>
+        </button>
       </div>
       <div class="footer-socials">
         <a href="https://github.com/zehratuncer" class="social-link" target="_blank" rel="noopener"
@@ -821,9 +826,220 @@
     </div>
   </div>
 
+  <!-- Sistem Sağlığı & Stabilite Teşhis Modalı -->
+  <div class="modal-overlay" id="health-status-modal">
+    <div class="modal-container health-modal-box">
+      <button class="modal-close" id="health-modal-close-btn" aria-label="Kapat">&times;</button>
+      <div class="health-modal-header">
+        <div class="health-modal-title-row">
+          <span class="health-modal-icon">🛡️</span>
+          <div>
+            <h3 class="health-modal-title">Sistem Stabilite & Sağlık Raporu</h3>
+            <p class="health-modal-subtitle">Web sitesi servislerinin canlı teşhis ve bağlantı analizi</p>
+          </div>
+        </div>
+        <div id="modal-overall-badge" class="modal-status-badge status-stable">
+          <span class="site-health-dot pulse-stable" id="modal-pulse-dot"></span>
+          <span id="modal-status-text">Kontrol Ediliyor...</span>
+        </div>
+      </div>
+
+      <div class="health-modal-body">
+        <div class="health-modal-summary" id="modal-summary-box">
+          Bağlantılar ve servisler test ediliyor...
+        </div>
+
+        <!-- 5 Servis Izgarası -->
+        <div class="modal-services-grid" id="modal-services-grid">
+          <!-- JS ile doldurulur -->
+        </div>
+
+        <!-- Hata / Uyarı Olası Nedenler Kutusu -->
+        <div class="modal-issues-box" id="modal-issues-box" style="display: none;">
+          <!-- JS ile doldurulur -->
+        </div>
+
+        <div class="health-modal-footer">
+          <div style="font-size: 0.78rem; color: var(--text-muted); font-family: var(--font-code);" id="modal-check-time">
+            -
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <button id="modal-recheck-btn" class="btn-refresh-health">
+              🔄 Yeniden Test Et
+            </button>
+            <a href="admin.html" class="btn-admin-link">
+              📊 Yönetim Paneli &rarr;
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="js/analytics-config.js"></script>
+  <script src="js/system-health.js"></script>
   <script src="js/tracker.js" defer></script>
   <script src="js/script.js?v=3.4"></script>
+
+  <!-- Sistem Sağlığı Modal Etkileşim Scripti -->
+  <script>
+    (function () {
+      'use strict';
+
+      var triggerBtn = document.getElementById('site-health-trigger');
+      var dotEl = document.getElementById('site-health-dot');
+      var labelEl = document.getElementById('site-health-label');
+      var modal = document.getElementById('health-status-modal');
+      var closeBtn = document.getElementById('health-modal-close-btn');
+      var modalPulseDot = document.getElementById('modal-pulse-dot');
+      var modalStatusText = document.getElementById('modal-status-text');
+      var modalOverallBadge = document.getElementById('modal-overall-badge');
+      var modalSummaryBox = document.getElementById('modal-summary-box');
+      var modalServicesGrid = document.getElementById('modal-services-grid');
+      var modalIssuesBox = document.getElementById('modal-issues-box');
+      var modalCheckTime = document.getElementById('modal-check-time');
+      var modalRecheckBtn = document.getElementById('modal-recheck-btn');
+
+      function updateHealthUI(report) {
+        if (!report) return;
+
+        var status = report.overallStatus;
+        var dotClass = 'pulse-stable';
+        var badgeClass = 'status-stable';
+        var labelText = 'Sistem: Stabil';
+
+        if (status === 'critical') {
+          dotClass = 'pulse-critical';
+          badgeClass = 'status-critical';
+          labelText = 'Sistem: Kesinti!';
+        } else if (status === 'warning') {
+          dotClass = 'pulse-warning';
+          badgeClass = 'status-warning';
+          labelText = 'Sistem: Yavaş';
+        }
+
+        if (dotEl) dotEl.className = 'site-health-dot ' + dotClass;
+        if (labelEl) labelEl.textContent = labelText;
+
+        if (modalPulseDot) modalPulseDot.className = 'site-health-dot ' + dotClass;
+        if (modalOverallBadge) modalOverallBadge.className = 'modal-status-badge ' + badgeClass;
+        if (modalStatusText) modalStatusText.textContent = report.title;
+
+        if (modalSummaryBox) {
+          modalSummaryBox.innerHTML = report.summary +
+            (report.totalDurationMs ? ' <span style="font-family: var(--font-code); color: var(--accent-cyan); font-size: 0.8rem;">(' + report.totalDurationMs + ' ms)</span>' : '');
+        }
+
+        if (modalCheckTime) {
+          modalCheckTime.textContent = 'Son kontrol: ' + report.formattedTime;
+        }
+
+        // Servis kartları
+        if (modalServicesGrid) {
+          var html = '';
+          report.checks.forEach(function (chk) {
+            var pillClass = 'pill-ok';
+            var pillText = 'Normal';
+            if (chk.status === 'warning') {
+              pillClass = 'pill-warning';
+              pillText = 'Gecikme';
+            } else if (chk.status === 'error') {
+              pillClass = 'pill-error';
+              pillText = 'Hata';
+            }
+
+            html += '<div class="modal-service-card">' +
+              '<div class="modal-service-card-top">' +
+                '<span class="modal-service-card-title">' + chk.icon + ' ' + chk.name + '</span>' +
+                '<span class="modal-service-pill ' + pillClass + '">' + pillText + '</span>' +
+              '</div>' +
+              '<div class="modal-service-desc">' + chk.details + '</div>' +
+              '<div class="modal-service-latency">' + (chk.latency > 0 ? chk.latency + ' ms' : 'Aktif') + '</div>' +
+            '</div>';
+          });
+          modalServicesGrid.innerHTML = html;
+        }
+
+        // Hata & Olası Nedenler
+        if (modalIssuesBox) {
+          if (report.issues && report.issues.length > 0) {
+            var issuesHtml = '<div style="font-size: 0.85rem; font-weight: 700; color: #fff; margin-bottom: 8px;">' +
+              '⚠️ Tespit Edilen Sorun Kaynakları ve Çözümleri:' +
+            '</div>';
+
+            report.issues.forEach(function (issue) {
+              issuesHtml += '<div style="margin-bottom: 10px; font-size: 0.82rem; line-height: 1.4;">' +
+                '<div style="font-weight: 600; color: #fda4af;">' + issue.icon + ' ' + issue.service + '</div>' +
+                (issue.cause ? '<div style="color: #f1f5f9; margin-top: 2px;"><strong>🔍 Olası Neden:</strong> ' + issue.cause + '</div>' : '') +
+                (issue.solution ? '<div style="color: #a5f3fc; margin-top: 4px; padding: 4px 8px; background: rgba(0,242,254,0.08); border-radius: 4px;"><strong>💡 Çözüm:</strong> ' + issue.solution + '</div>' : '') +
+              '</div>';
+            });
+
+            modalIssuesBox.innerHTML = issuesHtml;
+            modalIssuesBox.style.display = 'block';
+          } else {
+            modalIssuesBox.innerHTML = '';
+            modalIssuesBox.style.display = 'none';
+          }
+        }
+      }
+
+      async function runCheck() {
+        if (!window.SystemHealth) return;
+        if (modalRecheckBtn) {
+          modalRecheckBtn.disabled = true;
+          modalRecheckBtn.textContent = '⏳ Test Ediliyor...';
+        }
+
+        try {
+          var report = await window.SystemHealth.runFullDiagnostics();
+          updateHealthUI(report);
+        } catch (e) {
+          console.error(e);
+        } finally {
+          if (modalRecheckBtn) {
+            modalRecheckBtn.disabled = false;
+            modalRecheckBtn.textContent = '🔄 Yeniden Test Et';
+          }
+        }
+      }
+
+      if (triggerBtn) {
+        triggerBtn.addEventListener('click', function () {
+          if (modal) {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            runCheck();
+          }
+        });
+      }
+
+      function closeModal() {
+        if (modal) {
+          modal.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+      }
+
+      if (closeBtn) closeBtn.addEventListener('click', closeModal);
+      if (modal) {
+        modal.addEventListener('click', function (e) {
+          if (e.target === modal) closeModal();
+        });
+      }
+
+      if (modalRecheckBtn) {
+        modalRecheckBtn.addEventListener('click', function () {
+          runCheck();
+        });
+      }
+
+      // Arka planda ilk kontrol
+      if (window.SystemHealth) {
+        window.SystemHealth.runFullDiagnostics().then(updateHealthUI);
+      }
+    })();
+  </script>
 </body>
 
 </html>
