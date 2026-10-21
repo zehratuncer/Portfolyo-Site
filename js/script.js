@@ -794,9 +794,9 @@ function initProjectsSection() {
           category: '📱 Ana Sayfa, Medya Akışı & Keşif',
           items: [
             { img: 'ekran_goruntuleri/beyourself/1000115787.jpg', title: 'Açılış & Karşılama Ekranı', desc: 'Minimalist origami logo ve modern karşılama arayüzü.' },
-            { img: 'ekran_goruntuleri/beyourself/1000115788.jpg', title: 'Ana Sayfa & Günün Alıntısı Akışı', desc: 'Dinamik selamlama, arama çubuğu, günün sözü kartı ve kategori filtreleri.' },
-            { img: 'ekran_goruntuleri/beyourself/1000115785.jpg', title: 'Alıntı Detayı & Tam Ekran Medya', desc: 'Instagram Reels video/görsel oynatıcı ve tam ekran medya deneyimi.' },
-            { img: 'ekran_goruntuleri/beyourself/1000115786.jpg', title: 'Otomatik Caption & Metin Detayı', desc: 'Instagram\'dan otomatik çekilen açıklama metni ve detaylı alıntı içeriği.' }
+            { img: 'ekran_goruntuleri/beyourself/a.jpg', title: 'Ana Sayfa & Günün Alıntısı Akışı', desc: 'Dinamik selamlama, arama çubuğu, günün sözü kartı ve kategori filtreleri.' },
+            { img: 'ekran_goruntuleri/beyourself/n.jpg', title: 'Alıntı Detayı & Tam Ekran Medya', desc: 'Instagram Reels video/görsel oynatıcı ve tam ekran medya deneyimi.' },
+            { img: 'ekran_goruntuleri/beyourself/c.jpg', title: 'Otomatik Caption & Metin Detayı', desc: 'Instagram\'dan otomatik çekilen açıklama metni ve detaylı alıntı içeriği.' }
           ]
         },
         {
@@ -1443,9 +1443,9 @@ function initProjectsSection() {
           category: '📱 Homepage, Media Feed & Discovery',
           items: [
             { img: 'ekran_goruntuleri/beyourself/1000115787.jpg', title: 'Splash & Welcome Screen', desc: 'Minimalist origami logo and modern welcome interface.' },
-            { img: 'ekran_goruntuleri/beyourself/1000115788.jpg', title: 'Homepage & Daily Quote Stream', desc: 'Dynamic greeting, search bar, daily quote card, and category filters.' },
-            { img: 'ekran_goruntuleri/beyourself/1000115785.jpg', title: 'Quote Detail & Full-Screen Media', desc: 'Instagram Reels video/image player with full-screen media experience.' },
-            { img: 'ekran_goruntuleri/beyourself/1000115786.jpg', title: 'Automatic Caption & Text Details', desc: 'Auto-fetched caption text and detailed quote contents.' }
+            { img: 'ekran_goruntuleri/beyourself/a.jpg', title: 'Homepage & Daily Quote Stream', desc: 'Dynamic greeting, search bar, daily quote card, and category filters.' },
+            { img: 'ekran_goruntuleri/beyourself/n.jpg', title: 'Quote Detail & Full-Screen Media', desc: 'Instagram Reels video/image player with full-screen media experience.' },
+            { img: 'ekran_goruntuleri/beyourself/c.jpg', title: 'Automatic Caption & Text Details', desc: 'Auto-fetched caption text and detailed quote contents.' }
           ]
         },
         {
