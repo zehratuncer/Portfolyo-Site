@@ -767,11 +767,6 @@
       <div class="footer-credits">
         <p>&copy; <span id="current-year"></span> Zehra Tuncer. <span data-i18n="footer_rights">Tüm hakları
             saklıdır.</span></p>
-        <!-- Sistem Sağlığı & Stabilite Butonu -->
-        <button id="site-health-trigger" class="site-health-badge" title="Sistem durumunu ve servis sağlığını kontrol etmek için tıklayın" aria-label="Sistem Sağlık Durumu">
-          <span class="site-health-dot pulse-stable" id="site-health-dot"></span>
-          <span id="site-health-label">Sistem: Kontrol ediliyor</span>
-        </button>
       </div>
       <div class="footer-socials">
         <a href="https://github.com/zehratuncer" class="social-link" target="_blank" rel="noopener"
@@ -860,7 +855,8 @@
         </div>
 
         <div class="health-modal-footer">
-          <div style="font-size: 0.78rem; color: var(--text-muted); font-family: var(--font-code);" id="modal-check-time">
+          <div style="font-size: 0.78rem; color: var(--text-muted); font-family: var(--font-code);"
+            id="modal-check-time">
             -
           </div>
           <div style="display: flex; gap: 8px;">
@@ -950,12 +946,12 @@
 
             html += '<div class="modal-service-card">' +
               '<div class="modal-service-card-top">' +
-                '<span class="modal-service-card-title">' + chk.icon + ' ' + chk.name + '</span>' +
-                '<span class="modal-service-pill ' + pillClass + '">' + pillText + '</span>' +
+              '<span class="modal-service-card-title">' + chk.icon + ' ' + chk.name + '</span>' +
+              '<span class="modal-service-pill ' + pillClass + '">' + pillText + '</span>' +
               '</div>' +
               '<div class="modal-service-desc">' + chk.details + '</div>' +
               '<div class="modal-service-latency">' + (chk.latency > 0 ? chk.latency + ' ms' : 'Aktif') + '</div>' +
-            '</div>';
+              '</div>';
           });
           modalServicesGrid.innerHTML = html;
         }
@@ -965,14 +961,14 @@
           if (report.issues && report.issues.length > 0) {
             var issuesHtml = '<div style="font-size: 0.85rem; font-weight: 700; color: #fff; margin-bottom: 8px;">' +
               '⚠️ Tespit Edilen Sorun Kaynakları ve Çözümleri:' +
-            '</div>';
+              '</div>';
 
             report.issues.forEach(function (issue) {
               issuesHtml += '<div style="margin-bottom: 10px; font-size: 0.82rem; line-height: 1.4;">' +
                 '<div style="font-weight: 600; color: #fda4af;">' + issue.icon + ' ' + issue.service + '</div>' +
                 (issue.cause ? '<div style="color: #f1f5f9; margin-top: 2px;"><strong>🔍 Olası Neden:</strong> ' + issue.cause + '</div>' : '') +
                 (issue.solution ? '<div style="color: #a5f3fc; margin-top: 4px; padding: 4px 8px; background: rgba(0,242,254,0.08); border-radius: 4px;"><strong>💡 Çözüm:</strong> ' + issue.solution + '</div>' : '') +
-              '</div>';
+                '</div>';
             });
 
             modalIssuesBox.innerHTML = issuesHtml;
