@@ -275,44 +275,61 @@
     var startTime = performance.now();
     var result = {
       id: 'geolocation',
-      name: 'IP & Ziyaretçi İl/Şehir Tespiti',
+      name: 'IP & Ziyaretçi İl/Şehir Tespiti (81 İl Destekli)',
       icon: '📍',
       status: 'ok',
       latency: 0,
-      details: 'Birincil IP Geolocation servisi (ipapi.co) aktif.',
+      details: 'Birincil IP Geolocation servisi (ipwho.is - 81 İl Desteği) aktif.',
       potentialCause: null,
       recommendation: null
     };
 
     try {
-      var res = await fetchWithTimeout('https://ipapi.co/json/', {}, 3000);
+      var res = await fetchWithTimeout('https://ipwho.is/', {}, 3000);
       result.latency = Math.round(performance.now() - startTime);
 
-      if (res.status === 429) {
-        result.status = 'warning';
-        result.details = 'Birincil konum servisi günlük limitine ulaştı (429 Rate Limit), sistem otomatik yedek servise (freeipapi.com) geçti.';
-        result.potentialCause = 'ipapi.co ücretsiz günlük istek sınırı (1,000 istek/gün) doldu.';
-        result.recommendation = 'Endişelenmeyin; tracker.js otomatik olarak yedek servise geçtiğinden loglar kesintisiz toplanmaya devam eder.';
-      } else if (!res.ok) {
-        throw new Error('HTTP ' + res.status);
+      if (res.ok) {
+        var d = await res.json();
+        if (d && d.success !== false) {
+          result.details = 'Birincil servis (ipwho.is) aktif. 81 il ve plaka kodu çözümlemesi hazır (' + (d.region || d.city || 'TR') + ').';
+          return result;
+        }
       }
+      throw new Error('ipwho.is başarısız');
     } catch (err) {
-      // Yedek servis kontrolü
+      // 1. Yedek Servis Kontrolü: ipapi.co
       try {
-        var res2 = await fetchWithTimeout('https://freeipapi.com/api/json', {}, 3000);
+        var res2 = await fetchWithTimeout('https://ipapi.co/json/', {}, 3000);
         result.latency = Math.round(performance.now() - startTime);
         if (res2.ok) {
-          result.status = 'warning';
-          result.details = 'Birincil servis erişilemez durumda ancak yedek servis (freeipapi) sorunsuz çalışıyor.';
-          result.potentialCause = 'ipapi.co geçici olarak yanıt vermiyor; sistem yedek servis ile çalışıyor.';
+          result.status = 'ok';
+          result.details = 'Birincil servis atlandı; 1. yedek servis (ipapi.co) aktif ve 81 il plaka kodlarıyla çalışıyor.';
+          return result;
+        } else if (res2.status === 429) {
+          throw new Error('429 Rate Limit');
         } else {
-          throw new Error('Yedek de yanıt vermedi');
+          throw new Error('HTTP ' + res2.status);
         }
       } catch (err2) {
-        result.status = 'warning';
-        result.details = 'IP konum tespit servisleri yanıt vermiyor.';
-        result.potentialCause = 'Tarayıcı gizlilik koruması veya reklam engelleyici IP sorgulama servislerini engelliyor olabilir.';
-        result.recommendation = 'Konum bilgisi "Bilinmiyor" olarak kaydedilebilir ancak ziyaretçi kaydı engellenmez.';
+        // 2. Yedek Servis Kontrolü: freeipapi.com
+        try {
+          var res3 = await fetchWithTimeout('https://freeipapi.com/api/json', {}, 3000);
+          result.latency = Math.round(performance.now() - startTime);
+          if (res3.ok) {
+            result.status = 'warning';
+            result.details = 'Birincil servisler yanıt vermedi; 2. yedek servis (freeipapi) üzerinden il tespiti yapılıyor.';
+            result.potentialCause = 'ipwho.is veya ipapi.co geçici olarak erişilemez durumda.';
+            result.recommendation = 'Yedek servis devrede olduğu için ziyaretçi kayıtları kesintisiz devam eder.';
+            return result;
+          } else {
+            throw new Error('Yedek de yanıt vermedi');
+          }
+        } catch (err3) {
+          result.status = 'warning';
+          result.details = 'IP konum tespit servisleri yanıt vermiyor.';
+          result.potentialCause = 'Tarayıcı gizlilik koruması veya reklam engelleyici IP sorgulama servislerini engelliyor olabilir.';
+          result.recommendation = 'Konum bilgisi "Bilinmiyor" olarak kaydedilebilir ancak ziyaretçi kaydı engellenmez.';
+        }
       }
     }
 

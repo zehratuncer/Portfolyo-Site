@@ -95,41 +95,185 @@
     return { os: os, deviceType: deviceType, browser: browser };
   }
 
-  // Şehir / Konum Bilgisini Al (IP Geolocation)
-  async function fetchLocationData() {
-    // 1. ipapi.co denemesi (Hızlı ve Türkçe il isimleri içerir)
-    try {
-      var res = await fetch('https://ipapi.co/json/', { timeout: 3500 });
-      if (res.ok) {
-        var data = await res.json();
-        return {
-          city: data.city || 'Bilinmiyor',
-          region: data.region || 'Bilinmiyor',
-          country: data.country_name || 'Türkiye',
-          countryCode: data.country_code || 'TR'
-        };
+  // Türkiye 81 İl Plaka Kodları Haritası (01 - 81)
+  var TR_PROVINCES = {
+    '01': 'Adana', '02': 'Adıyaman', '03': 'Afyonkarahisar', '04': 'Ağrı', '05': 'Amasya',
+    '06': 'Ankara', '07': 'Antalya', '08': 'Artvin', '09': 'Aydın', '10': 'Balıkesir',
+    '11': 'Bilecik', '12': 'Bingöl', '13': 'Bitlis', '14': 'Bolu', '15': 'Burdur',
+    '16': 'Bursa', '17': 'Çanakkale', '18': 'Çankırı', '19': 'Çorum', '20': 'Denizli',
+    '21': 'Diyarbakır', '22': 'Edirne', '23': 'Elazığ', '24': 'Erzincan', '25': 'Erzurum',
+    '26': 'Eskişehir', '27': 'Gaziantep', '28': 'Giresun', '29': 'Gümüşhane', '30': 'Hakkari',
+    '31': 'Hatay', '32': 'Isparta', '33': 'Mersin', '34': 'İstanbul', '35': 'İzmir',
+    '36': 'Kars', '37': 'Kastamonu', '38': 'Kayseri', '39': 'Kırklareli', '40': 'Kırşehir',
+    '41': 'Kocaeli', '42': 'Konya', '43': 'Kütahya', '44': 'Malatya', '45': 'Manisa',
+    '46': 'Kahramanmaraş', '47': 'Mardin', '48': 'Muğla', '49': 'Muş', '50': 'Nevşehir',
+    '51': 'Niğde', '52': 'Ordu', '53': 'Rize', '54': 'Sakarya', '55': 'Samsun',
+    '56': 'Siirt', '57': 'Sinop', '58': 'Sivas', '59': 'Tekirdağ', '60': 'Tokat',
+    '61': 'Trabzon', '62': 'Tunceli', '63': 'Şanlıurfa', '64': 'Uşak', '65': 'Van',
+    '66': 'Yozgat', '67': 'Zonguldak', '68': 'Aksaray', '69': 'Bayburt', '70': 'Karaman',
+    '71': 'Kırıkkale', '72': 'Batman', '73': 'Şırnak', '74': 'Bartın', '75': 'Ardahan',
+    '76': 'Iğdır', '77': 'Yalova', '78': 'Karabük', '79': 'Kilis', '80': 'Osmaniye',
+    '81': 'Düzce'
+  };
+
+  var TR_ALIASES = {
+    'icel': 'Mersin', 'içel': 'Mersin',
+    'afyon': 'Afyonkarahisar',
+    'sanliurfa': 'Şanlıurfa', 'urfa': 'Şanlıurfa',
+    'maras': 'Kahramanmaraş', 'kahramanmaras': 'Kahramanmaraş',
+    'antep': 'Gaziantep',
+    'elaziz': 'Elazığ'
+  };
+
+  function toAscii(str) {
+    if (!str) return '';
+    return String(str).toLowerCase()
+      .replace(/ğ/g, 'g').replace(/ü/g, 'u').replace(/ş/g, 's')
+      .replace(/ı/g, 'i').replace(/ö/g, 'o').replace(/ç/g, 'c');
+  }
+
+  // Türkiye için İl Çözümleyici (Plaka kodu, bölge ismi, ilçe analizi)
+  function resolveTurkeyProvince(rawCity, rawRegion, rawRegionCode) {
+    // 1. Plaka Kodu Kontrolü (Örn: "08", "69", "TR-08")
+    if (rawRegionCode) {
+      var code = String(rawRegionCode).replace(/^TR-?/i, '').trim();
+      if (code.length === 1) code = '0' + code;
+      if (TR_PROVINCES[code]) {
+        return TR_PROVINCES[code];
       }
+    }
+
+    // 2. Metin temizleme (Province, İli, Ili gibi ekleri kaldır)
+    function clean(s) {
+      if (!s) return '';
+      return String(s)
+        .replace(/\b(Province|İli|Ili|Bölgesi|Merkez|Prov\.)\b/gi, '')
+        .trim();
+    }
+
+    var cleanRegion = clean(rawRegion);
+    var cleanCity = clean(rawCity);
+
+    // 3. Bölge ve Şehir adaylarını 81 il ile eşleştir
+    var candidates = [cleanRegion, cleanCity, rawRegion, rawCity];
+    for (var i = 0; i < candidates.length; i++) {
+      var cand = candidates[i];
+      if (!cand || cand === 'Bilinmiyor' || cand.length < 3) continue;
+
+      var candAscii = toAscii(cand.replace(/['".,]/g, '').trim());
+
+      if (TR_ALIASES[candAscii]) {
+        return TR_ALIASES[candAscii];
+      }
+
+      for (var plate in TR_PROVINCES) {
+        var prov = TR_PROVINCES[plate];
+        var provAscii = toAscii(prov);
+
+        if (candAscii === provAscii ||
+            candAscii.indexOf(provAscii) !== -1 ||
+            provAscii.indexOf(candAscii) !== -1) {
+          return prov;
+        }
+      }
+    }
+
+    return null;
+  }
+
+  // Fetch with timeout yardımcısı
+  async function fetchWithTimeout(url, timeoutMs) {
+    var controller = new AbortController();
+    var timer = setTimeout(function () { controller.abort(); }, timeoutMs || 3000);
+    try {
+      var response = await fetch(url, { signal: controller.signal });
+      clearTimeout(timer);
+      return response;
     } catch (err) {
-      // Birincil servis başarısız olursa yedeğe geçer
+      clearTimeout(timer);
+      throw err;
     }
+  }
 
-    // 2. Yedek Servis: freeipapi.com
+  // Şehir / Konum Bilgisini Al (IP Geolocation - Çoklu Zincir & 81 İl Desteği)
+  async function fetchLocationData() {
+    var raw = null;
+
+    // 1. Birincil Servis: ipwho.is (Hızlı, HTTPS, Türkçe karakter ve detaylı bölge/plaka desteği)
     try {
-      var res2 = await fetch('https://freeipapi.com/api/json');
-      if (res2.ok) {
-        var data2 = await res2.json();
-        return {
-          city: data2.cityName || 'Bilinmiyor',
-          region: data2.regionName || 'Bilinmiyor',
-          country: data2.countryName || 'Türkiye',
-          countryCode: data2.countryCode || 'TR'
-        };
+      var res1 = await fetchWithTimeout('https://ipwho.is/', 3000);
+      if (res1.ok) {
+        var d1 = await res1.json();
+        if (d1 && d1.success !== false) {
+          raw = {
+            city: d1.city,
+            region: d1.region,
+            regionCode: d1.region_code,
+            country: d1.country || 'Türkiye',
+            countryCode: d1.country_code || 'TR'
+          };
+        }
       }
-    } catch (err2) {
-      // İkisi de başarısız olursa
+    } catch (e1) {}
+
+    // 2. Yedek Servis: ipapi.co (İl plaka kodu ve ilçe/bölge verisi)
+    if (!raw) {
+      try {
+        var res2 = await fetchWithTimeout('https://ipapi.co/json/', 3000);
+        if (res2.ok) {
+          var d2 = await res2.json();
+          raw = {
+            city: d2.city,
+            region: d2.region,
+            regionCode: d2.region_code,
+            country: d2.country_name || 'Türkiye',
+            countryCode: d2.country_code || 'TR'
+          };
+        }
+      } catch (e2) {}
     }
 
-    return { city: 'Bilinmiyor', region: 'Bilinmiyor', country: 'Türkiye', countryCode: 'TR' };
+    // 3. İkinci Yedek Servis: freeipapi.com
+    if (!raw) {
+      try {
+        var res3 = await fetchWithTimeout('https://freeipapi.com/api/json', 3000);
+        if (res3.ok) {
+          var d3 = await res3.json();
+          raw = {
+            city: d3.cityName,
+            region: d3.regionName,
+            regionCode: d3.regionCode,
+            country: d3.countryName || 'Türkiye',
+            countryCode: d3.countryCode || 'TR'
+          };
+        }
+      } catch (e3) {}
+    }
+
+    // Hiçbir servis yanıt vermediyse
+    if (!raw) {
+      return { city: 'Bilinmiyor', region: 'Bilinmiyor', country: 'Türkiye', countryCode: 'TR' };
+    }
+
+    var countryCode = (raw.countryCode || 'TR').toUpperCase();
+    var finalCity = raw.city;
+    var finalRegion = raw.region;
+
+    // Türkiye istekleri için 81 İl Çözümlemesi (Artvin, Bayburt vb. kesin tespiti)
+    if (countryCode === 'TR' || raw.country === 'Turkey' || raw.country === 'Türkiye') {
+      var resolvedProv = resolveTurkeyProvince(raw.city, raw.region, raw.regionCode);
+      if (resolvedProv) {
+        finalCity = resolvedProv;
+        finalRegion = raw.city && raw.city !== resolvedProv ? raw.city : resolvedProv;
+      }
+    }
+
+    return {
+      city: finalCity || 'Bilinmiyor',
+      region: finalRegion || finalCity || 'Bilinmiyor',
+      country: raw.country || 'Türkiye',
+      countryCode: countryCode
+    };
   }
 
   // Ana Takip Fonksiyonu
